@@ -209,6 +209,9 @@
 		<Unit filename="src/SyntaxParser.cc" />
 		<Unit filename="src/Token.cc" />
 		<Unit filename="src/main.cc" />
+		<Unit filename="src/malloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="textures/Shrek-and-Yoda (copy).jpg" />
 		<Unit filename="textures/Shrek-and-Yoda.jpg" />
 		<Unit filename="textures/ben.jpg" />

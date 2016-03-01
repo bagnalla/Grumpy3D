@@ -8,9 +8,9 @@ OBJDIR = obj
 INCLUDEDIR = include
 SRCDIR = src
 
-releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o )
+releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o malloc.o )
 
-debugobjects = $(addprefix $(DEBUGDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o )
+debugobjects = $(addprefix $(DEBUGDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o malloc.o )
 
 Release: $(SRCDIR)/main.cc puddiRelease releasedirs $(releaseobjects)
 	$(CC) $(SRCDIR)/main.cc $(releaseobjects) -I$(INCLUDEDIR) $(OPTIONS) $(LDLIBS) -o $(RELEASEDIR)/Grumpy3D
@@ -25,6 +25,9 @@ $(DEBUGDIR)/$(OBJDIR)/%.o: $(SRCDIR)/%.cc $(INCLUDEDIR)/%.h
 	$(CC) $< -c $(DEBUGOPTIONS) -I$(INCLUDEDIR) $(LDLIBS) -o $@
 
 # for testing my malloc implementation
+$(RELEASEDIR)/$(OBJDIR)/malloc.o: $(SRCDIR)/malloc.c
+	gcc $< -g -c -o $@
+
 $(DEBUGDIR)/$(OBJDIR)/malloc.o: $(SRCDIR)/malloc.c
 	gcc $< -g -c -o $@
 
