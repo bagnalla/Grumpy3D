@@ -15,7 +15,7 @@ namespace puddi
 
 	void Font::Init()
 	{
-        Texture::LoadTexture("myfont", "textures/font_60_tolerance.png");
+        Texture::LoadTexture("myfont", "puddi/textures/font_60_tolerance.png");
 
         std::vector<vec4> rect = Geometry::CreateRectangle(1.0);
 		std::vector<vec4> normals({ vec4(0.0, 0.0, 1.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0) });

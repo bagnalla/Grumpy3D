@@ -321,7 +321,7 @@ namespace puddi
 
 	void Shader::initEmissiveColorProgram()
 	{
-		GLuint program = InitShader("shaders/vertex/vshader_emissive_color.glsl", "shaders/fragment/fshader_emissive_color.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_emissive_color.glsl", "puddi/shaders/fragment/fshader_emissive_color.glsl");
 		nameToProgramMap.emplace("emissive_color", program);
 
 		// create a vertex array object
@@ -350,7 +350,7 @@ namespace puddi
 
 	void Shader::initEmissiveTextureProgram()
 	{
-		GLuint program = InitShader("shaders/vertex/vshader_emissive_texture.glsl", "shaders/fragment/fshader_emissive_texture.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_emissive_texture.glsl", "puddi/shaders/fragment/fshader_emissive_texture.glsl");
 		nameToProgramMap.emplace("emissive_texture", program);
 
 		// create a vertex array object
@@ -387,7 +387,7 @@ namespace puddi
 
 	void Shader::initEmissiveCubeMapProgram()
 	{
-		GLuint program = InitShader("shaders/vertex/vshader_emissive_cubemap.glsl", "shaders/fragment/fshader_emissive_cubemap.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_emissive_cubemap.glsl", "puddi/shaders/fragment/fshader_emissive_cubemap.glsl");
 		nameToProgramMap.emplace("emissive_cubemap", program);
 
 		// create a vertex array object
@@ -427,8 +427,8 @@ namespace puddi
 
 	void Shader::initDepthProgram()
 	{
-		//GLuint program = InitShader("shaders/vertex/vshader_depth.glsl", "shaders/fragment/fshader_depth.glsl");
-		GLuint program = InitShader("shaders/vertex/vshader_depth.glsl");
+		//GLuint program = InitShader("puddi/shaders/vertex/vshader_depth.glsl", "puddi/shaders/fragment/fshader_depth.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_depth.glsl");
 		nameToProgramMap.emplace("depth", program);
 
 		// create a vertex array object
@@ -456,7 +456,7 @@ namespace puddi
 
 	void Shader::initMaterialProgram()
 	{
-		GLuint program = InitShader("shaders/vertex/vshader_material.glsl", "shaders/fragment/fshader_material.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_material.glsl", "puddi/shaders/fragment/fshader_material.glsl");
 		nameToProgramMap.emplace("material", program);
 
 		// create a vertex array object
@@ -505,7 +505,7 @@ namespace puddi
 
 	void Shader::initMaterialBumpProgram()
 	{
-		GLuint program = InitShader("shaders/vertex/vshader_texture_bump.glsl", "shaders/fragment/fshader_material_bump.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_texture_bump.glsl", "puddi/shaders/fragment/fshader_material_bump.glsl");
 		nameToProgramMap.emplace("material_bump", program);
 
 		// create a vertex array object
@@ -568,7 +568,7 @@ namespace puddi
 
 	void Shader::initTextureProgram()
 	{
-		GLuint program = InitShader("shaders/vertex/vshader_texture.glsl", "shaders/fragment/fshader_texture.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_texture.glsl", "puddi/shaders/fragment/fshader_texture.glsl");
 		nameToProgramMap.emplace("texture", program);
 
 		// create a vertex array object
@@ -625,7 +625,7 @@ namespace puddi
 
 	void Shader::initTextureBumpProgram()
 	{
-		GLuint program = InitShader("shaders/vertex/vshader_texture_bump.glsl", "shaders/fragment/fshader_texture_bump.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_texture_bump.glsl", "puddi/shaders/fragment/fshader_texture_bump.glsl");
 		nameToProgramMap.emplace("texture_bump", program);
 
 		// create a vertex array object
@@ -692,7 +692,7 @@ namespace puddi
 
 	void Shader::initCubeMapProgram()
 	{
-		GLuint program = InitShader("shaders/vertex/vshader_cubemap.glsl", "shaders/fragment/fshader_cubemap.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_cubemap.glsl", "puddi/shaders/fragment/fshader_cubemap.glsl");
 		nameToProgramMap.emplace("cubemap", program);
 
 		// create a vertex array object
@@ -747,7 +747,7 @@ namespace puddi
 
 	void Shader::initCubeMapBumpProgram()
 	{
-		GLuint program = InitShader("shaders/vertex/vshader_cubemap_bump.glsl", "shaders/fragment/fshader_cubemap_bump.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_cubemap_bump.glsl", "puddi/shaders/fragment/fshader_cubemap_bump.glsl");
 		nameToProgramMap.emplace("cubemap_bump", program);
 
 		// create a vertex array object
@@ -812,7 +812,7 @@ namespace puddi
 
 	void Shader::initTerrainTextureBumpProgram()
 	{
-		GLuint program = InitShader("shaders/vertex/vshader_terrain_texture_bump.glsl", "shaders/fragment/fshader_terrain_texture_bump.glsl");
+		GLuint program = InitShader("puddi/shaders/vertex/vshader_terrain_texture_bump.glsl", "puddi/shaders/fragment/fshader_terrain_texture_bump.glsl");
 		nameToProgramMap.emplace("terrain_texture_bump", program);
 
 		// create a vertex array object
