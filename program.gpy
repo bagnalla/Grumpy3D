@@ -1,0 +1,13 @@
+def f() : unit {
+  let x = e1 in 1; 2
+}
+
+def g() : unit {
+  let x = e1 in a := 3
+}
+
+def h() : unit {
+  if true then 5 else 6; 7
+}
+
+f()
