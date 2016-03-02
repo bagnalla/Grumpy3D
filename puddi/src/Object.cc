@@ -49,7 +49,7 @@ namespace puddi
 	Object::~Object()
 	{
 		// delete children objects (recursive)
-		for (int i = 0; i < children.size(); ++i)
+		for (size_t i = 0; i < children.size(); ++i)
 			delete children[i];
 
 		// delete updateNode and its children nodes

@@ -25,7 +25,7 @@ namespace puddi
 
 	float Puddi::WorldSize;
 	float Puddi::ViewDistance;
-	float Puddi::FOV = M_PI / 4.0f;
+	float Puddi::FOV = static_cast<float>(M_PI / 4.0f);
 
 	mat4 Puddi::ProjectionMatrix;
 	mat4 Puddi::CameraMatrix;
@@ -37,7 +37,7 @@ namespace puddi
 
 	int Puddi::Init(float worldSize)
 	{
-		srand(time(NULL));
+		srand(static_cast<unsigned int>(time(NULL)));
 
 		Puddi::WorldSize = worldSize;
 
@@ -68,7 +68,12 @@ namespace puddi
 		glEnable(GL_MULTISAMPLE);
 
 		//SDL_GL_MakeCurrent(window, glcontext);
-		glewInit();
+		glewExperimental = GL_TRUE;
+		if (glewInit() != GLEW_OK)
+		{
+			std::cerr << "GLEW failed to load.\n";
+			exit(1);
+		}
 
 		if (SDL_SetRelativeMouseMode(SDL_TRUE) == -1)
 			std::cerr << "unable to set relative mouse mode.\n";

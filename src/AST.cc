@@ -91,7 +91,7 @@ namespace grumpy
 				DrawableObject *conn = new DrawableObject(container, Schematic::GetSchematicByName("rounded_cube"));
                 conn->Scale(0.9f);
                 conn->SetScaleX(1.9f);
-                conn->RotateX(M_PI / 2.0f);
+                conn->RotateX(static_cast<float>(M_PI / 2.0f));
                 conn->Translate(vec4(glyphCount + 1.0f, 0.0f, 0.0f, 0.0f));
                 //conn->SetEmissive(true);
                 //conn->SetEmissionColor(vec4(1.0f, 1.0f, 1.0f, 0.5f));
@@ -115,7 +115,7 @@ namespace grumpy
                     //cout << c << endl;
                     DrawableObject *glyph = new DrawableObject(container, VertexMesh::GetVertexMeshPrototypeByName(string(1, c)));
                     glyph->SetTexture(Texture::GetTextureByName("myfont"));
-                    glyph->RotateX(M_PI / 2.0f);
+                    glyph->RotateX(static_cast<float>(M_PI / 2.0f));
                     glyph->Translate(vec4(glyphCount + 0.5f, 0.0f, 0.0f, 0.0f));
                     glyphs.push_back(glyph);
                 }
@@ -165,7 +165,7 @@ namespace grumpy
         // create body
         body = new Cube(this);
         //body->Translate(vec4(-0.5f, 0.0f, 0.0f, 0.0f));
-        body->SetScaleX(glyphCount);
+        body->SetScaleX(static_cast<float>(glyphCount));
         body->SetEmissive(true);
         body->SetEmissionColor(vec4(0.25f, 0.25f, 0.25f, 0.25f));
 //        if (tokenRequired)
@@ -290,7 +290,7 @@ namespace grumpy
 		vec4 cursor = vec4(glyphCount / 2.0f - childrenWidthSum / 2.0f, 0.0f, deltaY, 1.0f);
 		if (ChildNodes.size())
 			cursor.x += ChildNodes[0]->width / 2.0f;
-		for (int i = 0; i < ChildNodes.size(); ++i)
+		for (size_t i = 0; i < ChildNodes.size(); ++i)
 		{
 			auto child = ChildNodes[i];
 			child->assignedLocation = cursor;

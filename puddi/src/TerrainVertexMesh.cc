@@ -102,7 +102,7 @@ namespace puddi
 	{
 		return scaleZ;
 	}
-	int TerrainVertexMesh::GetMaxHeight() const
+	float TerrainVertexMesh::GetMaxHeight() const
 	{
 		return maxHeight;
 	}
@@ -143,7 +143,7 @@ namespace puddi
 	{
 		scaleZ = z;
 	}
-	void TerrainVertexMesh::SetMaxHeight(int h)
+	void TerrainVertexMesh::SetMaxHeight(float h)
 	{
 		maxHeight = h;
 	}

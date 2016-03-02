@@ -25,7 +25,7 @@ namespace puddi
 		vec4 GetTextureHeights() const;
 		float GetGroundCoordZ() const;
 		float GetScaleZ() const;
-		int GetMaxHeight() const;
+		float GetMaxHeight() const;
 		int GetSizeX() const;
 		int GetSizeY() const;
 
@@ -36,7 +36,7 @@ namespace puddi
 		void SetTextureHeights(const vec4& texHeights);
 		void SetGroundCoordZ(float z);
 		void SetScaleZ(float z);
-		void SetMaxHeight(int h);
+		void SetMaxHeight(float h);
 		void SetSizeX(int x);
 		void SetSizeY(int y);
 
@@ -48,7 +48,7 @@ namespace puddi
 		vec4 textureHeights;
 		float groundCoordZ;
 		float scaleZ;
-		int maxHeight;
+		float maxHeight;
 
 		int sizeX;  // this * scale.x = x size of mesh
 		int sizeY; // this * scale.y = y size of mesh

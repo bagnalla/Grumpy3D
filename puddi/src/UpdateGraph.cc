@@ -51,7 +51,7 @@ namespace puddi
 			//});
 
 			#pragma omp parallel for
-			for (int i = 0; i < children.size(); ++i)
+			for (int i = 0; i < static_cast<int>(children.size()); ++i)
 			{
 				//if (omp_get_num_threads() != 1)
 				//	std::cout << "i = " << i << ", threads = " << omp_get_num_threads() << std::endl;

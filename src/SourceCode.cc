@@ -25,7 +25,7 @@ namespace grumpy
         vec4 posCursor = initialPos;
         float charWidth = 0.5f;
         float tabSpace = 4.0f * charWidth;
-        for (int i = 0; i < characters.size(); ++i)
+        for (size_t i = 0; i < characters.size(); ++i)
         {
             char c = characters[i];
 
@@ -62,7 +62,7 @@ namespace grumpy
 
             DrawableObject *glyph = new DrawableObject(this, VertexMesh::GetVertexMeshPrototypeByName(std::string(1, c)));
             glyph->SetTexture(Texture::GetTextureByName(font));
-            glyph->RotateX(M_PI / 2.0f);
+            glyph->RotateX(static_cast<float>(M_PI / 2.0));
             glyph->SetPosition(posCursor);
             glyph->SetEmissive(true);
             glyph->SetRenderGraph(1);

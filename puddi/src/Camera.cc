@@ -55,7 +55,7 @@ namespace puddi
 
 	void Camera::RotateX(float x)
 	{
-		SetRotationX(clamp(theta.x + static_cast<double>(x), -M_PI / 2.0 + 0.1, M_PI / 2.0 - 0.1));
+		SetRotationX(static_cast<float>(clamp(theta.x + static_cast<double>(x), -M_PI / 2.0 + 0.1, M_PI / 2.0 - 0.1)));
 	}
 
 	void Camera::InputEvent(SDL_Event ev)
@@ -124,9 +124,9 @@ namespace puddi
 		vec4 moveDirection = vec4(0.0, 0.0, 0.0, 0.0);
 
 		if (holdingA)
-			moveDirection -= Util::RotateZ(M_PI / 2.0) * lookDirection;
+			moveDirection -= Util::RotateZ(static_cast<float>(M_PI / 2.0)) * lookDirection;
 		if (holdingD)
-			moveDirection += Util::RotateZ(M_PI / 2.0) * lookDirection;
+			moveDirection += Util::RotateZ(static_cast<float>(M_PI / 2.0)) * lookDirection;
 		if (holdingW)
 			moveDirection += lookDirection;
 		if (holdingS)

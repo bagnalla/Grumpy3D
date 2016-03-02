@@ -104,14 +104,14 @@ namespace puddi
 
 			// vertex positiosn
 			std::vector<vec4> vertices;
-			for (int j = 0; j < mesh->mNumVertices; ++j)
+			for (size_t j = 0; j < mesh->mNumVertices; ++j)
 				vertices.push_back(vec4(mesh->mVertices[j].x, mesh->mVertices[j].y, mesh->mVertices[j].z, 1.0f));
 
 			// vertex normals
 			std::vector<vec4> normals;
 			if (mesh->HasNormals())
 			{
-				for (int j = 0; j < mesh->mNumVertices; ++j)
+				for (size_t j = 0; j < mesh->mNumVertices; ++j)
 					normals.push_back(vec4(mesh->mNormals[j].x, mesh->mNormals[j].y, mesh->mNormals[j].z, 0.0f));
 			}
 			else
@@ -124,9 +124,9 @@ namespace puddi
 			std::vector<vec4> binormals;
 			if (mesh->HasTangentsAndBitangents())
 			{
-				for (int j = 0; j < mesh->mNumVertices; ++j)
+				for (size_t j = 0; j < mesh->mNumVertices; ++j)
 					tangents.push_back(vec4(mesh->mTangents[j].x, mesh->mTangents[j].y, mesh->mTangents[j].z, 0.0f));
-				for (int j = 0; j < mesh->mNumVertices; ++j)
+				for (size_t j = 0; j < mesh->mNumVertices; ++j)
 					binormals.push_back(vec4(mesh->mBitangents[j].x, mesh->mBitangents[j].y, mesh->mBitangents[j].z, 0.0f));
 			}
 			else
@@ -139,7 +139,7 @@ namespace puddi
 			std::vector<vec2> textureCoordinates;
 			if (mesh->HasTextureCoords(0))
 			{
-				for (int j = 0; j < mesh->mNumVertices; ++j)
+				for (size_t j = 0; j < mesh->mNumVertices; ++j)
 				{
                     //std::cout << mesh->mTextureCoords[0][j].x << " " << mesh->mTextureCoords[0][j].y << std::endl;
 					textureCoordinates.push_back(vec2(mesh->mTextureCoords[0][j].x, -mesh->mTextureCoords[0][j].y));
@@ -148,13 +148,13 @@ namespace puddi
 			else
 			{
                 std::cerr << "no texture coordinates for model " << subdirectory << std::endl;
-				for (int j = 0; j < mesh->mNumVertices; ++j)
+				for (size_t j = 0; j < mesh->mNumVertices; ++j)
 					textureCoordinates.push_back(vec2(0.0f, 0.0f));
 			}
 
 			// mesh indices
 			std::vector<uint> indices;
-			for (int j = 0; j < mesh->mNumFaces; ++j)
+			for (size_t j = 0; j < mesh->mNumFaces; ++j)
 			{
 				auto face = mesh->mFaces[j];
 				if (face.mNumIndices == 3)
@@ -181,7 +181,7 @@ namespace puddi
 			Material mat;
 
 			std::vector<aiMaterialProperty*> matProps;
-			for (int j = 0; j < aiMat->mNumProperties; ++j)
+			for (size_t j = 0; j < aiMat->mNumProperties; ++j)
 			{
 				matProps.push_back(aiMat->mProperties[j]);
 			}

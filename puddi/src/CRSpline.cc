@@ -23,10 +23,10 @@ vec4 CRSpline::Eq(float t, const vec4& p1, const vec4& p2, const vec4& p3, const
 	float t2 = t * t;
 	float t3 = t2 * t;
 
-	float b1 = .5 * (-t3 + 2 * t2 - t);
-	float b2 = .5 * (3 * t3 - 5 * t2 + 2);
-	float b3 = .5 * (-3 * t3 + 4 * t2 + t);
-	float b4 = .5 * (t3 - t2);
+	float b1 = .5f * (-t3 + 2 * t2 - t);
+	float b2 = .5f * (3 * t3 - 5 * t2 + 2);
+	float b3 = .5f * (-3 * t3 + 4 * t2 + t);
+	float b4 = .5f * (t3 - t2);
 
 	return (p1*b1 + p2*b2 + p3*b3 + p4*b4);
 }

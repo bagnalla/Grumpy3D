@@ -14,8 +14,8 @@ namespace puddi
 
 	Skybox::Skybox(Object *par) : DrawableObject(par, VertexMesh::GetVertexMeshPrototypeByName("skybox"))
 	{
-		RotateX(-M_PI / 2.0f);
-		RotateZ(M_PI);
+		RotateX(static_cast<float>(-M_PI / 2.0f));
+		RotateZ(static_cast<float>(M_PI));
 		AddIgnoreParentModelFlag(IGNORE_PARENT_ROTATIONX | IGNORE_PARENT_ROTATIONY | IGNORE_PARENT_ROTATIONZ);
 	}
 

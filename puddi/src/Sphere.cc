@@ -34,8 +34,8 @@ namespace puddi
 		for (auto it = normals.begin(); it != normals.end(); ++it)
 		{
 			auto n = *it;
-			float u = asin(n.x) / M_PI + 0.5f;
-			float v = asin(n.y) / M_PI + 0.5f;
+			double u = asin(n.x) / M_PI + 0.5f;
+			double v = asin(n.y) / M_PI + 0.5f;
 			texCoords.push_back(vec2(u, v));
 		}
 

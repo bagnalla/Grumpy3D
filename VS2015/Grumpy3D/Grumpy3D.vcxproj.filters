@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="puddi">
+      <UniqueIdentifier>{a0a75422-c0c1-42ce-99d9-45705f11fa38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="puddi\include">
+      <UniqueIdentifier>{2bcc4215-a0dd-4e1f-a63a-48ecae7f6b4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="puddi\src">
+      <UniqueIdentifier>{47e114f3-1144-465a-8639-699eabf0bb49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="puddi\shaders">
+      <UniqueIdentifier>{bd8d0d63-7c2f-49a6-98bc-796d1a082cd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="puddi\shaders\vertex">
+      <UniqueIdentifier>{8977033e-d862-443c-bc64-3ab14229669c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="puddi\shaders\fragment">
+      <UniqueIdentifier>{c168c2bd-5ac8-4bdb-9119-fb0f5b67071a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Token.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SyntaxParser.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SourceCode.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Lexer.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AST.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\VertexMesh.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Util.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\UpdateGraph.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Texture.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\TerrainVertexMesh.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Sphere.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Skybox.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Shadow.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Shader.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\SDLUtil.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Schematic.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\RenderNode.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\RenderGraph.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Rectangle.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Puddi.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Object.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\ModelGraph.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Material.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\LightSource.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\InitShader.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\HeightMapTerrain.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\HeightMap.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Geometry.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\FpsTracker.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Font.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\EnvironmentMap.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\DrawableObject.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Cube.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\CRSpline.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\puddi\src\Camera.cc">
+      <Filter>puddi\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\Token.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SyntaxParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SourceCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Lexer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\AST.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\VertexMesh.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Util.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\UpdateGraph.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Texture.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\TerrainVertexMesh.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Sphere.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Skybox.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Shadow.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Shader.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\SDLUtil.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Schematic.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\RenderNode.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\RenderGraph.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Rectangle.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Puddi.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Object.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\ModelGraph.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Material.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\LightSource.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\InitShader.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\HeightMapTerrain.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\HeightMap.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\GlmHeaders.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Geometry.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\FpsTracker.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Font.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\EnvironmentMap.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\DrawableObject.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Cube.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\CRSpline.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Camera.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\puddi\include\Bagnall.h">
+      <Filter>puddi\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\puddi\shaders\vertex\vshader_cubemap.glsl">
+      <Filter>puddi\shaders\vertex</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\vertex\vshader_cubemap_bump.glsl">
+      <Filter>puddi\shaders\vertex</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\vertex\vshader_depth.glsl">
+      <Filter>puddi\shaders\vertex</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\vertex\vshader_emissive_color.glsl">
+      <Filter>puddi\shaders\vertex</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\vertex\vshader_emissive_cubemap.glsl">
+      <Filter>puddi\shaders\vertex</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\vertex\vshader_emissive_texture.glsl">
+      <Filter>puddi\shaders\vertex</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\vertex\vshader_material.glsl">
+      <Filter>puddi\shaders\vertex</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\vertex\vshader_terrain_texture_bump.glsl">
+      <Filter>puddi\shaders\vertex</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\vertex\vshader_texture.glsl">
+      <Filter>puddi\shaders\vertex</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\vertex\vshader_texture_bump.glsl">
+      <Filter>puddi\shaders\vertex</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_texture_bump.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_texture.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_terrain_texture_bump.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_material_bump.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_material.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_emissive_texture.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_emissive_cubemap.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_emissive_color.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_depth.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_cubemap_bump.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+    <None Include="..\..\puddi\shaders\fragment\fshader_cubemap.glsl">
+      <Filter>puddi\shaders\fragment</Filter>
+    </None>
+  </ItemGroup>
+</Project>

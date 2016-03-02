@@ -77,7 +77,7 @@ void init(void)
 
 	//wall = new Cube(Puddi::GetRootObject());
 	wall = new DrawableObject(Puddi::GetRootObject(), Schematic::GetSchematicByName("rounded_cube"));
-	wall->RotateX(M_PI / 2.0f);
+	wall->RotateX(static_cast<float>(M_PI / 2.0f));
 	//wall->SetScaleX(200.0f);
 	//wall->SetScaleY(100.0f);
 	//wall->SetScale(10.0f);
@@ -232,7 +232,7 @@ void reset()
     auto bytes = Util::ReadAllBytes("parser.in");
     vector<char> sanitizedBytes;
     bool prevCharWasSpace = false;
-    for (int i = 0; i < bytes.size(); ++i)
+    for (size_t i = 0; i < bytes.size(); ++i)
     {
         if (bytes[i] == ' ')
         {
@@ -250,7 +250,7 @@ void reset()
 
     queue<char> q;
 
-    for (int i = 0; i < sanitizedBytes.size(); ++i)
+    for (size_t i = 0; i < sanitizedBytes.size(); ++i)
         q.push(sanitizedBytes[i]);
 
     ast = new ASTNode(Puddi::GetRootObject(), nullptr, nullptr, q);

@@ -41,8 +41,8 @@ namespace grumpy
 		SyntaxParser *parser;
         std::vector<LexToken> lTokens;
         std::vector<Token*> tokensProduced;
-        int currentCharacterIndex;
-        int currentTokenIndex;
+        size_t currentCharacterIndex;
+		size_t currentTokenIndex;
         glm::vec4 currentTokenStartPos;
 
         float skipVelocity;

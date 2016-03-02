@@ -67,7 +67,7 @@ namespace puddi
 		// terrain uniforms
 		static void SetGroundCoordZ(float z);
 		static void SetTerrainScaleZ(float z);
-		static void SetTerrainMaxHeight(int z);
+		static void SetTerrainMaxHeight(float z);
 		static void SetTexHeights(const vec4& texHeights);
 
 		// either depth texture or depth cubemap

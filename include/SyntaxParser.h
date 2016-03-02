@@ -40,7 +40,7 @@ namespace grumpy
 		Lexer *lexer;
         ASTNode *astRoot;
         std::vector<ASTNode*> nodesVector;
-        int currentNodeIndex;
+        size_t currentNodeIndex;
         float velocity;
         SyntaxParserState state;
         glm::vec4 homePosition;

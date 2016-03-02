@@ -178,16 +178,16 @@ namespace puddi
 
 	mat4 Util::Perspective(const GLfloat fovy, const GLfloat aspect, const GLfloat zNear, const GLfloat zFar)
 	{
-		GLfloat top = tan(fovy*DegreesToRadians / 2) * zNear;
+		GLfloat top = static_cast<GLfloat>(tan(fovy*DegreesToRadians / 2) * zNear);
 		GLfloat right = top * aspect;
 
 		mat4 c;
 		c[0][0] = zNear / right;
 		c[1][1] = zNear / -top;
 		c[2][2] = -(zFar + zNear) / (zFar - zNear);
-		c[2][3] = -2.0*zFar*zNear / (zFar - zNear);
-		c[3][2] = -1.0;
-		c[3][3] = 0.0;
+		c[2][3] = -2.0f*zFar*zNear / (zFar - zNear);
+		c[3][2] = -1.0f;
+		c[3][3] = 0.0f;
 		return c;
 	}
 
@@ -201,7 +201,7 @@ namespace puddi
 
 	void Util::Apply(std::vector<vec4>& vecs, vec4(*func)(const vec4&))
 	{
-		for (int i = 0; i < vecs.size(); ++i)
+		for (size_t i = 0; i < vecs.size(); ++i)
 			vecs[i] = func(vecs[i]);
 	}
 
@@ -216,7 +216,7 @@ namespace puddi
 		std::ifstream ifs(fileName, std::ios::binary | std::ios::ate);
 		std::ifstream::pos_type pos = ifs.tellg();
 
-		std::vector<char>  result(pos);
+		std::vector<char> result(static_cast<uint>(pos));
 
 		ifs.seekg(0, std::ios::beg);
 		ifs.read(&result[0], pos);

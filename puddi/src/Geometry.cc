@@ -8,7 +8,7 @@ namespace puddi
 
 	std::vector<vec4> Geometry::CreateCatmullRomCurve(const vec4& p0, const vec4& p1, const vec4& p2, const vec4& p3, float curviness)
 	{
-		float weightIncrement = 1.0 / curviness;
+		float weightIncrement = 1.0f / curviness;
 
 		std::vector<vec4> vectors;
 		for (float s = weightIncrement; s < 1.0; s += weightIncrement)
@@ -49,8 +49,8 @@ namespace puddi
 	std::vector<vec4> Geometry::CreateCircle(int numberOfVertices)
 	{
 		std::vector<vec4> vertices;
-		float increment = (2 * M_PI) / (numberOfVertices - 1);
-		for (float theta = 0.0f; theta <= 2 * M_PI; theta += increment)
+		double increment = (2 * M_PI) / (numberOfVertices - 1);
+		for (double theta = 0.0f; theta <= 2 * M_PI; theta += increment)
 			vertices.push_back(vec4(cos(theta), sin(theta), 0, 1));
 		vertices.push_back(vec4(1.0, 0, 0, 1));
 		return vertices;
@@ -61,33 +61,33 @@ namespace puddi
 		tangents.clear();
 		vec4 tangent = vec4(0.0, 1.0, 0.0, 0.0);
 		std::vector<vec4> vertices;
-		float increment = (2 * M_PI) / (numberOfVertices - 1);
-		for (float theta = 0.0f; theta <= 2 * M_PI; theta += increment)
+		double increment = (2 * M_PI) / (numberOfVertices - 1);
+		for (double theta = 0.0f; theta <= 2 * M_PI; theta += increment)
 		{
 			vertices.push_back(vec4(cos(theta), sin(theta), 0, 1));
-			tangents.push_back(vec4(Util::RotateZ(theta) * tangent));
+			tangents.push_back(vec4(Util::RotateZ(static_cast<float>(theta)) * tangent));
 		}
 		vertices.push_back(vec4(1.0, 0, 0, 1));
 		tangents.push_back(tangent);
 		return vertices;
 	}
 
-	std::vector<vec4> Geometry::CreateSphere(int definition)
+	std::vector<vec4> Geometry::CreateSphere(float definition)
 	{
-		float deltaTheta = M_PI / definition;
-		float theta = 0;
+		double deltaTheta = M_PI / definition;
+		double theta = 0;
 		std::vector<vec4> sphere;
 
-		std::vector<vec4> originalRing = Geometry::CreateCircle(definition * 2);
+		std::vector<vec4> originalRing = Geometry::CreateCircle(static_cast<int>(definition * 2));
 		std::vector<vec4> ring1 = originalRing;
 		std::vector<vec4> ring2;
 
 		for (int i = 0; i < definition + 1; i++)
 		{
 			theta += deltaTheta;
-			ring2 = Util::TransformVertices(originalRing, Util::RotateY(theta));
+			ring2 = Util::TransformVertices(originalRing, Util::RotateY(static_cast<float>(theta)));
 
-			for (int j = 0; j < ring1.size(); j++)
+			for (size_t j = 0; j < ring1.size(); j++)
 			{
 				sphere.push_back(ring1[j]);
 				sphere.push_back(ring2[j]);
@@ -97,7 +97,7 @@ namespace puddi
 			sphere.push_back(ring2[0]);
 
 			ring1 = ring2;
-			ring2 = Util::TransformVertices(originalRing, Util::RotateY(theta));
+			ring2 = Util::TransformVertices(originalRing, Util::RotateY(static_cast<float>(theta)));
 		}
 
 		/*	for (int j = 0; j < ring1.size(); j++)
@@ -111,17 +111,17 @@ namespace puddi
 		return sphere;
 	}
 
-	std::vector<vec4> Geometry::CreateSphere(int definition, std::vector<vec4>& tangents, std::vector<vec4>& binormals)
+	std::vector<vec4> Geometry::CreateSphere(float definition, std::vector<vec4>& tangents, std::vector<vec4>& binormals)
 	{
 		tangents.clear();
 		binormals.clear();
 
-		float deltaTheta = M_PI / definition;
-		float theta = 0;
+		double deltaTheta = M_PI / definition;
+		double theta = 0;
 		std::vector<vec4> sphere;
 
 		std::vector<vec4> originalTangents;
-		std::vector<vec4> originalRing = Geometry::CreateCircle(definition * 2, originalTangents);
+		std::vector<vec4> originalRing = Geometry::CreateCircle(static_cast<int>(definition * 2), originalTangents);
 		std::vector<vec4> ring1 = originalRing;
 		std::vector<vec4> ring2;
 		std::vector<vec4> ring1Tangents = originalTangents;
@@ -130,10 +130,10 @@ namespace puddi
 		for (int i = 0; i < definition + 1; i++)
 		{
 			theta += deltaTheta;
-			ring2 = Util::TransformVertices(originalRing, Util::RotateY(theta));
-			ring2Tangents = Util::TransformVertices(originalTangents, Util::RotateY(theta));
+			ring2 = Util::TransformVertices(originalRing, Util::RotateY(static_cast<float>(theta)));
+			ring2Tangents = Util::TransformVertices(originalTangents, Util::RotateY(static_cast<float>(theta)));
 
-			for (int j = 0; j < ring1.size(); j++)
+			for (size_t j = 0; j < ring1.size(); j++)
 			{
 				sphere.push_back(ring1[j]);
 				sphere.push_back(ring2[j]);
@@ -152,8 +152,8 @@ namespace puddi
 
 			ring1 = ring2;
 			ring1Tangents = ring2Tangents;
-			ring2 = Util::TransformVertices(originalRing, Util::RotateY(theta));
-			ring2Tangents = Util::TransformVertices(originalTangents, Util::RotateY(theta));
+			ring2 = Util::TransformVertices(originalRing, Util::RotateY(static_cast<float>(theta)));
+			ring2Tangents = Util::TransformVertices(originalTangents, Util::RotateY(static_cast<float>(theta)));
 		}
 
 		return sphere;
@@ -580,7 +580,7 @@ namespace puddi
 		std::vector<vec4> ring1 = originalShape;
 		std::vector<vec4> ring2 = Util::TransformVertices(originalShape, translate(vec3(0.0, 0.0, -1.0)));
 
-		for (int i = 0; i < ring1.size(); i++)
+		for (size_t i = 0; i < ring1.size(); i++)
 		{
 			shape.push_back(vec4(0.0, 0.0, 0.0, 1.0));
 			shape.push_back(ring1[i]);
@@ -588,7 +588,7 @@ namespace puddi
 			normals.push_back(vec4(0.0, 0.0, 1.0, 0.0));
 		}
 
-		for (int i = 0; i < ring1.size(); i++)
+		for (size_t i = 0; i < ring1.size(); i++)
 		{
 			shape.push_back(ring1[i]);
 			shape.push_back(ring2[i]);
@@ -596,7 +596,7 @@ namespace puddi
 			normals.push_back(vec4(ring1[i].x, ring1[i].y, ring1[i].z, 0.0));
 		}
 
-		for (int i = 0; i < ring2.size(); i++)
+		for (size_t i = 0; i < ring2.size(); i++)
 		{
 			shape.push_back(ring2[i]);
 			shape.push_back(vec4(0.0, 0.0, -1.0, 1.0));
@@ -611,16 +611,16 @@ namespace puddi
 	{
 		std::vector<vec4> normals;
 
-		for (int i = 0; i < circle.size() * 2; i++)
+		for (size_t i = 0; i < circle.size() * 2; i++)
 			normals.push_back(vec4(0.0, 0.0, 1.0, 0.0));
-		for (int i = 0; i < circle.size(); i++)
+		for (size_t i = 0; i < circle.size(); i++)
 		{
 			normals.push_back(normalize(circle[i]));
 			normals.push_back(normalize(circle[i]));
 		}
 		normals.push_back(vec4(1.0, 0.0, 0.0, 0.0));
 		normals.push_back(vec4(1.0, 0.0, 0.0, 0.0));
-		for (int i = 0; i < circle.size() * 2; i++)
+		for (size_t i = 0; i < circle.size() * 2; i++)
 			normals.push_back(vec4(0.0, 0.0, -1.0, 0.0));
 
 		return normals;

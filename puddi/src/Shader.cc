@@ -265,7 +265,7 @@ namespace puddi
 		glUniform1f(loc, z);
 	}
 
-	void Shader::SetTerrainMaxHeight(int z)
+	void Shader::SetTerrainMaxHeight(float z)
 	{
 		GLuint loc = programToUniformMap[currentProgram]["terrainMaxHeight"];
 		glUniform1f(loc, z);

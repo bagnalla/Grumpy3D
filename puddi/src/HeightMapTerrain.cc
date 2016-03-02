@@ -21,7 +21,7 @@ namespace puddi
 
 		unsigned char *pixels = (unsigned char*)surface->pixels;
 		int bytesPerPixel = surface->format->BytesPerPixel;
-		int maxHeight = INT_MIN;
+		float maxHeight = FLT_MIN;
 
 		std::vector<vec4> vertices;
 		for (int i = 0; i < surface->h; ++i)
@@ -100,9 +100,9 @@ namespace puddi
 
 		std::vector<vec2> textureCoords;
 		if (texWidth == 0)
-			texWidth = surface->w;
+			texWidth = static_cast<float>(surface->w);
 		if (texHeight == 0)
-			texHeight = surface->h;
+			texHeight = static_cast<float>(surface->h);
 		for (int i = 0; i < surface->h; ++i)
 		{
 			for (int j = 0; j < surface->w; ++j)

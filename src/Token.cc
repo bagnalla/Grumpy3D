@@ -14,7 +14,7 @@ namespace grumpy
 
     LexToken::LexToken() : LexToken(0, "", 0, 0, "") {}
 
-    LexToken::LexToken(int num, const std::string &n, int s, int e, const std::string &v)
+    LexToken::LexToken(size_t num, const std::string &n, size_t s, size_t e, const std::string &v)
     {
         number = num;
         name = n;

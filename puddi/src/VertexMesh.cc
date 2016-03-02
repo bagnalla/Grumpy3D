@@ -210,7 +210,7 @@ namespace puddi
 		renderEnabled = b;
 	}
 
-	bool VertexMesh::GetRenderGraphIndex() const
+	size_t VertexMesh::GetRenderGraphIndex() const
 	{
 		return renderGraphIndex;
 	}

@@ -57,18 +57,18 @@ namespace puddi
 		Parameters:		int definition
 		Calls:			CreateCircle
 		**********************************************************************/
-		static std::vector<vec4> CreateSphere(int definition);
+		static std::vector<vec4> CreateSphere(float definition);
 
-		static std::vector<vec4> CreateSphere(int definition, std::vector<vec4>& tangents, std::vector<vec4>& binormals);
+		static std::vector<vec4> CreateSphere(float definition, std::vector<vec4>& tangents, std::vector<vec4>& binormals);
 
 		/**********************************************************************
 		Function:		CreateSphere2
 		Purpose:		Generate the vertices for a sphere using recursive
 		subdivision of a tetrahedron. Based on the code from
 		the Angel book.
-		Parameters:		int definition
+		Parameters:		int n
 		**********************************************************************/
-		static std::vector<vec4> CreateSphere2(int definition);
+		static std::vector<vec4> CreateSphere2(int n);
 
 		/**********************************************************************
 		Function:		CreateCircle

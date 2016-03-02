@@ -70,7 +70,7 @@ namespace puddi
 		bool GetRenderEnabled() const;
 		void SetRenderEnabled(bool b);
 
-		bool GetRenderGraphIndex() const;
+		size_t GetRenderGraphIndex() const;
 		void SetRenderGraphIndex(size_t i);
 
 	private:
