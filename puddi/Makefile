@@ -1,6 +1,6 @@
 CC = g++
 OPTIONS = -std=c++11 -fopenmp -O3
-DEBUGOPTIONS = -std=c++11 -fopenmp -g
+DEBUGOPTIONS = -std=c++11 -fopenmp -Wall -g
 LDLIBS = -lGLEW -lGL -lSDL2 -lpng -ljpeg -lz -lSDL2_image -lassimp
 RELEASEDIR = release
 DEBUGDIR = debug

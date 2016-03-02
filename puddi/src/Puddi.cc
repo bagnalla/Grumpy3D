@@ -68,7 +68,7 @@ namespace puddi
 		glEnable(GL_MULTISAMPLE);
 
 		//SDL_GL_MakeCurrent(window, glcontext);
-		glewExperimental = GL_TRUE;
+		//glewExperimental = GL_TRUE;
 		if (glewInit() != GLEW_OK)
 		{
 			std::cerr << "GLEW failed to load.\n";

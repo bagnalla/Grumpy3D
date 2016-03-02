@@ -1,16 +1,16 @@
 CC = g++
 OPTIONS = -std=c++11 -fopenmp -O3 -Ipuddi/include -Lpuddi/release
-DEBUGOPTIONS = -std=c++11 -fopenmp -g -Ipuddi/include -Lpuddi/debug
-LDLIBS = -lGLEW -lGL -lSDL2 -lpng -ljpeg -lz -lSDL2_image -lassimp -lpuddi
+DEBUGOPTIONS = -std=c++11 -fopenmp -Wall -g -Ipuddi/include -Lpuddi/debug
+LDLIBS = -lpuddi -lGLEW -lGL -lSDL2 -lpng -ljpeg -lz -lSDL2_image -lassimp
 RELEASEDIR = release
 DEBUGDIR = debug
 OBJDIR = obj
 INCLUDEDIR = include
 SRCDIR = src
 
-releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o malloc.o )
+releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o )
 
-debugobjects = $(addprefix $(DEBUGDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o malloc.o )
+debugobjects = $(addprefix $(DEBUGDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o )
 
 Release: $(SRCDIR)/main.cc puddiRelease releasedirs $(releaseobjects)
 	$(CC) $(SRCDIR)/main.cc $(releaseobjects) -I$(INCLUDEDIR) $(OPTIONS) $(LDLIBS) -o $(RELEASEDIR)/Grumpy3D
