@@ -10,7 +10,7 @@ uniform float materialShininess;
 uniform mat4 lightSource;
 uniform samplerCube cubeMap;
 uniform sampler2DShadow shadowTex;
-uniform samplerCubeShadow shadowCubeMap;
+//uniform samplerCubeShadow shadowCubeMap;
 uniform bool textureBlend;
 uniform int shadowMode;
 uniform vec2 shadowZRange;
@@ -36,7 +36,7 @@ void main()
 	vec3 EE = normalize(E);
 
 	vec4 texColor = texture(cubeMap, cubeMapCoord);
-	
+
 	vec4 ambientProduct, diffuseProduct, specularProduct;
 	float shininess;
 	if (textureBlend)
@@ -88,14 +88,14 @@ void main()
 		diffuse = diffuse * shadowVal;
 		specular = specular * shadowVal;
 	}
-	else if (shadowMode == 2)
+	/*else if (shadowMode == 2)
 	{
 		vec3 lightDir = -L;
 		float d = vecToDepth(lightDir) - 0.002;
 		float shadowVal = shadowCube(shadowCubeMap, vec4(lightDir, d)).x;
 		diffuse = diffuse * shadowVal;
 		specular = specular * shadowVal;
-	}
+	}*/
 
 	gl_FragColor = vec4((ambient + diffuse + specular).xyz, 1.0);
 }

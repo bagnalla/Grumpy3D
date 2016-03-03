@@ -232,6 +232,12 @@ namespace puddi
 
 	void Shader::SetShadowMode(ShadowMode mode)
 	{
+        if (mode == SHADOW_MODE_OMNI && !shadowCubesEnabled)
+        {
+            std::cerr << "can't use omnidirectional shadows when shadow cubes are disabled (need glsl version >= 2.0)\n";
+            return;
+        }
+
 		shadowMode = mode;
 
 		GLuint loc = programToUniformMap[currentProgram]["shadowMode"];
@@ -300,6 +306,11 @@ namespace puddi
 		SetProgram(programName.c_str());
 	}
 
+    void Shader::SetShadowCubesEnabled(bool b)
+    {
+        shadowCubesEnabled = b;
+    }
+
 	// PRIVATE
 
 	GLuint Shader::vertexBuffer;
@@ -314,6 +325,7 @@ namespace puddi
 	mat4 Shader::lightProjection;
 	ShadowMode Shader::shadowMode;
 	vec2 Shader::shadowZRange;
+	bool Shader::shadowCubesEnabled = true;
 
 	std::unordered_map<std::string, GLuint> Shader::nameToProgramMap;
 	std::unordered_map<GLuint, GLuint> Shader::programToVaoMap;

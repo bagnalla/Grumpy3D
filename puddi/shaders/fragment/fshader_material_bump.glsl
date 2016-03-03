@@ -11,7 +11,7 @@ uniform mat4 lightSource;
 uniform mat4 model;
 uniform sampler2D bumpTex;
 uniform sampler2DShadow shadowTex;
-uniform samplerCubeShadow shadowCubeMap;
+//uniform samplerCubeShadow shadowCubeMap;
 uniform int shadowMode;
 uniform vec2 shadowZRange;
 
@@ -79,7 +79,7 @@ void main()
 		diffuse = diffuse * shadowVal;
 		specular = specular * shadowVal;
 	}
-	else if (shadowMode == 2)
+	/*else if (shadowMode == 2)
 	{
 		vec3 lightDir = -L;
 
@@ -91,7 +91,7 @@ void main()
 		float shadowVal = shadowCube(shadowCubeMap, vec4(lightDir, d)).x;
 		diffuse = diffuse * shadowVal;
 		specular = specular * shadowVal;
-	}
+	}*/
 
 	gl_FragColor = vec4((ambient + diffuse + specular).xyz, 1.0);
 }

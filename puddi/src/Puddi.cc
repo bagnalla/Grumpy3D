@@ -112,6 +112,10 @@ namespace puddi
 			glPrimitiveRestartIndex(UINT_MAX);
 		}
 
+		// disable shadow cube maps if glsl version < 2.0
+		if (atoi(reinterpret_cast<char const*>(glGetString(GL_SHADING_LANGUAGE_VERSION))) < 2)
+            Shader::SetShadowCubesEnabled(false);
+
 		Puddi::ViewDistance = Puddi::WorldSize * 1.6f;
 
 		// set default clear color

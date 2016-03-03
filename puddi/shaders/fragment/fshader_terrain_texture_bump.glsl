@@ -19,7 +19,7 @@ uniform sampler2D bumpTex3;
 uniform sampler2D tex4;
 uniform sampler2D bumpTex4;
 uniform sampler2DShadow shadowTex;
-uniform samplerCubeShadow shadowCubeMap;
+//uniform samplerCubeShadow shadowCubeMap;
 uniform bool textureBlend;
 uniform int shadowMode;
 uniform vec2 shadowZRange;
@@ -46,13 +46,13 @@ void main()
 	texWeights.z = clamp(1.0 - abs(height - texHeights.z) / 0.25, 0.0, 1.0);
 	texWeights.w = clamp(1.0 - abs(height - texHeights.w) / 0.25, 0.0, 1.0);
 	texWeights = texWeights / (texWeights.x + texWeights.y + texWeights.z + texWeights.w);
-	
+
 	vec4 bump1 = texture2D(bumpTex1, fTextureCoord);
 	vec4 bump2 = texture2D(bumpTex2, fTextureCoord);
 	vec4 bump3 = texture2D(bumpTex3, fTextureCoord);
 	vec4 bump4 = texture2D(bumpTex4, fTextureCoord);
 	vec4 bump = bump1 * texWeights.x + bump2 * texWeights.y + bump3 * texWeights.z + bump4 * texWeights.w;
-	
+
 	bump = normalize(2.0*bump-1.0);
 	bump = model * inverseTBN * bump;
 	//vec3 NN = normalize(normalize(bump.xyz) + normalize(N));
@@ -61,13 +61,13 @@ void main()
 	vec3 EE = normalize(E);
 
 	//vec4 texColor = texture2D(tex, fTextureCoord);
-	
+
 	vec4 texColor1 = texture2D(tex1, fTextureCoord);
 	vec4 texColor2 = texture2D(tex2, fTextureCoord);
 	vec4 texColor3 = texture2D(tex3, fTextureCoord);
 	vec4 texColor4 = texture2D(tex4, fTextureCoord);
 	vec4 texColor = texColor1 * texWeights.x + texColor2 * texWeights.y + texColor3 * texWeights.z + texColor4 * texWeights.w;
-	
+
 	vec4 ambientProduct, diffuseProduct, specularProduct;
 	float shininess;
 	if (textureBlend)
@@ -121,14 +121,14 @@ void main()
 		diffuse = diffuse * shadowVal;
 		specular = specular * shadowVal;
 	}
-	else if (shadowMode == 2)
+	/*else if (shadowMode == 2)
 	{
 		vec3 lightDir = -L;
 		float d = vecToDepth(lightDir) - 0.002;
 		float shadowVal = shadowCube(shadowCubeMap, vec4(lightDir, d)).x;
 		diffuse = diffuse * shadowVal;
 		specular = specular * shadowVal;
-	}
+	}*/
 
 	gl_FragColor = vec4((ambient + diffuse + specular).xyz, 1.0);
 }
