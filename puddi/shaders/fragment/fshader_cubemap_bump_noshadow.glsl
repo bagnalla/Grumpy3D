@@ -15,7 +15,7 @@ uniform bool textureBlend;
 
 void main()
 {
-	vec4 bump = texture(bumpCubeMap, cubeMapCoord);
+	vec4 bump = textureCube(bumpCubeMap, cubeMapCoord);
 	bump = normalize(2.0*bump-1.0);
 	bump = model * inverseTBN * bump;
 	//vec3 NN = normalize(normalize(bump.xyz) + normalize(N));
@@ -23,7 +23,7 @@ void main()
 
 	vec3 EE = normalize(E);
 
-	vec4 texColor = texture(cubeMap, cubeMapCoord);
+	vec4 texColor = textureCube(cubeMap, cubeMapCoord);
 
 	vec4 ambientProduct, diffuseProduct, specularProduct;
 	float shininess;

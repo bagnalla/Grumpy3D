@@ -15,7 +15,7 @@ void main()
 
 	vec3 EE = normalize(E);
 
-	vec4 texColor = texture(cubeMap, cubeMapCoord);
+	vec4 texColor = textureCube(cubeMap, cubeMapCoord);
 
 	vec4 ambientProduct, diffuseProduct, specularProduct;
 	float shininess;
