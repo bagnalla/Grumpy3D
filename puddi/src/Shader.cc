@@ -19,6 +19,8 @@ namespace puddi
 
 	void Shader::Init()
 	{
+        shaderVersion = atof(reinterpret_cast<char const*>(glGetString(GL_SHADING_LANGUAGE_VERSION)));
+
 		// set up vertex buffer
 		if (Vertices.size())
 		{
@@ -300,11 +302,6 @@ namespace puddi
 		SetProgram(programName.c_str());
 	}
 
-    void Shader::SetShadowsEnabled(bool b)
-    {
-        shadowsEnabled = b;
-    }
-
 	// PRIVATE
 
 	GLuint Shader::vertexBuffer;
@@ -319,7 +316,7 @@ namespace puddi
 	mat4 Shader::lightProjection;
 	ShadowMode Shader::shadowMode;
 	vec2 Shader::shadowZRange;
-	bool Shader::shadowsEnabled = true;
+	float Shader::shaderVersion;
 
 	std::unordered_map<std::string, GLuint> Shader::nameToProgramMap;
 	std::unordered_map<GLuint, GLuint> Shader::programToVaoMap;
@@ -463,7 +460,7 @@ namespace puddi
 	void Shader::initMaterialProgram()
 	{
         GLuint program;
-        if (shadowsEnabled)
+        if (shaderVersion >= 2.0f)
             program = InitShader("puddi/shaders/vertex/vshader_material.glsl", "puddi/shaders/fragment/fshader_material.glsl");
         else
             program = InitShader("puddi/shaders/vertex/vshader_material.glsl", "puddi/shaders/fragment/fshader_material_noshadow.glsl");
@@ -497,7 +494,7 @@ namespace puddi
 		uniformMap.emplace("materialDiffuse", getUniform(program, "materialDiffuse"));
 		uniformMap.emplace("materialSpecular", getUniform(program, "materialSpecular"));
 		uniformMap.emplace("materialShininess", getUniform(program, "materialShininess"));
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             uniformMap.emplace("shadowZRange", getUniform(program, "shadowZRange"));
             uniformMap.emplace("shadowMode", getUniform(program, "shadowMode"));
@@ -511,7 +508,7 @@ namespace puddi
 
 		// initialize uniforms
 		glUseProgram(program);
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             glUniform1i(uniformMap["shadowMode"], 0);
             glUniform1i(uniformMap["shadowCubeMap"], TEXTURE_SHADOW_CUBE);
@@ -522,7 +519,7 @@ namespace puddi
 	void Shader::initMaterialBumpProgram()
 	{
 		GLuint program;
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
             program = InitShader("puddi/shaders/vertex/vshader_texture_bump.glsl", "puddi/shaders/fragment/fshader_material_bump.glsl");
         else
             program = InitShader("puddi/shaders/vertex/vshader_texture_bump.glsl", "puddi/shaders/fragment/fshader_material_bump_noshadow.glsl");
@@ -569,7 +566,7 @@ namespace puddi
 		uniformMap.emplace("materialSpecular", getUniform(program, "materialSpecular"));
 		uniformMap.emplace("materialShininess", getUniform(program, "materialShininess"));
 		uniformMap.emplace("bumpTex", getUniform(program, "bumpTex"));
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             uniformMap.emplace("shadowZRange", getUniform(program, "shadowZRange"));
             uniformMap.emplace("shadowTex", getUniform(program, "shadowTex"));
@@ -584,7 +581,7 @@ namespace puddi
 		// initialize uniforms
 		glUseProgram(program);
 		glUniform1i(uniformMap["bumpTex"], TEXTURE_2D_BUMP);
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             glUniform1i(uniformMap["shadowTex"], TEXTURE_SHADOW_2D);
             glUniform1i(uniformMap["shadowCubeMap"], TEXTURE_SHADOW_CUBE);
@@ -595,7 +592,7 @@ namespace puddi
 	void Shader::initTextureProgram()
 	{
 		GLuint program;
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
             program = InitShader("puddi/shaders/vertex/vshader_texture.glsl", "puddi/shaders/fragment/fshader_texture.glsl");
         else
             program = InitShader("puddi/shaders/vertex/vshader_texture.glsl", "puddi/shaders/fragment/fshader_texture_noshadow.glsl");
@@ -635,7 +632,7 @@ namespace puddi
 		uniformMap.emplace("materialShininess", getUniform(program, "materialShininess"));
 		uniformMap.emplace("tex", getUniform(program, "tex"));
 		uniformMap.emplace("textureBlend", getUniform(program, "textureBlend"));
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             uniformMap.emplace("shadowZRange", getUniform(program, "shadowZRange"));
             uniformMap.emplace("shadowMode", getUniform(program, "shadowMode"));
@@ -651,7 +648,7 @@ namespace puddi
 		glUseProgram(program);
 		glUniform1i(uniformMap["tex"], TEXTURE_2D);
 		glUniform1i(uniformMap["textureBlend"], 1);
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             glUniform1i(uniformMap["shadowMode"], 0);
             glUniform1i(uniformMap["shadowCubeMap"], TEXTURE_SHADOW_CUBE);
@@ -662,7 +659,7 @@ namespace puddi
 	void Shader::initTextureBumpProgram()
 	{
 		GLuint program;
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
             program = InitShader("puddi/shaders/vertex/vshader_texture_bump.glsl", "puddi/shaders/fragment/fshader_texture_bump.glsl");
         else
             program = InitShader("puddi/shaders/vertex/vshader_texture_bump.glsl", "puddi/shaders/fragment/fshader_texture_bump_noshadow.glsl");
@@ -711,7 +708,7 @@ namespace puddi
 		uniformMap.emplace("tex", getUniform(program, "tex"));
 		uniformMap.emplace("textureBlend", getUniform(program, "textureBlend"));
 		uniformMap.emplace("bumpTex", getUniform(program, "bumpTex"));
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             uniformMap.emplace("shadowZRange", getUniform(program, "shadowZRange"));
             uniformMap.emplace("shadowTex", getUniform(program, "shadowTex"));
@@ -728,7 +725,7 @@ namespace puddi
 		glUniform1i(uniformMap["tex"], TEXTURE_2D);
 		glUniform1i(uniformMap["textureBlend"], 1);
 		glUniform1i(uniformMap["bumpTex"], TEXTURE_2D_BUMP);
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             glUniform1i(uniformMap["shadowTex"], TEXTURE_SHADOW_2D);
             glUniform1i(uniformMap["shadowCubeMap"], TEXTURE_SHADOW_CUBE);
@@ -739,7 +736,7 @@ namespace puddi
 	void Shader::initCubeMapProgram()
 	{
 		GLuint program;
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
             program = InitShader("puddi/shaders/vertex/vshader_cubemap.glsl", "puddi/shaders/fragment/fshader_cubemap.glsl");
         else
             program = InitShader("puddi/shaders/vertex/vshader_cubemap.glsl", "puddi/shaders/fragment/fshader_cubemap_noshadow.glsl");
@@ -776,7 +773,7 @@ namespace puddi
 		uniformMap.emplace("cubeMap", getUniform(program, "cubeMap"));
 		uniformMap.emplace("textureBlend", getUniform(program, "textureBlend"));
 		uniformMap.emplace("reflectiveCubeMap", getUniform(program, "reflective"));
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             uniformMap.emplace("shadowZRange", getUniform(program, "shadowZRange"));
             uniformMap.emplace("shadowMode", getUniform(program, "shadowMode"));
@@ -793,7 +790,7 @@ namespace puddi
 		glUniform1i(uniformMap["cubeMap"], TEXTURE_CUBE);
 		glUniform1i(uniformMap["textureBlend"], 1);
 		glUniform1i(uniformMap["reflectiveCubeMap"], 0);
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             glUniform1i(uniformMap["shadowMode"], 0);
             glUniform1i(uniformMap["shadowCubeMap"], TEXTURE_SHADOW_CUBE);
@@ -804,7 +801,7 @@ namespace puddi
 	void Shader::initCubeMapBumpProgram()
 	{
 		GLuint program;
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
             program = InitShader("puddi/shaders/vertex/vshader_cubemap_bump.glsl", "puddi/shaders/fragment/fshader_cubemap_bump.glsl");
         else
             program = InitShader("puddi/shaders/vertex/vshader_cubemap_bump.glsl", "puddi/shaders/fragment/fshader_cubemap_bump_noshadow.glsl");
@@ -850,7 +847,7 @@ namespace puddi
 		uniformMap.emplace("bumpCubeMap", getUniform(program, "bumpCubeMap"));
 		uniformMap.emplace("textureBlend", getUniform(program, "textureBlend"));
 		uniformMap.emplace("reflectiveCubeMap", getUniform(program, "reflective"));
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
         {
             uniformMap.emplace("shadowZRange", getUniform(program, "shadowZRange"));
             uniformMap.emplace("shadowMode", getUniform(program, "shadowMode"));
@@ -868,7 +865,7 @@ namespace puddi
 		glUniform1i(uniformMap["textureBlend"], 1);
 		glUniform1i(uniformMap["bumpCubeMap"], TEXTURE_CUBE_BUMP);
 		glUniform1i(uniformMap["reflectiveCubeMap"], 0);
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             glUniform1i(uniformMap["shadowMode"], 0);
             glUniform1i(uniformMap["shadowCubeMap"], TEXTURE_SHADOW_CUBE);
@@ -879,7 +876,7 @@ namespace puddi
 	void Shader::initTerrainTextureBumpProgram()
 	{
 		GLuint program;
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
             program = InitShader("puddi/shaders/vertex/vshader_terrain_texture_bump.glsl", "puddi/shaders/fragment/fshader_terrain_texture_bump.glsl");
         else
             program = InitShader("puddi/shaders/vertex/vshader_terrain_texture_bump.glsl", "puddi/shaders/fragment/fshader_terrain_texture_bump_noshadow.glsl");
@@ -938,7 +935,7 @@ namespace puddi
 		uniformMap.emplace("bumpTex2", getUniform(program, "bumpTex2"));
 		uniformMap.emplace("bumpTex3", getUniform(program, "bumpTex3"));
 		uniformMap.emplace("bumpTex4", getUniform(program, "bumpTex4"));
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             uniformMap.emplace("shadowZRange", getUniform(program, "shadowZRange"));
             uniformMap.emplace("shadowTex", getUniform(program, "shadowTex"));
@@ -961,7 +958,7 @@ namespace puddi
 		glUniform1i(uniformMap["bumpTex2"], TEXTURE_TERRAIN_BUMP_2);
 		glUniform1i(uniformMap["bumpTex3"], TEXTURE_TERRAIN_BUMP_3);
 		glUniform1i(uniformMap["bumpTex4"], TEXTURE_TERRAIN_BUMP_4);
-		if (shadowsEnabled)
+		if (shaderVersion >= 2.0f)
 		{
             glUniform1i(uniformMap["shadowTex"], TEXTURE_SHADOW_2D);
             glUniform1i(uniformMap["shadowCubeMap"], TEXTURE_SHADOW_CUBE);

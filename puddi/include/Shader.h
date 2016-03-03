@@ -73,8 +73,6 @@ namespace puddi
 		// either depth texture or depth cubemap
 		static void BindShadowMap(GLuint shadowMap, ShadowMode mode);
 
-		static void SetShadowsEnabled(bool b);
-
 	private:
 		static GLuint vertexBuffer;
 		static GLuint elementBuffer;
@@ -88,7 +86,7 @@ namespace puddi
 		static mat4 lightProjection;
 		static ShadowMode shadowMode;
 		static vec2 shadowZRange;
-		static bool shadowsEnabled;
+		static float shaderVersion;
 
 		static std::unordered_map<std::string, GLuint> nameToProgramMap;
 		static std::unordered_map<GLuint, GLuint> programToVaoMap;
