@@ -24,9 +24,9 @@ void main()
 {
 	// compute vPosition in world space
 	vec4 vPositionWorld = model * vPosition;
-	
+
 	inverseTBN = mat4(vTangent, vBinormal, vNormal, vec4(0.0, 0.0, 0.0, 0.0));
-	
+
 	// compute normal in world space
 	N = normalize((model * vNormal).xyz);
 
@@ -42,21 +42,21 @@ void main()
 	{
 		vPositionLight = (lightProjection * vPositionWorld).xyz;
 		float bias = 0.005*tan(acos(dot(normalize(N), normalize(L))));
-		bias = clamp(bias, 0, 0.01);
+		bias = clamp(bias, 0.0, 0.01);
 		shadowCoordDepth = vec3((vPositionLight.x + 1.0) / 2.0, (vPositionLight.y + 1.0) / 2.0, (vPositionLight.z + 1.0) / 2.0 - bias);
 	}
-	
+
 	if (reflective)
 	{
 		vec3 v = normalize(-E);
-		cubeMapCoord = v - 2 * dot(v, N) * N;
+		cubeMapCoord = v - 2.0 * dot(v, N) * N;
 	}
 	else
 	{
 		//cubeMapCoord = (vPositionWorld - model[3]).xyz;
 		cubeMapCoord = vPosition.xyz;
 	}
-	
+
 	// compute gl_Position
 	gl_Position = projection * camera * vPositionWorld;
 }

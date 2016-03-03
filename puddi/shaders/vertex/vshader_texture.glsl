@@ -21,7 +21,7 @@ void main()
 {
 	// compute vPosition in world space
 	vec4 vPositionWorld = model * vPosition;
-	
+
 	// compute normal in world space
 	N = (model * vNormal).xyz;
 
@@ -37,13 +37,13 @@ void main()
 	{
 		vPositionLight = (lightProjection * vPositionWorld).xyz;
 		float bias = 0.005*tan(acos(dot(normalize(N), normalize(L))));
-		bias = clamp(bias, 0, 0.01);
+		bias = clamp(bias, 0.0, 0.01);
 		shadowCoordDepth = vec3((vPositionLight.x + 1.0) / 2.0, (vPositionLight.y + 1.0) / 2.0, (vPositionLight.z + 1.0) / 2.0 - bias);
 	}
-	
+
 	// pass texture coordinates to be interpolated over fragments
 	fTextureCoord = vec2((vTextureCoordinate.x), (vTextureCoordinate.y));
-	
+
 	// compute gl_Position
 	gl_Position = projection * camera * vPositionWorld;
 }
