@@ -114,12 +114,12 @@ namespace grumpy
                 for (auto it = requiredTokens.begin(); it != requiredTokens.end(); ++it)
                 {
                     tokensNeeded += !std::any_of(tokenQueue.begin(), tokenQueue.end(), [&](Token *t) { return t->LToken.number == *it; });
-                    if (!std::any_of(tokenQueue.begin(), tokenQueue.end(), [&](Token *t) { return t->LToken.number == *it; }))
-                        cout << "parser needs token " << *it << endl;
+                    //if (!std::any_of(tokenQueue.begin(), tokenQueue.end(), [&](Token *t) { return t->LToken.number == *it; }))
+                        //cout << "parser needs token " << *it << endl;
                 }
                 if (tokensNeeded)
                 {
-                    cout << "parser waiting on " << tokensNeeded << " tokens from the lexer. tokenQueue size = " << tokenQueue.size() << "\n";
+                    //cout << "parser waiting on " << tokensNeeded << " tokens from the lexer. tokenQueue size = " << tokenQueue.size() << "\n";
 					state = SYNTAXPARSER_STATE_WAITING;
                     // request x number of tokens from lexer
 					lexer->Lex();
@@ -145,7 +145,7 @@ namespace grumpy
 	void SyntaxParser::AddToken(Token *t)
 	{
         tokenQueue.push_back(t);
-        cout << "adding token " << t->LToken.number << " to parser\n";
+        //cout << "adding token " << t->LToken.number << " to parser\n";
 
         ASTNode *targetNode = nodesVector[currentNodeIndex];
         auto requiredTokens = targetNode->GetRequiredTokenNumbers();
@@ -156,7 +156,7 @@ namespace grumpy
         }
         if (tokensNeeded)
         {
-            cout << "parser waiting on " << tokensNeeded << " tokens from the lexer. tokenQueue size = " << tokenQueue.size() << "\n";
+            //cout << "parser waiting on " << tokensNeeded << " tokens from the lexer. tokenQueue size = " << tokenQueue.size() << "\n";
             //state = SYNTAXPARSER_STATE_WAITING;
             // request x number of tokens from lexer
             lexer->Lex();

@@ -1,0 +1,868 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: /home/alex/source/Grumpy3D/debug/Grumpy3D </line>
+</preamble>
+
+<pid>13177</pid>
+<ppid>12400</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--leak-check=full</arg>
+    <arg>--track-origins=yes</arg>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/alex/source/Grumpy3D/ValgrindOut.xml</arg>
+  </vargv>
+  <argv>
+    <exe>/home/alex/source/Grumpy3D/debug/Grumpy3D</exe>
+    <arg></arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.077 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:33.104 </time>
+</status>
+
+<error>
+  <unique>0x34</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>18 bytes in 2 blocks are definitely lost in loss record 48 of 480</text>
+    <leakedbytes>18</leakedbytes>
+    <leakedblocks>2</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2AB80</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x758F839</ip>
+      <obj>/lib/x86_64-linux-gnu/libc-2.19.so</obj>
+      <fn>strdup</fn>
+      <dir>/build/eglibc-3GlaMS/eglibc-2.19/string</dir>
+      <file>strdup.c</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0xA5C8E56</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0</obj>
+    </frame>
+    <frame>
+      <ip>0xA5C9C64</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0</obj>
+      <fn>_XimSetICValueData</fn>
+    </frame>
+    <frame>
+      <ip>0xA5C5259</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0</obj>
+      <fn>_XimLocalCreateIC</fn>
+    </frame>
+    <frame>
+      <ip>0xA5AB884</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0</obj>
+      <fn>XCreateIC</fn>
+    </frame>
+    <frame>
+      <ip>0x54ACD62</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>SetupWindowData</fn>
+    </frame>
+    <frame>
+      <ip>0x54AD187</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>X11_CreateWindow</fn>
+    </frame>
+    <frame>
+      <ip>0x54A067F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>SDL_CreateWindow_REAL</fn>
+    </frame>
+    <frame>
+      <ip>0x54A048F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>SDL_VideoInit_REAL</fn>
+    </frame>
+    <frame>
+      <ip>0x540B4FE</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>SDL_InitSubSystem_REAL</fn>
+    </frame>
+    <frame>
+      <ip>0x4205B3</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Puddi::Init(float)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Puddi.cc</file>
+      <line>44</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x35</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>18 bytes in 2 blocks are definitely lost in loss record 49 of 480</text>
+    <leakedbytes>18</leakedbytes>
+    <leakedblocks>2</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2AB80</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x758F839</ip>
+      <obj>/lib/x86_64-linux-gnu/libc-2.19.so</obj>
+      <fn>strdup</fn>
+      <dir>/build/eglibc-3GlaMS/eglibc-2.19/string</dir>
+      <file>strdup.c</file>
+      <line>42</line>
+    </frame>
+    <frame>
+      <ip>0xA5C8E56</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0</obj>
+    </frame>
+    <frame>
+      <ip>0xA5C9C64</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0</obj>
+      <fn>_XimSetICValueData</fn>
+    </frame>
+    <frame>
+      <ip>0xA5C5259</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0</obj>
+      <fn>_XimLocalCreateIC</fn>
+    </frame>
+    <frame>
+      <ip>0xA5AB884</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0</obj>
+      <fn>XCreateIC</fn>
+    </frame>
+    <frame>
+      <ip>0x54ACD62</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>SetupWindowData</fn>
+    </frame>
+    <frame>
+      <ip>0x54AD187</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>X11_CreateWindow</fn>
+    </frame>
+    <frame>
+      <ip>0x54A067F</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>SDL_CreateWindow_REAL</fn>
+    </frame>
+    <frame>
+      <ip>0x420643</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Puddi::Init(float)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Puddi.cc</file>
+      <line>60</line>
+    </frame>
+    <frame>
+      <ip>0x406219</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>main</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>384</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x104</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>198 bytes in 6 blocks are definitely lost in loss record 256 of 480</text>
+    <leakedbytes>198</leakedbytes>
+    <leakedblocks>6</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2AB80</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0xA5864A0</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libX11.so.6.3.0</obj>
+      <fn>XGetWindowProperty</fn>
+    </frame>
+    <frame>
+      <ip>0x54A5234</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>X11_DispatchEvent</fn>
+    </frame>
+    <frame>
+      <ip>0x54A5A27</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>X11_PumpEvents</fn>
+    </frame>
+    <frame>
+      <ip>0x543A556</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>SDL_PumpEvents_REAL</fn>
+    </frame>
+    <frame>
+      <ip>0x543A5B3</ip>
+      <obj>/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2.0</obj>
+      <fn>SDL_WaitEventTimeout_REAL</fn>
+    </frame>
+    <frame>
+      <ip>0x40608F</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>update()</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>288</line>
+    </frame>
+    <frame>
+      <ip>0x420936</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Puddi::Run()</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Puddi.cc</file>
+      <line>160</line>
+    </frame>
+    <frame>
+      <ip>0x40624D</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>main</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>395</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x122</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>368 (112 direct, 256 indirect) bytes in 1 blocks are definitely lost in loss record 286 of 480</text>
+    <leakedbytes>368</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x44BB6E</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Schematic::buildSchematic(aiScene const*, aiNode*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Schematic.cc</file>
+      <line>81</line>
+    </frame>
+    <frame>
+      <ip>0x44BA9C</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Schematic::InitSchematic(char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Schematic.cc</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x404DE7</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>init()</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>64</line>
+    </frame>
+    <frame>
+      <ip>0x406234</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>main</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>387</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x15e</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>608 (552 direct, 56 indirect) bytes in 1 blocks are definitely lost in loss record 346 of 480</text>
+    <leakedbytes>608</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x420AF4</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Puddi::AddRenderGraph()</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Puddi.cc</file>
+      <line>202</line>
+    </frame>
+    <frame>
+      <ip>0x404C54</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>init()</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>49</line>
+    </frame>
+    <frame>
+      <ip>0x406234</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>main</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>387</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x160</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>648 (16 direct, 632 indirect) bytes in 1 blocks are definitely lost in loss record 348 of 480</text>
+    <leakedbytes>648</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x44B1BD</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node_base*&gt;::allocate(unsigned long, void const*)</fn>
+      <dir>/usr/local/include/c++/6.0.0/ext</dir>
+      <file>new_allocator.h</file>
+      <line>104</line>
+    </frame>
+    <frame>
+      <ip>0x44B033</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node_base*&gt; &gt;::allocate(std::allocator&lt;std::__detail::_Hash_node_base*&gt;&amp;, unsigned long)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>alloc_traits.h</file>
+      <line>416</line>
+    </frame>
+    <frame>
+      <ip>0x44ADD9</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, false&gt; &gt; &gt;::_M_allocate_buckets(unsigned long)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable_policy.h</file>
+      <line>1994</line>
+    </frame>
+    <frame>
+      <ip>0x44A048</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::_Hashtable&lt;unsigned int, std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, std::allocator&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;unsigned int&gt;, std::hash&lt;unsigned int&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;false, false, true&gt; &gt;::_M_allocate_buckets(unsigned long)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>346</line>
+    </frame>
+    <frame>
+      <ip>0x448568</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::_Hashtable&lt;unsigned int, std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, std::allocator&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;unsigned int&gt;, std::hash&lt;unsigned int&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;false, false, true&gt; &gt;::_M_rehash_aux(unsigned long, std::integral_constant&lt;bool, true&gt;)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>1961</line>
+    </frame>
+    <frame>
+      <ip>0x4459FE</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::_Hashtable&lt;unsigned int, std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, std::allocator&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;unsigned int&gt;, std::hash&lt;unsigned int&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;false, false, true&gt; &gt;::_M_rehash(unsigned long, unsigned long const&amp;)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>1940</line>
+    </frame>
+    <frame>
+      <ip>0x441488</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::_Hashtable&lt;unsigned int, std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, std::allocator&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;unsigned int&gt;, std::hash&lt;unsigned int&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;false, false, true&gt; &gt;::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, false&gt;*)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>1587</line>
+    </frame>
+    <frame>
+      <ip>0x4411FE</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::pair&lt;std::__detail::_Node_iterator&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, false, false&gt;, bool&gt; std::_Hashtable&lt;unsigned int, std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, std::allocator&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;unsigned int&gt;, std::hash&lt;unsigned int&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;false, false, true&gt; &gt;::_M_emplace&lt;unsigned int&amp;, puddi::TextureEmissiveNode*&gt;(std::integral_constant&lt;bool, true&gt;, unsigned int&amp;, puddi::TextureEmissiveNode*&amp;&amp;)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>1535</line>
+    </frame>
+    <frame>
+      <ip>0x43D22A</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::pair&lt;std::__detail::_Node_iterator&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, false, false&gt;, bool&gt; std::_Hashtable&lt;unsigned int, std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, std::allocator&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;unsigned int&gt;, std::hash&lt;unsigned int&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;false, false, true&gt; &gt;::emplace&lt;unsigned int&amp;, puddi::TextureEmissiveNode*&gt;(unsigned int&amp;, puddi::TextureEmissiveNode*&amp;&amp;)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>728</line>
+    </frame>
+    <frame>
+      <ip>0x43B77A</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::pair&lt;std::__detail::_Node_iterator&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt;, false, false&gt;, bool&gt; std::unordered_map&lt;unsigned int, puddi::TextureEmissiveNode*, std::hash&lt;unsigned int&gt;, std::equal_to&lt;unsigned int&gt;, std::allocator&lt;std::pair&lt;unsigned int const, puddi::TextureEmissiveNode*&gt; &gt; &gt;::emplace&lt;unsigned int&amp;, puddi::TextureEmissiveNode*&gt;(unsigned int&amp;, puddi::TextureEmissiveNode*&amp;&amp;)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>unordered_map.h</file>
+      <line>380</line>
+    </frame>
+    <frame>
+      <ip>0x438A70</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::RenderGraph::AddVertexMesh(puddi::VertexMesh*)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>RenderGraph.cc</file>
+      <line>197</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x18a</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>1,256 (112 direct, 1,144 indirect) bytes in 1 blocks are definitely lost in loss record 390 of 480</text>
+    <leakedbytes>1256</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x44BB6E</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Schematic::buildSchematic(aiScene const*, aiNode*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Schematic.cc</file>
+      <line>81</line>
+    </frame>
+    <frame>
+      <ip>0x44BA9C</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Schematic::InitSchematic(char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Schematic.cc</file>
+      <line>53</line>
+    </frame>
+    <frame>
+      <ip>0x404D3C</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>init()</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>63</line>
+    </frame>
+    <frame>
+      <ip>0x406234</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>main</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>387</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1ab</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>3,648 (88 direct, 3,560 indirect) bytes in 1 blocks are definitely lost in loss record 423 of 480</text>
+    <leakedbytes>3648</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x44B1BD</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node_base*&gt;::allocate(unsigned long, void const*)</fn>
+      <dir>/usr/local/include/c++/6.0.0/ext</dir>
+      <file>new_allocator.h</file>
+      <line>104</line>
+    </frame>
+    <frame>
+      <ip>0x44B033</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node_base*&gt; &gt;::allocate(std::allocator&lt;std::__detail::_Hash_node_base*&gt;&amp;, unsigned long)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>alloc_traits.h</file>
+      <line>416</line>
+    </frame>
+    <frame>
+      <ip>0x44A5ED</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, true&gt; &gt; &gt;::_M_allocate_buckets(unsigned long)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable_policy.h</file>
+      <line>1994</line>
+    </frame>
+    <frame>
+      <ip>0x449274</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::_Hashtable&lt;puddi::Material, std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, std::allocator&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;puddi::Material&gt;, std::hash&lt;puddi::Material&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;true, false, true&gt; &gt;::_M_allocate_buckets(unsigned long)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>346</line>
+    </frame>
+    <frame>
+      <ip>0x446EF4</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::_Hashtable&lt;puddi::Material, std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, std::allocator&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;puddi::Material&gt;, std::hash&lt;puddi::Material&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;true, false, true&gt; &gt;::_M_rehash_aux(unsigned long, std::integral_constant&lt;bool, true&gt;)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>1961</line>
+    </frame>
+    <frame>
+      <ip>0x443916</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::_Hashtable&lt;puddi::Material, std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, std::allocator&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;puddi::Material&gt;, std::hash&lt;puddi::Material&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;true, false, true&gt; &gt;::_M_rehash(unsigned long, unsigned long const&amp;)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>1940</line>
+    </frame>
+    <frame>
+      <ip>0x43EF8C</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::_Hashtable&lt;puddi::Material, std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, std::allocator&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;puddi::Material&gt;, std::hash&lt;puddi::Material&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;true, false, true&gt; &gt;::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, true&gt;*)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>1587</line>
+    </frame>
+    <frame>
+      <ip>0x43ECE8</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::pair&lt;std::__detail::_Node_iterator&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, false, true&gt;, bool&gt; std::_Hashtable&lt;puddi::Material, std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, std::allocator&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;puddi::Material&gt;, std::hash&lt;puddi::Material&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;true, false, true&gt; &gt;::_M_emplace&lt;puddi::Material&amp;, puddi::MaterialNode*&gt;(std::integral_constant&lt;bool, true&gt;, puddi::Material&amp;, puddi::MaterialNode*&amp;&amp;)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>1535</line>
+    </frame>
+    <frame>
+      <ip>0x43C63C</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::pair&lt;std::__detail::_Node_iterator&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, false, true&gt;, bool&gt; std::_Hashtable&lt;puddi::Material, std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, std::allocator&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt; &gt;, std::__detail::_Select1st, std::equal_to&lt;puddi::Material&gt;, std::hash&lt;puddi::Material&gt;, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits&lt;true, false, true&gt; &gt;::emplace&lt;puddi::Material&amp;, puddi::MaterialNode*&gt;(puddi::Material&amp;, puddi::MaterialNode*&amp;&amp;)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>hashtable.h</file>
+      <line>728</line>
+    </frame>
+    <frame>
+      <ip>0x43B22E</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>std::pair&lt;std::__detail::_Node_iterator&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt;, false, true&gt;, bool&gt; std::unordered_map&lt;puddi::Material, puddi::MaterialNode*, std::hash&lt;puddi::Material&gt;, std::equal_to&lt;puddi::Material&gt;, std::allocator&lt;std::pair&lt;puddi::Material const, puddi::MaterialNode*&gt; &gt; &gt;::emplace&lt;puddi::Material&amp;, puddi::MaterialNode*&gt;(puddi::Material&amp;, puddi::MaterialNode*&amp;&amp;)</fn>
+      <dir>/usr/local/include/c++/6.0.0/bits</dir>
+      <file>unordered_map.h</file>
+      <line>380</line>
+    </frame>
+    <frame>
+      <ip>0x438398</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::RenderGraph::AddVertexMesh(puddi::VertexMesh*)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>RenderGraph.cc</file>
+      <line>115</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1b7</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>4,880 (552 direct, 4,328 indirect) bytes in 1 blocks are definitely lost in loss record 435 of 480</text>
+    <leakedbytes>4880</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x420AF4</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Puddi::AddRenderGraph()</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Puddi.cc</file>
+      <line>202</line>
+    </frame>
+    <frame>
+      <ip>0x404C4F</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>init()</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>48</line>
+    </frame>
+    <frame>
+      <ip>0x406234</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>main</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>387</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1c4</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>7,280 bytes in 1 blocks are definitely lost in loss record 448 of 480</text>
+    <leakedbytes>7280</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x62D23CE</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x62CB2CD</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x615F9F5</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x616A2C2</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+      <fn>Assimp::Importer::ReadFile(char const*, unsigned int)</fn>
+    </frame>
+    <frame>
+      <ip>0x615C0C8</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+      <fn>aiImportFileExWithProperties</fn>
+    </frame>
+    <frame>
+      <ip>0x44BA5B</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Schematic::InitSchematic(char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Schematic.cc</file>
+      <line>50</line>
+    </frame>
+    <frame>
+      <ip>0x404D3C</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>init()</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>63</line>
+    </frame>
+    <frame>
+      <ip>0x406234</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>main</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>387</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1c5</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>7,280 bytes in 1 blocks are definitely lost in loss record 449 of 480</text>
+    <leakedbytes>7280</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x62CCE56</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x62CD457</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x62CDB2F</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x62D10C2</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x62D20BF</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x62D262A</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x62CB2CD</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x615F9F5</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x616A2C2</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+      <fn>Assimp::Importer::ReadFile(char const*, unsigned int)</fn>
+    </frame>
+    <frame>
+      <ip>0x615C0C8</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+      <fn>aiImportFileExWithProperties</fn>
+    </frame>
+    <frame>
+      <ip>0x44BA5B</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Schematic::InitSchematic(char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Schematic.cc</file>
+      <line>50</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1c6</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>7,280 bytes in 1 blocks are definitely lost in loss record 450 of 480</text>
+    <leakedbytes>7280</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x4C2B0E0</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>operator new(unsigned long)</fn>
+    </frame>
+    <frame>
+      <ip>0x62D23CE</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x62CB2CD</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x615F9F5</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+    </frame>
+    <frame>
+      <ip>0x616A2C2</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+      <fn>Assimp::Importer::ReadFile(char const*, unsigned int)</fn>
+    </frame>
+    <frame>
+      <ip>0x615C0C8</ip>
+      <obj>/usr/lib/libassimp.so.3.0.1264</obj>
+      <fn>aiImportFileExWithProperties</fn>
+    </frame>
+    <frame>
+      <ip>0x44BA5B</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>puddi::Schematic::InitSchematic(char const*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)</fn>
+      <dir>/home/alex/source/Grumpy3D/puddi/src</dir>
+      <file>Schematic.cc</file>
+      <line>50</line>
+    </frame>
+    <frame>
+      <ip>0x404DE7</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>init()</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>64</line>
+    </frame>
+    <frame>
+      <ip>0x406234</ip>
+      <obj>/home/alex/source/Grumpy3D/debug/Grumpy3D</obj>
+      <fn>main</fn>
+      <dir>/home/alex/source/Grumpy3D/src</dir>
+      <file>main.cc</file>
+      <line>387</line>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+  <pair>
+    <count>5</count>
+    <name>X on SUSE11 writev uninit padding</name>
+  </pair>
+</suppcounts>
+
+</valgrindoutput>
+

@@ -18,6 +18,8 @@ namespace grumpy
 
         LexToken();
         LexToken(size_t num, const std::string &name, size_t start, size_t end, const std::string &value);
+
+
     };
 
     class Token : public puddi::DrawableObject

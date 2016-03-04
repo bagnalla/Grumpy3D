@@ -79,7 +79,7 @@ namespace grumpy
 
                 if (currentCharacterIndex == currentToken.start)
                 {
-                    cout << "reached token " << currentTokenIndex << " at pos " << currentCharacterIndex << ". entering read state until pos " << currentToken.end << endl;
+                    //cout << "reached token " << currentTokenIndex << " at pos " << currentCharacterIndex << ". entering read state until pos " << currentToken.end << endl;
                     currentTokenStartPos = targetPosition;
                     scanBarColor.w = 0.5f;
                     scanBar->SetEmissionColor(scanBarColor);
@@ -115,19 +115,20 @@ namespace grumpy
             {
                 SetPosition(targetPosition);
 
-                cout << "reached end of token" << currentTokenIndex << ". entering skip state" << endl;
+                //cout << "reached end of token" << currentTokenIndex << ". entering skip state" << endl;
                 scanBarColor.w = 0.0f;
                 scanBar->SetEmissionColor(scanBarColor);
                 scanBar->SetScaleX(0.0f);
                 scanBar->SetPosition(vec4(0.0f, 0.0f, 0.0f, 1.0f));
                 state = LEXER_STATE_WAITING;
 
+                size_t glyphBegin = currentCharacterIndex;
                 for (;currentCharacterIndex <= currentToken.end; currentCharacterIndex++)
                 {
                     sourceCode->glyphs[currentCharacterIndex]->Cull();
                 }
 
-				produceToken();
+				produceToken(glyphBegin, currentCharacterIndex);
 
                 currentTokenIndex++;
             }
@@ -169,14 +170,14 @@ namespace grumpy
 	void Lexer::Lex()
 	{
 		if (currentTokenIndex == lTokens.size() - 1)
-			produceToken();
+			produceToken(lTokens.size() - 1, lTokens.size());
         else
             state = LEXER_STATE_SKIPPING;
 	}
 
     // PRIVATE
 
-	void Lexer::produceToken()
+	void Lexer::produceToken(size_t glyphBegin, size_t glyphEnd)
 	{
 		Token *t = new Token(Puddi::GetRootObject(), lTokens[currentTokenIndex], parser, Schematic::GetSchematicByName("rounded_cube"));
 		Token *parserTokenTail = parser->GetTokenTail();
@@ -185,10 +186,43 @@ namespace grumpy
 			parserTokenTail->SetPrevious(t);
 		//t->SetVelocity(0.1f);
 		t->SetVelocity(0.2f);
-		t->SetMaterial(Material::Medium(vec4(0.0f, 1.0f, 1.0f, 1.0f)));
+		//t->SetMaterial(Material::Medium(vec4(0.0f, 1.0f, 1.0f, 1.0f)));
+		t->SetMaterial(Material::Medium(chooseTokenColor(t->LToken)));
 		t->SetBumpMap(Texture::GetBumpMapByName("rough4"));
-		t->SetPosition(position);
+		t->SetScaleX((glyphEnd - glyphBegin) / 2.0f);
+		t->SetPosition(position - vec4(t->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f));
 		Puddi::ForceModelUpdate();
 		tokensProduced.push_back(t);
+	}
+
+	vec4 Lexer::chooseTokenColor(const LexToken& t)
+	{
+        vector<string> words({ "DEF", "LET", "WHILE", "IF", "THEN", "ELSE", "REF", "IN" });
+        vector<string> types({ "INT", "FLOAT", "BOOL", "UNIT", "TT" });
+        vector<string> unops({ "NOT", "DEREF" });
+        vector<string> binops({ "PLUS", "MINUS", "TIMES", "DIV", "AND", "OR", "LT", "INT_EQ", "DEFEQ" });
+        vector<string> separators({ "LPAREN", "RPAREN", "LBRACE", "RBRACE", "SEMI", "EQ", "COLON", "COMMA", "EOF" });
+
+        auto it = find(words.begin(), words.end(), t.name);
+        if (it != words.end())
+            return vec4(0.25f, 0.25f, 0.25f, 1.0f);
+
+        it = find(types.begin(), types.end(), t.name);
+        if (it != types.end())
+            return vec4(0.0f, 0.0f, 0.75f, 1.0f);
+
+        it = find(unops.begin(), unops.end(), t.name);
+        if (it != unops.end())
+            return vec4(0.0f, 0.75f, 0.25f, 1.0f);
+
+        it = find(binops.begin(), binops.end(), t.name);
+        if (it != binops.end())
+            return vec4(0.0f, 0.75f, 0.0f, 1.0f);
+
+        it = find(separators.begin(), separators.end(), t.name);
+        if (it != separators.end())
+            return vec4(0.25f, 0.75f, 0.0f, 1.0f);
+
+        return vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	}
 }
