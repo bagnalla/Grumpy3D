@@ -8,6 +8,7 @@
 #include "Util.h"
 #include "Puddi.h"
 #include "Texture.h"
+#include "GrumpyConfig.h"
 #include <iostream>
 
 using namespace puddi;
@@ -70,7 +71,7 @@ namespace grumpy
             vec4 targetPosition = targetGlyph->GetWorldPosition() - vec4(targetGlyph->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f);
             //vec4 targetPosition = targetGlyph->GetPosition();
 
-            float moveAmount = skipVelocity * FpsTracker::GetFrameTimeMs();
+            float moveAmount = skipVelocity * GrumpyConfig::GetGameSpeedFactor();
 
             vec4 displacement = targetPosition - position;
             if (Util::Length(displacement) <= moveAmount)
@@ -108,7 +109,7 @@ namespace grumpy
             vec4 targetPosition = targetGlyph->GetWorldPosition() + vec4(targetGlyph->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f);
             //vec4 targetPosition = targetGlyph->GetPosition();
 
-            float moveAmount = readVelocity * FpsTracker::GetFrameTimeMs();
+            float moveAmount = readVelocity * GrumpyConfig::GetGameSpeedFactor();
 
 			displacement = targetPosition - position;
             if (Util::Length(displacement) <= moveAmount)

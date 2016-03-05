@@ -140,10 +140,10 @@ namespace puddi
 		mesh.SetSizeX(surface->w);
 		mesh.SetSizeY(surface->h);
 
-		return mesh;
-
 		// free the surface resource
 		SDL_FreeSurface(surface);
+
+		return mesh;
 	}
 
 	// PRIVATE

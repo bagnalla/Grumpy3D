@@ -106,7 +106,7 @@ namespace puddi
 
 		static GLuint getUniform(GLuint program, std::string name);
 
-		static int getUniformFromCurrentProgram(std::string uniformName);
+		static GLuint getUniformFromCurrentProgram(std::string uniformName);
 	};
 }
 

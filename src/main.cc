@@ -19,6 +19,7 @@
 #include "Lexer.h"
 #include "AST.h"
 #include "SyntaxParser.h"
+#include "GrumpyConfig.h"
 #include <vector>
 #include <iostream>
 #include <string>
@@ -314,25 +315,14 @@ int update()
             case SDLK_r:
                 reset();
                 break;
-            // ROTATE MIDDLE OBJECT
-//            case SDLK_1:
-//                cube->RotateX(-0.005f * FpsTracker::GetFrameTimeMs());
-//                break;
-//            case SDLK_2:
-//                cube->RotateX(0.005f * FpsTracker::GetFrameTimeMs());
-//                break;
-//            case SDLK_3:
-//                cube->RotateY(-0.005f * FpsTracker::GetFrameTimeMs());
-//                break;
-//            case SDLK_4:
-//                cube->RotateY(0.005f * FpsTracker::GetFrameTimeMs());
-//                break;
-//            case SDLK_5:
-//                cube->RotateZ(-0.005f * FpsTracker::GetFrameTimeMs());
-//                break;
-//            case SDLK_6:
-//                cube->RotateZ(0.005f * FpsTracker::GetFrameTimeMs());
-//                break;
+            case SDLK_MINUS:
+            case SDLK_UNDERSCORE:
+                GrumpyConfig::SetGameSpeed(std::max(0.0f, GrumpyConfig::GetGameSpeed() - 0.1f));
+                break;
+            case SDLK_PLUS:
+            case SDLK_EQUALS:
+                GrumpyConfig::SetGameSpeed(GrumpyConfig::GetGameSpeed() + 0.1f);
+                break;
             }
         }
         // mouse click
@@ -357,9 +347,9 @@ int update()
         }
     }
     if (cube != nullptr)
-        cube->RotateZ(1.0f / 2000.0f * FpsTracker::GetFrameTimeMs());
+        cube->RotateZ(1.0f / 2000.0f * GrumpyConfig::GetGameSpeedFactor());
 
-    //rect->RotateZ(1.0f / 2000.0f * FpsTracker::GetFrameTimeMs());
+    //rect->RotateZ(1.0f / 2000.0f * GrumpyConfig::GetGameSpeedFactor());
 
     return 0;
 }

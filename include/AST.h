@@ -35,10 +35,15 @@ namespace grumpy
 
 		ASTNode* GetParent() const;
 
-		std::vector<int> GetRequiredTokenNumbers() const;
+		std::vector<size_t> GetRequiredTokenNumbers() const;
+
+		bool IsTerminal() const;
+
+		void GiveArgumentsColor(const glm::vec4 color);
 
 	private:
 		ASTNode *parent;
+		std::vector<char> chars;
 		std::vector<DrawableObject*> glyphs;
 		std::vector<DrawableObject*> childConnectors;
 		DrawableObject *parentConnector;
@@ -54,7 +59,7 @@ namespace grumpy
 		glm::vec4 assignedLocation;
 		float velocity;
 
-		std::vector<int> requiredTokenNumbers;
+		std::vector<size_t> requiredTokenNumbers;
 
 		int resizeRecursive();
 

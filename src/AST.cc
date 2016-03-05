@@ -3,6 +3,7 @@
 #include "Cube.h"
 #include "FpsTracker.h"
 #include "Schematic.h"
+#include "GrumpyConfig.h"
 #include <iostream>
 #include <string>
 
@@ -113,6 +114,7 @@ namespace grumpy
                 if (c != ' ')
                 {
                     //cout << c << endl;
+                    chars.push_back(c);
                     DrawableObject *glyph = new DrawableObject(container, VertexMesh::GetVertexMeshPrototypeByName(string(1, c)));
                     glyph->SetTexture(Texture::GetTextureByName("myfont"));
                     glyph->RotateX(static_cast<float>(M_PI / 2.0f));
@@ -231,7 +233,7 @@ namespace grumpy
 		if (position == assignedLocation || hidden)
 			return;
 
-		float moveAmount = velocity * FpsTracker::GetFrameTimeMs();
+		float moveAmount = velocity * GrumpyConfig::GetGameSpeedFactor();
 
 		MoveToPoint(assignedLocation, moveAmount, nullptr);
 
@@ -272,9 +274,28 @@ namespace grumpy
         return parent;
 	}
 
-	std::vector<int> ASTNode::GetRequiredTokenNumbers() const
+	std::vector<size_t> ASTNode::GetRequiredTokenNumbers() const
 	{
         return requiredTokenNumbers;
+	}
+
+	bool ASTNode::IsTerminal() const
+	{
+	    return !childConnectors.size();
+	}
+
+	void ASTNode::GiveArgumentsColor(const glm::vec4 color)
+	{
+	    bool giveColor = false;
+	    for (size_t i = 0; i < chars.size(); ++i)
+        {
+            if (chars[i] == ')')
+                break;
+            if (giveColor)
+                glyphs[i]->SetMaterial(Material::Vibrant(color));
+            if (chars[i] == '(')
+                giveColor = true;
+        }
 	}
 
 	// PRIVATE

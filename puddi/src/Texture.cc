@@ -289,23 +289,23 @@ GLuint Texture::loadTexture(const char *path)
 			return 0;
 		}
 
-        GLint internalFormat = GL_RGB8;
-		if (surface->format->BytesPerPixel == 4)
-			internalFormat = GL_RGBA8;
+//        GLint internalFormat = GL_RGB8;
+//		if (surface->format->BytesPerPixel == 4)
+//			internalFormat = GL_RGBA8;
 
-		GLint format;
-		if (strcmp(strrchr(path, '.'), ".tga"))
-		{
-			format = GL_RGB;
-			if (surface->format->BytesPerPixel == 4)
-				format = GL_RGBA;
-		}
-		else
-		{
-			format = GL_BGR;
-			if (surface->format->BytesPerPixel == 4)
-				format = GL_BGRA;
-		}
+//		GLint format;
+//		if (strcmp(strrchr(path, '.'), ".tga"))
+//		{
+//			format = GL_RGB;
+//			if (surface->format->BytesPerPixel == 4)
+//				format = GL_RGBA;
+//		}
+//		else
+//		{
+//			format = GL_BGR;
+//			if (surface->format->BytesPerPixel == 4)
+//				format = GL_BGRA;
+//		}
 
 		GLuint cubeMap;
 		glGenTextures(1, &cubeMap);

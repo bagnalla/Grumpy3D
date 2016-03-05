@@ -2,6 +2,7 @@
 #include "FpsTracker.h"
 #include "Util.h"
 #include "Lexer.h"
+#include "GrumpyConfig.h"
 #include <iostream>
 #include <algorithm>
 
@@ -29,7 +30,7 @@ namespace grumpy
             if (position == homePosition)
                 return;
 
-            float moveAmount = velocity * FpsTracker::GetFrameTimeMs();
+            float moveAmount = velocity * GrumpyConfig::GetGameSpeedFactor();
 
 			MoveToPoint(homePosition, moveAmount, nullptr);
 
@@ -50,6 +51,7 @@ namespace grumpy
             int tokensNeeded = 0;
             for (auto it = requiredTokens.begin(); it != requiredTokens.end(); ++it)
             {
+                // + 1 for each required token not in tokenQueue
                 tokensNeeded += !std::any_of(tokenQueue.begin(), tokenQueue.end(), [&](Token *t) { return t->LToken.number == *it; });
             }
             if (!tokensNeeded)
@@ -76,11 +78,15 @@ namespace grumpy
 			else
 				targetPosition = targetNode->GetWorldPosition();
 
-            float moveAmount = velocity * FpsTracker::GetFrameTimeMs();
+            float moveAmount = velocity * GrumpyConfig::GetGameSpeedFactor();
 
 			MoveToPoint(targetPosition, moveAmount, [&]()
 			{
-				nodesVector[currentNodeIndex]->Show();
+//			    if (currentNodeIndex > 0 && currentNodeIndex < nodesVector.size() - 1)
+//                    nodesVector[currentNodeIndex - 1]->Show();
+//                else if (nodesVector[currentNodeIndex]->IsTerminal() || currentNodeIndex == nodesVector.size() - 1)
+//                    nodesVector[currentNodeIndex]->Show();
+                nodesVector[currentNodeIndex]->Show();
 				astRoot->Resize();
 
 				auto requiredTokens = targetNode->GetRequiredTokenNumbers();
@@ -207,6 +213,14 @@ namespace grumpy
         for (size_t i = 0; i < nodesVector.size(); ++i)
         {
             nodesVector[i]->SetNodeColor(Util::InterpolateRainbow(i / static_cast<float>(nodesVector.size()), 0.25f));
+        }
+
+        for (size_t i = 0; i < nodesVector.size(); ++i)
+        {
+            if (nodesVector[i]->IsTerminal())
+            {
+                nodesVector[i]->GiveArgumentsColor(vec4(0.0f, 0.0f, 1.0f, 1.0f));
+            }
         }
     }
 

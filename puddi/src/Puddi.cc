@@ -151,13 +151,13 @@ namespace puddi
 
 		while (true)
 		{
-			if (status_code = update())
+			if ((status_code = update()))
 				return cleanup(status_code);
 
 			// call additional update functions
 			for (auto it = updateFunctions.begin(); it != updateFunctions.end(); ++it)
 			{
-				if (status_code = (*it)())
+				if ((status_code = (*it)()))
 					return cleanup(status_code);
 			}
 

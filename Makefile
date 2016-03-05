@@ -8,9 +8,9 @@ OBJDIR = obj
 INCLUDEDIR = include
 SRCDIR = src
 
-releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o )
+releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o GrumpyConfig.o )
 
-debugobjects = $(addprefix $(DEBUGDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o )
+debugobjects = $(addprefix $(DEBUGDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o GrumpyConfig.o )
 
 Release: $(SRCDIR)/main.cc puddiRelease releasedirs $(releaseobjects)
 	$(CC) $(SRCDIR)/main.cc $(releaseobjects) -I$(INCLUDEDIR) $(OPTIONS) $(LDLIBS) -o $(RELEASEDIR)/Grumpy3D

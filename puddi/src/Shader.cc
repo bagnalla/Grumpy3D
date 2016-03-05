@@ -4,6 +4,7 @@
 #include "Shadow.h"
 #include <iostream>
 #include <string>
+#include <climits>
 
 namespace puddi
 {
@@ -100,23 +101,23 @@ namespace puddi
 			SetProjection(projection);
 
 			GLuint loc = getUniformFromCurrentProgram("lightSource");
-			if (loc != -1)
+			if (loc != UINT_MAX)
 				glUniformMatrix4fv(loc, 1, GL_FALSE, value_ptr(lightSource));
 
 			loc = getUniformFromCurrentProgram("cameraPosition");
-			if (loc != -1)
+			if (loc != UINT_MAX)
 				glUniform4fv(loc, 1, value_ptr(cameraPosition));
 
 			loc = getUniformFromCurrentProgram("lightProjection");
-			if (loc != -1)
+			if (loc != UINT_MAX)
 				glUniformMatrix4fv(loc, 1, GL_FALSE, value_ptr(lightProjection));
 
 			loc = getUniformFromCurrentProgram("shadowMode");
-			if (loc != -1)
+			if (loc != UINT_MAX)
 				glUniform1i(loc, shadowMode);
 
 			loc = getUniformFromCurrentProgram("shadowZRange");
-			if (loc != -1)
+			if (loc != UINT_MAX)
 				glUniform2fv(loc, 1, value_ptr(shadowZRange));
 		}
 	}
@@ -969,17 +970,17 @@ namespace puddi
 	GLuint Shader::getUniform(GLuint program, std::string name)
 	{
 		GLuint loc = glGetUniformLocation(program, name.c_str());
-		if (loc == -1)
+		if (loc == UINT_MAX)
 			std::cerr << "unable to get " << name << " parameter from shader program\n";
 		return loc;
 	}
 
-	int Shader::getUniformFromCurrentProgram(std::string uniformName)
+	GLuint Shader::getUniformFromCurrentProgram(std::string uniformName)
 	{
 		auto it = programToUniformMap[currentProgram].find(uniformName);
 		if (it != programToUniformMap[currentProgram].end())
 			return programToUniformMap[currentProgram][uniformName];
 		else
-			return -1;
+			return UINT_MAX;
 	}
 }

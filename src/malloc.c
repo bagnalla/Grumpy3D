@@ -17,9 +17,12 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/param.h>
+#include <sys/mman.h>
 #include <pthread.h>
+#include <errno.h>
 
 #define HEAP_GROWTH_INCREMENT 4 // # of pages
+#define MMAP_THRESHOLD 128*1024
  
 /** @struct block_meta
  *  @brief The structure at the beginning of every block node in the list (whether free or allocated).
@@ -68,18 +71,12 @@ static block_meta *free_blocks;
 static block_meta *last_free_block;
 
 static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-static pthread_mutexattr_t attr;
 
 /** 
  * @brief Initialize the heap. Called on first use of malloc.
  */
 static void init_heap()
 {
-    // initialize recursive mutex
-    //pthread_mutexattr_init(&attr);
-    //pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-    //pthread_mutex_init(&mutex, &attr);
-
     // get system page size
     page_size = sysconf(_SC_PAGESIZE);
 
@@ -212,7 +209,7 @@ static void* create_data_block(block_meta *loc, size_t size,
 }
 
 /** 
- * @brief Allocate space on the heap for use by a program.
+ * @brief Allocate memory for use by a program.
  * @param size The minimum number of bytes to allocate.
  * @return Returns a pointer to the allocated memory.
  */
@@ -233,6 +230,19 @@ void* malloc(size_t size)
     }
 
     size = round_up_multof(size, 8);
+    
+    // use mmap if size is big enough
+    if (size >= MMAP_THRESHOLD)
+    {
+        size_t mmap_size = round_up_multof(size + sizeof(size_t), page_size);
+        size_t *ptr = mmap(NULL, mmap_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+        *ptr = mmap_size;
+        pthread_mutex_unlock(&mutex);
+        //printf("mmap %d\n", ptr + 1);
+        return ptr + 1;
+    }
+    
+    //printf("malloc\n");
 
     // begin at free_blocks
     block_meta *cursor = free_blocks;
@@ -304,7 +314,7 @@ void* malloc(size_t size)
 }
 
 /** 
- * @brief Deallocate space in the heap that has been allocated by malloc().
+ * @brief Deallocate memory that has been allocated by malloc().
  * @param ptr A pointer to the allocated memory.
  */
 void free(void *ptr)
@@ -313,6 +323,19 @@ void free(void *ptr)
         return;
         
     pthread_mutex_lock(&mutex);
+    
+    // if outside the heap, must be mmapped
+    if (ptr < start_brk || ptr > end_brk)
+    {
+        //printf("munmap %d\n", ptr);
+        void *mmap_ptr = ptr - sizeof(size_t);
+        size_t size = *(size_t*)mmap_ptr;
+        munmap(mmap_ptr, size);
+        pthread_mutex_unlock(&mutex);
+        return;
+    }
+    
+    //printf("free %d\n", ptr);
 
     // block we are freeing
     block_meta *block = ptr - sizeof(block_meta);
@@ -458,7 +481,7 @@ void *calloc(size_t nmemb, size_t size)
 /** 
  * @brief Changes the size of the memory block pointed to by \p ptr.
  * @param ptr A pointer to memory allocated by malloc().
- * @param size The new block data size.
+ * @param size The new data size.
  * @return Returns a pointer to the resized block. It is guaranteed to be different from the original pointer.
  * @note If \p ptr is NULL, this function is equivalent to malloc()
  * @note If \p ptr is not NULL and \p size is 0, this function is equivalent to free()
@@ -481,11 +504,35 @@ void *realloc(void *ptr, size_t size)
     //pthread_mutex_lock(&mutex);
 
     void * volatile new_ptr = malloc(size);
+    
+    size_t old_size;
+    // if ptr is mmapped
+    if (ptr < start_brk || ptr > end_brk)
+    {
+        // length is in the sizeof(size_t) bytes preceding ptr
+        old_size = *(size_t*)(ptr - sizeof(size_t)) - sizeof(size_t);
+    }
+    // else in heap
+    else
+    {
+        // length field of ptr's data block
+        old_size = * (size_t*) ((char*)ptr - sizeof(block_meta));
+    }
+    
+    size_t new_size;
+    // if new_ptr is mmapped
+    if (new_ptr < start_brk || new_ptr > end_brk)
+    {
+        // length is in the sizeof(size_t) bytes preceding new_ptr
+        new_size = *(size_t*)(new_ptr - sizeof(size_t)) - sizeof(size_t);
+    }
+    // else in heap
+    else
+    {
+        new_size = size;
+    }
 
-    // length field of ptr's data block
-    size_t old_size = * (size_t*) ((char*)ptr - sizeof(block_meta));
-
-    size_t min_size = old_size < size ? old_size : size; // min
+    size_t min_size = old_size < new_size ? old_size : new_size; // min
 
     memcpy(new_ptr, ptr, min_size);
 

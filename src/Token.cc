@@ -3,6 +3,7 @@
 #include "FpsTracker.h"
 #include "Schematic.h"
 #include "Util.h"
+#include "GrumpyConfig.h"
 #include <iostream>
 
 using namespace puddi;
@@ -136,9 +137,9 @@ namespace grumpy
 		vec3 crossProduct = cross(vec3(lookDirection.x, lookDirection.y, 0.0f), vec3(displacement.x, displacement.y, 0.0f));
 
 		if (crossProduct.z > 0.0f)
-			RotateZ(rotationVelocity * FpsTracker::GetFrameTimeMs());
+			RotateZ(rotationVelocity * GrumpyConfig::GetGameSpeedFactor());
 		else
-			RotateZ(-rotationVelocity * FpsTracker::GetFrameTimeMs());
+			RotateZ(-rotationVelocity * GrumpyConfig::GetGameSpeedFactor());
 
 		//SetRotationZ(atan2(-displacement.y, displacement.x));
 		//SetRotationY(atan2(displacement.z, Util::Length(vec2(displacement))));
