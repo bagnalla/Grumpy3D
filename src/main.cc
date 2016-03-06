@@ -27,8 +27,8 @@
 #include <queue>
 
 using namespace puddi;
-using namespace std;
 using namespace grumpy;
+using namespace std;
 
 LightSource *lightSource;
 Object *objectContainer;

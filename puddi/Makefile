@@ -1,7 +1,7 @@
-CC = g++
+CC = clang
+CPP = clang++
 OPTIONS = -std=c++11 -fopenmp -O3
 DEBUGOPTIONS = -std=c++11 -fopenmp -Wall -g
-LDLIBS = -lGLEW -lGL -lSDL2 -lpng -ljpeg -lz -lSDL2_image -lassimp
 RELEASEDIR = release
 DEBUGDIR = debug
 OBJDIR = obj
@@ -29,10 +29,10 @@ Debug: debugdirs $(debugobjects)
 	ar rcs $(DEBUGDIR)/libpuddi.a $(debugobjects)
 
 $(RELEASEDIR)/$(OBJDIR)/%.o: $(SRCDIR)/%.cc $(INCLUDEDIR)/%.h
-	$(CC) $< -c $(OPTIONS) -I$(INCLUDEDIR) $(LDLIBS) -o $@
+	$(CPP) $< -c $(OPTIONS) -I$(INCLUDEDIR) -o $@
 
 $(DEBUGDIR)/$(OBJDIR)/%.o: $(SRCDIR)/%.cc $(INCLUDEDIR)/%.h
-	$(CC) $< -c $(DEBUGOPTIONS) -I$(INCLUDEDIR) $(LDLIBS) -o $@
+	$(CPP) $< -c $(DEBUGOPTIONS) -I$(INCLUDEDIR) -o $@
 
 releasedirs:
 	mkdir -p $(RELEASEDIR)

@@ -54,7 +54,6 @@ namespace grumpy
 		int glyphCount;
 		int parseIndex;
 		bool hidden;
-		float normalAlpha;
 
 		glm::vec4 assignedLocation;
 		float velocity;

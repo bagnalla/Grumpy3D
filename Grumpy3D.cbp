@@ -80,6 +80,7 @@
 		<Unit filename="heightmaps/west_norway.png" />
 		<Unit filename="heightmaps/world_height_lowres.jpg" />
 		<Unit filename="include/AST.h" />
+		<Unit filename="include/GrumpyConfig.h" />
 		<Unit filename="include/Lexer.h" />
 		<Unit filename="include/SourceCode.h" />
 		<Unit filename="include/SyntaxParser.h" />
@@ -134,10 +135,10 @@
 		<Unit filename="puddi/shaders/fragment/fshader_material_noshadow.glsl" />
 		<Unit filename="puddi/shaders/fragment/fshader_terrain_texture_bump.glsl" />
 		<Unit filename="puddi/shaders/fragment/fshader_terrain_texture_bump_noshadow.glsl" />
-		<Unit filename="puddi/shaders/fragment/fshader_texture (copy).glsl" />
 		<Unit filename="puddi/shaders/fragment/fshader_texture.glsl" />
 		<Unit filename="puddi/shaders/fragment/fshader_texture_bump.glsl" />
 		<Unit filename="puddi/shaders/fragment/fshader_texture_bump_noshadow.glsl" />
+		<Unit filename="puddi/shaders/fragment/fshader_texture_noshadow.glsl" />
 		<Unit filename="puddi/shaders/vertex/vshader_cubemap.glsl" />
 		<Unit filename="puddi/shaders/vertex/vshader_cubemap_bump.glsl" />
 		<Unit filename="puddi/shaders/vertex/vshader_depth.glsl" />
@@ -180,6 +181,7 @@
 		<Unit filename="puddi/src/VertexMesh.cc" />
 		<Unit filename="puddi/textures/font_60_tolerance.png" />
 		<Unit filename="src/AST.cc" />
+		<Unit filename="src/GrumpyConfig.cc" />
 		<Unit filename="src/Lexer.cc" />
 		<Unit filename="src/SourceCode.cc" />
 		<Unit filename="src/SyntaxParser.cc" />
