@@ -7,6 +7,8 @@
 
 namespace grumpy
 {
+    /** \brief Abstract syntax tree node.
+     */
 	class ASTNode : public puddi::DrawableObject
 	{
 	public:

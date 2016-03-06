@@ -17,6 +17,9 @@ namespace grumpy
         LEXER_STATE_READING
     };
 
+    /** \brief Lexer object. Responds to Lex() requests from a Parser object
+     * by scanning through glyphs of a SourceCode object.
+     */
     class Lexer : public puddi::DrawableObject
     {
     public:

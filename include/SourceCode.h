@@ -7,6 +7,9 @@
 
 namespace grumpy
 {
+    /** \brief Contains characters and their corresponding glyphs for a source code file.
+     * Can be constructed by passing the path to the source code file.
+     */
     class SourceCode : public puddi::DrawableObject
     {
     public:

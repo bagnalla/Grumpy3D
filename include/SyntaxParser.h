@@ -19,6 +19,9 @@ namespace grumpy
         SYNTAXPARSER_STATE_DONE
     };
 
+    /** \brief Syntax parser object. "Constructs" a given AST by calling Lex() on a
+     * lexer object and consuming tokens to display and position the nodes of the AST.
+     */
     class SyntaxParser : public puddi::DrawableObject
     {
     public:

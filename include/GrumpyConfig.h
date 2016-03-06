@@ -3,6 +3,8 @@
 
 namespace grumpy
 {
+    /** \brief Configuration settings for Grumpy3D.
+     */
     class GrumpyConfig
     {
     public:
