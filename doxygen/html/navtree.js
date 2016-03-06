@@ -23,7 +23,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classpuddi_1_1_s_d_l_util.html"
+"classpuddi_1_1_shader.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -11,7 +11,6 @@ var files =
     [ "FpsTracker.h", "_fps_tracker_8h_source.html", null ],
     [ "Geometry.h", "_geometry_8h_source.html", null ],
     [ "GlmHeaders.h", "_glm_headers_8h_source.html", null ],
-    [ "GrumpyConfig.h", "_grumpy_config_8h_source.html", null ],
     [ "HeightMap.h", "_height_map_8h_source.html", null ],
     [ "HeightMapTerrain.h", "_height_map_terrain_8h_source.html", null ],
     [ "InitShader.h", "_init_shader_8h_source.html", null ],

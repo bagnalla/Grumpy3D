@@ -5,7 +5,7 @@ var classgrumpy_1_1_a_s_t_node =
     [ "GetParent", "classgrumpy_1_1_a_s_t_node.html#a90804b9b2a4978283cccb65825f8c116", null ],
     [ "GetParentConnector", "classgrumpy_1_1_a_s_t_node.html#a699843877701a71718d7d6c8e600e720", null ],
     [ "GetParseIndex", "classgrumpy_1_1_a_s_t_node.html#a8580b0895560a6ee32cebb32bfa2cfc1", null ],
-    [ "GetRequiredTokenNumbers", "classgrumpy_1_1_a_s_t_node.html#a757e4220f4de5847fe8194635c940453", null ],
+    [ "GetRequiredTokenNumbers", "classgrumpy_1_1_a_s_t_node.html#ad0c55309285b744f8de2892ab2de0781", null ],
     [ "GetWidth", "classgrumpy_1_1_a_s_t_node.html#acc2be1bcc84c6b7b259a777b7b6eb74e", null ],
     [ "GiveArgumentsColor", "classgrumpy_1_1_a_s_t_node.html#a8a96c106f68e2df496736b384f7d5b66", null ],
     [ "Hide", "classgrumpy_1_1_a_s_t_node.html#a10b460dee7a8a7dfa702e0d159775e63", null ],
