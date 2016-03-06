@@ -6,6 +6,7 @@ var hierarchy =
     [ "puddi::Font", "classpuddi_1_1_font.html", null ],
     [ "puddi::FpsTracker", "classpuddi_1_1_fps_tracker.html", null ],
     [ "puddi::Geometry", "classpuddi_1_1_geometry.html", null ],
+    [ "grumpy::GrumpyConfig", "classgrumpy_1_1_grumpy_config.html", null ],
     [ "std::hash< glm::vec4 >", "structstd_1_1hash_3_01glm_1_1vec4_01_4.html", null ],
     [ "std::hash< puddi::Material >", "structstd_1_1hash_3_01puddi_1_1_material_01_4.html", null ],
     [ "puddi::HeightMapTerrain", "classpuddi_1_1_height_map_terrain.html", null ],

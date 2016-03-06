@@ -1,6 +1,7 @@
 var NAVTREE =
 [
-  [ "Grumpy3D", "index.html", [
+  [ "My Project", "index.html", [
+    [ "Grumpy3D", "md__r_e_a_d_m_e.html", null ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
@@ -23,7 +24,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classpuddi_1_1_shader.html"
+"classpuddi_1_1_s_d_l_util.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
