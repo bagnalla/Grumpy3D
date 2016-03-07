@@ -27,6 +27,7 @@ namespace grumpy
         currentTokenStartPos = vec4(0.0f, 0.0f, 0.0f, 1.0f);
         skipVelocity = 0.0f;
         readVelocity = 0.0f;
+        parser = nullptr;
         state = LEXER_STATE_WAITING;
 
         scanBarColor = vec4(1.0f, 1.0f, 0.0f, 0.0f);

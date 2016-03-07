@@ -26,8 +26,6 @@ namespace puddi
 		indexOffset = iOffset;
 		indexCount = iCount;
 		triangleStrip = tStrip;
-		texture = 0;
-		renderGraphIndex = 0;
 	}
 
 	VertexMesh::~VertexMesh()
@@ -236,6 +234,7 @@ namespace puddi
 		emissionColor = vec4();
 		renderNode = NULL;
 		renderEnabled = true;
+		renderGraphIndex = 0;
 
 		indexOffset = 0;
 		indexCount = 0;

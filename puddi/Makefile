@@ -1,5 +1,5 @@
-CC = clang
-CPP = clang++
+CC = gcc
+CPP = g++
 OPTIONS = -std=c++11 -fopenmp -O3
 DEBUGOPTIONS = -std=c++11 -fopenmp -Wall -g
 RELEASEDIR = release

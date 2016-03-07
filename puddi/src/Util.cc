@@ -226,10 +226,11 @@ namespace puddi
 
 	float Util::WrapAngle(float theta)
 	{
-		//theta = fmod(theta, M_PI_2);
-		//if (theta < 0)
-			//theta += M_PI_2;
-		return theta;
+		if (theta < 0.0f)
+            theta = -theta + M_PI;
+
+        return fmod(theta, M_PI * 2.0f);
+		//return theta;
 	}
 
 	bool Util::FileExists(const std::string& name) {

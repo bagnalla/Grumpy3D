@@ -8,6 +8,10 @@ namespace grumpy
 {
     class SyntaxParser;
 
+    /** \brief A struct to contain the token information produced by the actual Grumpy lexer.
+     * These are what are produced when reading in the lexer.in file. Each drawable Token object
+     * inherits the properties of a LexToken.
+     */
     struct LexToken
     {
 		size_t number;
@@ -20,7 +24,7 @@ namespace grumpy
         LexToken(size_t num, const std::string &name, size_t start, size_t end, const std::string &value);
     };
 
-    /** \brief Token object. Produced by a lexer and consumed by a parser.
+    /** \brief Token object. Produced by a Lexer and consumed by a SyntaxParser.
      */
     class Token : public puddi::DrawableObject
     {

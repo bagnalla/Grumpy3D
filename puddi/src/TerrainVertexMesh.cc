@@ -11,6 +11,9 @@ namespace puddi
 
 	TerrainVertexMesh::TerrainVertexMesh(const Material& mat, int iOffset, int iCount) : VertexMesh(nullptr, mat, iOffset, iCount, true)
 	{
+	    texture1 = texture2 = texture3 = texture4 = 0;
+		groundCoordZ = scaleZ = maxHeight = 0.0f;
+		textureHeights = vec4();
 	}
 
 	TerrainVertexMesh::~TerrainVertexMesh()

@@ -28,6 +28,7 @@ namespace grumpy
         parent = parentNode;
         parentConnector = connector;
         parentConnectorLine = nullptr;
+        parseIndex = 0;
         SetPosition(vec4(0.0f, 0.0f, 0.0f, 1.0f));
 		velocity = 0.05f;
 		//velocity = 100.0f;
