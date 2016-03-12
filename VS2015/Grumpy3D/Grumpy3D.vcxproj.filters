@@ -141,6 +141,12 @@
     <ClCompile Include="..\..\puddi\src\Camera.cc">
       <Filter>puddi\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GrumpyConfig.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TypeChecker.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Token.h">
@@ -253,6 +259,12 @@
     </ClInclude>
     <ClInclude Include="..\..\puddi\include\Bagnall.h">
       <Filter>puddi\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GrumpyConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\TypeChecker.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

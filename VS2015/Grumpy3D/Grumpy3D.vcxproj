@@ -69,12 +69,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>../../puddi/include;../../include;$(IncludePath)</IncludePath>
+    <IncludePath>../dependencies/include;../../puddi/include;../../include;$(IncludePath)</IncludePath>
+    <LibraryPath>../dependencies/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>../../puddi/include;../../include;$(IncludePath)</IncludePath>
+    <IncludePath>../dependencies/include;../../puddi/include;../../include;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
+    <LibraryPath>../dependencies/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -162,18 +164,22 @@
     <ClCompile Include="..\..\puddi\src\Util.cc" />
     <ClCompile Include="..\..\puddi\src\VertexMesh.cc" />
     <ClCompile Include="..\..\src\AST.cc" />
+    <ClCompile Include="..\..\src\GrumpyConfig.cc" />
     <ClCompile Include="..\..\src\Lexer.cc" />
     <ClCompile Include="..\..\src\main.cc" />
     <ClCompile Include="..\..\src\SourceCode.cc" />
     <ClCompile Include="..\..\src\SyntaxParser.cc" />
     <ClCompile Include="..\..\src\Token.cc" />
+    <ClCompile Include="..\..\src\TypeChecker.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\AST.h" />
+    <ClInclude Include="..\..\include\GrumpyConfig.h" />
     <ClInclude Include="..\..\include\Lexer.h" />
     <ClInclude Include="..\..\include\SourceCode.h" />
     <ClInclude Include="..\..\include\SyntaxParser.h" />
     <ClInclude Include="..\..\include\Token.h" />
+    <ClInclude Include="..\..\include\TypeChecker.h" />
     <ClInclude Include="..\..\puddi\include\Bagnall.h" />
     <ClInclude Include="..\..\puddi\include\Camera.h" />
     <ClInclude Include="..\..\puddi\include\CRSpline.h" />

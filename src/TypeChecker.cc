@@ -111,8 +111,8 @@ namespace grumpy
             return a->GetTypeIndex() < b->GetTypeIndex();
         });
 
-        for (auto it = nodesVector.begin(); it != nodesVector.end(); ++it)
-            cout << (*it)->GetType() << " " << (*it)->GetTypeIndex() << endl;
+        /*for (auto it = nodesVector.begin(); it != nodesVector.end(); ++it)
+            cout << (*it)->GetType() << " " << (*it)->GetTypeIndex() << endl;*/
     }
 
     void TypeChecker::addToNodesVectorRecursive(ASTNode *node)
