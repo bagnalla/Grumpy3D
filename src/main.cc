@@ -384,12 +384,14 @@ void draw()
 
 int main(int argc, char **argv)
 {
+    if (int initStatus = Puddi::Init(1000.0f) != 0)
+        return initStatus;
+
     if (argc >= 4)
     {
         sourceFile = argv[1];
         tokenFile = argv[2];
         astFile = argv[3];
-        cout << "source file: " << sourceFile << "\ntoken file: " << tokenFile << "\nAST file: " << astFile << endl;
     }
     else
     {
@@ -398,8 +400,7 @@ int main(int argc, char **argv)
         astFile = "ast.in";
         cout << "using default input file names.\n";
     }
-    if (int initStatus = Puddi::Init(1000.0f) != 0)
-        return initStatus;
+    cout << "source file: " << sourceFile << "\ntoken file: " << tokenFile << "\nAST file: " << astFile << endl;
 
     init();
 
