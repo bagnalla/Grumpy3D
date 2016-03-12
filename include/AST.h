@@ -28,6 +28,8 @@ namespace grumpy
 		void SetAssignedLocation(const glm::vec4 &l);
 
 		int GetParseIndex() const;
+		int GetTypeIndex() const;
+		std::string GetType() const;
 
 		void SetNodeColor(glm::vec4 c);
 
@@ -43,6 +45,8 @@ namespace grumpy
 
 		void GiveArgumentsColor(const glm::vec4 color);
 
+		void GiveTypeColor();
+
 	private:
 		ASTNode *parent;
 		std::vector<char> chars;
@@ -55,6 +59,8 @@ namespace grumpy
 		DrawableObject *container;
 		int glyphCount;
 		int parseIndex;
+		int typeIndex;
+		std::string type;
 		bool hidden;
 
 		glm::vec4 assignedLocation;

@@ -145,7 +145,7 @@ namespace puddi
 
 		static void Apply(std::vector<vec4>& vecs, vec4(*func)(const vec4&));
 
-		static std::vector<char> ReadAllBytes(char const* fileName);
+		static std::vector<char> ReadAllBytes(std::string fileName);
 
 		static float WrapAngle(float theta);
 

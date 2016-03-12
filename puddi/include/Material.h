@@ -30,6 +30,8 @@ namespace puddi
 		**********************************************************************/
 		static Material Medium(const vec4& color);
 
+		static Material Dark(const vec4& color);
+
 		/**********************************************************************
 		Function:		Plastic
 		Purpose:		Create a plastic material based on a given color

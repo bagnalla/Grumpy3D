@@ -2,15 +2,15 @@
 #define SYNTAXPARSER_H
 
 #include "DrawableObject.h"
-#include "Schematic.h"
-#include "Token.h"
-#include "AST.h"
 #include <vector>
 #include <queue>
 
 namespace grumpy
 {
 	class Lexer;
+	class ASTNode;
+	class Token;
+	class TypeChecker;
 
     enum SyntaxParserState : int
     {
@@ -37,10 +37,13 @@ namespace grumpy
 
 		void AddToken(Token *t);
 
+		void SetTypeChecker(TypeChecker *tc);
+
 		Token* GetTokenTail();
 
     private:
 		Lexer *lexer;
+		TypeChecker *typeChecker;
         ASTNode *astRoot;
         std::vector<ASTNode*> nodesVector;
         size_t currentNodeIndex;
@@ -53,6 +56,8 @@ namespace grumpy
 		void init(Lexer *lex, ASTNode *root);
         void createNodesVector();
         void addToNodesVectorRecursive(ASTNode *node);
+
+        void finishParsing();
     };
 }
 

@@ -8,6 +8,7 @@
 #include "Util.h"
 #include "Puddi.h"
 #include "Texture.h"
+#include "Schematic.h"
 #include "GrumpyConfig.h"
 #include <iostream>
 

@@ -19,6 +19,7 @@
 #include "Lexer.h"
 #include "AST.h"
 #include "SyntaxParser.h"
+#include "TypeChecker.h"
 #include "GrumpyConfig.h"
 #include <vector>
 #include <iostream>
@@ -40,6 +41,9 @@ SourceCode *sourceCode;
 Lexer *lexer;
 ASTNode *ast;
 SyntaxParser *parser;
+TypeChecker *typeChecker;
+
+string sourceFile, tokenFile, astFile;
 
 void reset();
 
@@ -76,19 +80,19 @@ void init(void)
     lightSource->UpdateMatrix();
     LightSource::UpdateLightSourceMatricesInShaders();
 
-    //wall = new Cube(Puddi::GetRootObject());
-    wall = new DrawableObject(Puddi::GetRootObject(), Schematic::GetSchematicByName("rounded_cube"));
-    wall->RotateX(static_cast<float>(M_PI / 2.0f));
-    //wall->SetScaleX(200.0f);
-    //wall->SetScaleY(100.0f);
-    //wall->SetScale(10.0f);
-    wall->SetPosition(vec4(0.0f, 10.f, 0.0f, 1.0f));
-    //wall->SetMaterial(Material::Plastic(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
-    //wall->SetMaterial(Material::Vibrant(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
-    wall->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
-    //wall->SetMaterial(Material::BlackRubber());
-    wall->SetBumpMap(bump);
-    //wall->SetTexture(texture);
+//    //wall = new Cube(Puddi::GetRootObject());
+//    wall = new DrawableObject(Puddi::GetRootObject(), Schematic::GetSchematicByName("rounded_cube"));
+//    wall->RotateX(static_cast<float>(M_PI / 2.0f));
+//    //wall->SetScaleX(200.0f);
+//    //wall->SetScaleY(100.0f);
+//    //wall->SetScale(10.0f);
+//    wall->SetPosition(vec4(0.0f, 10.f, 0.0f, 1.0f));
+//    //wall->SetMaterial(Material::Plastic(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
+//    //wall->SetMaterial(Material::Vibrant(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
+//    wall->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
+//    //wall->SetMaterial(Material::BlackRubber());
+//    wall->SetBumpMap(bump);
+//    //wall->SetTexture(texture);
 
     //auto terrainMesh = new TerrainVertexMesh(HeightMapTerrain::CreateTerrainMeshFromFile("textures/ocaml_logo_2.png", 25.0f, 25.0f, 0.1f));
     ////auto terrainMesh = new TerrainVertexMesh(HeightMapTerrain::CreateTerrainMeshFromFile("textures/ou_logo_1.png", 25.0f, 25.0f, 0.1f));
@@ -198,12 +202,13 @@ void reset()
     delete lexer;
     delete ast;
     delete parser;
+    delete typeChecker;
 
-    sourceCode = new SourceCode(Puddi::GetRootObject(), "program.gpy", "myfont");
+    sourceCode = new SourceCode(Puddi::GetRootObject(), sourceFile, "myfont");
     sourceCode->Translate(vec4(0.0f, -30.0f, 0.0f, 0.0f));
 
     vector<LexToken> lTokens;
-    ifstream infile("lexer.in");
+    ifstream infile(tokenFile);
     LexToken tok;
     int count = 0;
     while (infile >> tok.name >> tok.start >> tok.end)
@@ -230,7 +235,7 @@ void reset()
     lexer->SetReadVelocity(0.01f);
     //lexer->Translate(vec4(0.0f, -10.0f, 0.0f, 0.0f));
 
-    auto bytes = Util::ReadAllBytes("parser.in");
+    auto bytes = Util::ReadAllBytes(astFile);
     vector<char> sanitizedBytes;
     bool prevCharWasSpace = false;
     for (size_t i = 0; i < bytes.size(); ++i)
@@ -267,7 +272,7 @@ void reset()
     parser->SetTexture(Texture::GetTextureByName("shrek"));
 //    parser->SetEmissive(true);
 //    parser->SetEmissionColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
-    parser->SetVelocity(0.05f);
+    parser->SetVelocity(0.025f);
     //parser->DisableRender();
     parser->SetHomePosition(ast->GetPosition() + vec4(0.0f, 0.0f, 5.0f, 1.0f));
     parser->SetPosition(vec4(20.0f, 0.0f, 0.0f, 1.0f));
@@ -278,6 +283,14 @@ void reset()
 //        parser->AddToken(new Token(Puddi::GetRootObject(), lTokens[i]));
 
     lexer->SetParser(parser);
+
+    typeChecker = new TypeChecker(Puddi::GetRootObject(), ast, Schematic::GetSchematicByName("rounded_cube"));
+    typeChecker->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
+    typeChecker->SetVelocity(0.025f);
+    typeChecker->SetHomePosition(ast->GetPosition() + vec4(0.0f, 0.0f, 7.0f, 1.0f));
+    typeChecker->SetPosition(vec4(0.0f, 0.0f, 7.0f, 1.0f));
+
+    parser->SetTypeChecker(typeChecker);
 }
 
 //----------------------------------------------------------------------------
@@ -371,6 +384,20 @@ void draw()
 
 int main(int argc, char **argv)
 {
+    if (argc >= 4)
+    {
+        sourceFile = argv[1];
+        tokenFile = argv[2];
+        astFile = argv[3];
+        cout << "source file: " << sourceFile << "\ntoken file: " << tokenFile << "\nAST file: " << astFile << endl;
+    }
+    else
+    {
+        sourceFile = "program.gpy";
+        tokenFile = "tokens.in";
+        astFile = "ast.in";
+        cout << "using default input file names.\n";
+    }
     if (int initStatus = Puddi::Init(1000.0f) != 0)
         return initStatus;
 

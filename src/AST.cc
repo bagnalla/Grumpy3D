@@ -29,6 +29,8 @@ namespace grumpy
         parentConnector = connector;
         parentConnectorLine = nullptr;
         parseIndex = 0;
+        typeIndex = -1;
+        type = "";
         SetPosition(vec4(0.0f, 0.0f, 0.0f, 1.0f));
 		velocity = 0.05f;
 		//velocity = 100.0f;
@@ -47,6 +49,7 @@ namespace grumpy
                 continue;
             }
 
+            // parse order index
             if (c == '`')
             {
                 input.pop();
@@ -65,6 +68,7 @@ namespace grumpy
                 continue;
             }
 
+            // token index
             if (c == '~')
             {
                 input.pop();
@@ -81,7 +85,40 @@ namespace grumpy
                 continue;
             }
 
-            //cout << c;
+            // type
+            if (c == '#')
+            {
+                input.pop();
+                type = "";
+                while ((c = input.front()) != '#')
+                {
+                    if (c == '\n')
+                        type += ' ';
+                    else
+                        type += c;
+                    input.pop();
+                }
+
+                input.pop();
+                continue;
+            }
+
+            // type order index
+            if (c == '$')
+            {
+                input.pop();
+                string index_string = "";
+                while ((c = input.front()) != '$')
+                {
+                    index_string += c;
+                    input.pop();
+                }
+
+                typeIndex = atoi(index_string.c_str());
+
+                input.pop();
+                continue;
+            }
 
             if (c == ']')
                 break;
@@ -250,6 +287,14 @@ namespace grumpy
     {
         return parseIndex;
     }
+    int ASTNode::GetTypeIndex() const
+    {
+        return typeIndex;
+    }
+    string ASTNode::GetType() const
+    {
+        return type;
+    }
 
     void ASTNode::SetNodeColor(glm::vec4 c)
     {
@@ -297,6 +342,34 @@ namespace grumpy
             if (chars[i] == '(')
                 giveColor = true;
         }
+	}
+
+	void ASTNode::GiveTypeColor()
+	{
+	    vec4 color;
+	    if (type[0] == 'i')
+        {
+            color = vec4(1.0f, 0.0f, 0.0f, 0.25f);
+        }
+        else if (type[0] == 'f')
+        {
+            color = vec4(0.0f, 1.0f, 0.0f, 0.25f);
+        }
+        else if (type[0] == 'b')
+        {
+            color = vec4(0.0f, 0.0f, 1.0f, 0.25f);
+        }
+        else if (type[0] == 'u')
+        {
+            color = vec4(0.1f, 0.1f, 0.1f, 0.25f);
+        }
+
+        if (type.find("ref") != string::npos)
+        {
+            color.w = 0.6f;
+        }
+
+	    body->SetEmissionColor(color);
 	}
 
 	// PRIVATE

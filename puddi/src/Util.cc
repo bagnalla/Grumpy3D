@@ -15,6 +15,9 @@ Date:				December 9, 2015
 #include <glm/gtx/color_space.hpp>
 #include <fstream>
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 namespace puddi
 {
@@ -205,7 +208,7 @@ namespace puddi
 			vecs[i] = func(vecs[i]);
 	}
 
-	std::vector<char> Util::ReadAllBytes(char const* fileName)
+	std::vector<char> Util::ReadAllBytes(string fileName)
 	{
 		if (!FileExists(fileName))
 		{
@@ -226,11 +229,11 @@ namespace puddi
 
 	float Util::WrapAngle(float theta)
 	{
-		if (theta < 0.0f)
-            theta = -theta + M_PI;
+		//if (theta < 0.0f)
+        //    theta = -theta + M_PI;
 
-        return fmod(theta, M_PI * 2.0f);
-		//return theta;
+        //return fmod(theta, M_PI * 2.0f);
+		return theta;
 	}
 
 	bool Util::FileExists(const std::string& name) {

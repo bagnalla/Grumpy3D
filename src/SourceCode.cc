@@ -12,7 +12,7 @@ namespace grumpy
 
     SourceCode::SourceCode(Object *par, const string &path, const std::string &font) : DrawableObject(par)
     {
-        characters = Util::ReadAllBytes(path.c_str());
+        characters = Util::ReadAllBytes(path);
         this->font = font;
         createGlyphs();
     }

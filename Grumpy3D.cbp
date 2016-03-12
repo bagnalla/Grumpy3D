@@ -85,6 +85,7 @@
 		<Unit filename="include/SourceCode.h" />
 		<Unit filename="include/SyntaxParser.h" />
 		<Unit filename="include/Token.h" />
+		<Unit filename="include/TypeChecker.h" />
 		<Unit filename="lexer.in" />
 		<Unit filename="parser.in" />
 		<Unit filename="program.gpy" />
@@ -186,6 +187,7 @@
 		<Unit filename="src/SourceCode.cc" />
 		<Unit filename="src/SyntaxParser.cc" />
 		<Unit filename="src/Token.cc" />
+		<Unit filename="src/TypeChecker.cc" />
 		<Unit filename="src/main.cc" />
 		<Unit filename="src/malloc.c">
 			<Option compilerVar="CC" />

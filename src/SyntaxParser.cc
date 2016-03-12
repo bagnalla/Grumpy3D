@@ -2,6 +2,10 @@
 #include "FpsTracker.h"
 #include "Util.h"
 #include "Lexer.h"
+#include "AST.h"
+#include "Token.h"
+#include "Schematic.h"
+#include "TypeChecker.h"
 #include "GrumpyConfig.h"
 #include <iostream>
 #include <algorithm>
@@ -39,7 +43,7 @@ namespace grumpy
 
 		if (currentNodeIndex >= nodesVector.size())
 		{
-			state = SYNTAXPARSER_STATE_DONE;
+			finishParsing();
 			return;
 		}
 
@@ -110,7 +114,7 @@ namespace grumpy
 
 				if (++currentNodeIndex >= nodesVector.size())
                 {
-                    state = SYNTAXPARSER_STATE_DONE;
+                    finishParsing();
                     return;
                 }
 
@@ -177,11 +181,17 @@ namespace grumpy
             return nullptr;
 	}
 
+	void SyntaxParser::SetTypeChecker(TypeChecker *tc)
+	{
+	    typeChecker = tc;
+	}
+
     // PRIVATE
 
 	void SyntaxParser::init(Lexer *lex, ASTNode *root)
 	{
 		lexer = lex;
+		typeChecker = nullptr;
 		astRoot = root;
 		currentNodeIndex = 0;
 		velocity = 0.0f;
@@ -229,5 +239,12 @@ namespace grumpy
         nodesVector.push_back(node);
         for (auto it = node->ChildNodes.begin(); it != node->ChildNodes.end(); ++it)
             addToNodesVectorRecursive(*it);
+    }
+
+    void SyntaxParser::finishParsing()
+    {
+        state = SYNTAXPARSER_STATE_DONE;
+        if (typeChecker != nullptr)
+            typeChecker->Start();
     }
 }
