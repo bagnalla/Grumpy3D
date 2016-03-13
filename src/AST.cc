@@ -361,7 +361,7 @@ namespace grumpy
         }
         else if (type[0] == 'u')
         {
-            color = vec4(0.1f, 0.1f, 0.1f, 0.25f);
+            color = vec4(0.0f, 0.0f, 0.0f, 0.35f);
         }
 
         if (type.find("ref") != string::npos)

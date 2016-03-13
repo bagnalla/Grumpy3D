@@ -1,68 +1,14 @@
-def show_density(i : int) : unit {
-  let ascii_space = 32 in
-  let ascii_period = 46 in
-  let ascii_star = 42 in
-  let ascii_plus = 43 in
-  let level0 = 2 in
-  let level1 = 4 in
-  let level2 = 8 in
-  if i < level0 then putchar(ascii_star)
-  else if i < level1 then putchar(ascii_plus)
-       else if i < level2 then putchar(ascii_period)
-            else putchar(ascii_space)
+def f(x:int, y:bool) : int {   // -+ x and y go into scope
+  let z = ref x in             // -+ z goes into scope
+  {                            //  |
+    let w = !z in              // ---+ w goes into scope
+    z := w + 1                 //  | |
+  };                           // ---+ w goes out of scope
+  !z + 1                      //  |
+}                              // -+ x,y, and z go out of scope
+
+def g(x:int) : unit {
+  let a = 1.23 in if a < 2.0 then putchar(x) else putchar(0)
 }
 
-def show_pixel(num_cols : float, //resolution in "number of columns", assumed nonzero
-               num_rows : float, //resolution in "number of rows", assumed nonzero
-               px : float,       //pixel x-coord
-               py : float        //pixel y-coord
-              ) : unit {
-  let xmin = -2.5 in
-  let xmax = 1.0 in
-  let ymin = -1.0 in
-  let ymax = 1.0 in
-
-  /* scale [px] and [py] to range [xmin..xmax) and [ymin..ymax) respectively */
-  let x0 = xmin + px*(xmax-xmin)/num_cols in
-  let y0 = ymin + py*(ymax-ymin)/num_rows in
-
-  let x = ref 0.0 in
-  let y = ref 0.0 in
-  let i = ref 0 in
-  let max_iters = 255 in
-
-  while (!i < max_iters && (!x*!x + !y*!y < 4.0)) {
-    let xtemp = !x*!x - !y*!y + x0 in
-    y := 2.0*!x*!y + y0;
-    x := xtemp;
-    i := !i + 1
-  };
-  show_density(!i)
-}
-
-def show_newline() : unit {
-  let ascii_cr = 13 in
-  let ascii_lf = 10 in
-  putchar(ascii_cr);
-  putchar(ascii_lf)
-}
-
-def mandelbrot() : unit {
-  let xend = 50.0 in
-  let yend = 20.0 in
-  let x = ref 0.0 in
-  let y = ref 0.0 in
-
-  while (!y < yend) {
-    while (!x < xend) {
-      show_pixel(xend, yend, !x, !y);
-      x := !x + 1.0
-    };
-    show_newline();
-    x := 0.0;
-    y := !y + 1.0
-  }
-}
-
-mandelbrot();
-show_newline()
+f(3, false)
