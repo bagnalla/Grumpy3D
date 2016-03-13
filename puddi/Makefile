@@ -7,8 +7,8 @@ DEBUGDIR = debug
 OBJDIR = obj
 SRCDIR = src
 
-export CPLUS_INCLUDE_PATH = linux_dependencies/include:include:$(CPLUS_INCLUDE_PATH)
-export LIBRARY_PATH = linux_dependencies/lib:$(LIBRARY_PATH)
+export CPLUS_INCLUDE_PATH := linux_dependencies/include:include:$(CPLUS_INCLUDE_PATH)
+export LIBRARY_PATH := linux_dependencies/lib:$(LIBRARY_PATH)
 
 releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, Camera.o CRSpline.o Cube.o \
 DrawableObject.o EnvironmentMap.o FpsTracker.o Puddi.o Geometry.o \
