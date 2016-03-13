@@ -8,6 +8,9 @@ OBJDIR = obj
 INCLUDEDIR = include
 SRCDIR = src
 
+export CPLUS_INCLUDE_PATH = linux_dependencies/include
+export LIBRARY_PATH = linux_dependencies/lib
+
 releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, Camera.o CRSpline.o Cube.o \
 DrawableObject.o EnvironmentMap.o FpsTracker.o Puddi.o Geometry.o \
 HeightMap.o HeightMapTerrain.o InitShader.o LightSource.o Material.o \
