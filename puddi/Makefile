@@ -8,6 +8,8 @@ OBJDIR = obj
 INCLUDEDIR = include
 SRCDIR = src
 
+export CPLUS_INCLUDE_PATH := linux_dependencies/include:include:$(CPLUS_INCLUDE_PATH)
+
 releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, Camera.o CRSpline.o Cube.o \
 DrawableObject.o EnvironmentMap.o FpsTracker.o Puddi.o Geometry.o \
 HeightMap.o HeightMapTerrain.o InitShader.o LightSource.o Material.o \
@@ -29,10 +31,10 @@ Debug: debugdirs $(debugobjects)
 	ar rcs $(DEBUGDIR)/libpuddi.a $(debugobjects)
 
 $(RELEASEDIR)/$(OBJDIR)/%.o: $(SRCDIR)/%.cc $(INCLUDEDIR)/%.h
-	$(CPP) $< -c $(OPTIONS) -I$(INCLUDEDIR) -o $@
+	$(CPP) $< -c $(OPTIONS) -o $@
 
 $(DEBUGDIR)/$(OBJDIR)/%.o: $(SRCDIR)/%.cc $(INCLUDEDIR)/%.h
-	$(CPP) $< -c $(DEBUGOPTIONS) -I$(INCLUDEDIR) -o $@
+	$(CPP) $< -c $(DEBUGOPTIONS) -o $@
 
 releasedirs:
 	mkdir -p $(RELEASEDIR)
