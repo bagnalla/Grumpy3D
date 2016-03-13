@@ -11,6 +11,9 @@ SRCDIR = src
 LINKDIR = puddi/release
 DEBUGLINKDIR = puddi/debug
 
+export CPLUS_INCLUDE_PATH = puddi/linux_dependencies/include:puddi/include:$(CPLUS_INCLUDE_PATH)
+export LIBRARY_PATH = puddi/linux_dependencies/lib:$(LIBRARY_PATH)
+
 releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o TypeChecker.o GrumpyConfig.o )
 
 debugobjects = $(addprefix $(DEBUGDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o TypeChecker.o GrumpyConfig.o )
