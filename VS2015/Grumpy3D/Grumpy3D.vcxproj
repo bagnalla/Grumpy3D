@@ -69,14 +69,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>../dependencies/include;../../puddi/include;../../include;$(IncludePath)</IncludePath>
-    <LibraryPath>../dependencies/lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>../../puddi/windows_dependencies/include;../../puddi/include;../../include;$(IncludePath)</IncludePath>
+    <LibraryPath>../../puddi/windows_dependencies/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>../dependencies/include;../../puddi/include;../../include;$(IncludePath)</IncludePath>
+    <IncludePath>../../puddi/windows_dependencies/include;../../puddi/include;../../include;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
-    <LibraryPath>../dependencies/lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>../../puddi/windows_dependencies/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
