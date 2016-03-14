@@ -67,6 +67,7 @@ void init(void)
 
     Schematic::InitSchematic("models/rounded.obj", "pill");
     Schematic::InitSchematic("models/cube rounded - 554 faces.obj", "rounded_cube");
+    Schematic::InitSchematic("models/grumpycat.obj", "grumpycat");
 
     Puddi::MainCamera->SetPosition(vec4(0.0f, -5.0f, 0.0f, 1.0f));
     Puddi::MainCamera->LookAt(vec4(0.0f, 0.0f, 0.0f, 1.0f));
@@ -161,6 +162,10 @@ void init(void)
     skybox->SetEmissive(true);
     skybox->SetScale(Puddi::ViewDistance);
     skybox->DisableShadowCasting();
+
+    DrawableObject *cat = new DrawableObject(Puddi::GetRootObject(), Schematic::GetSchematicByName("grumpycat"));
+    cat->SetScale(0.5f);
+    cat->Translate(vec4(0.0f, 0.0f, 5.0f, 0.0f));
 
     // OBJECTS
     //rect = new Rectangle(objectContainer);
@@ -285,7 +290,7 @@ void reset()
     lexer->SetParser(parser);
 
     typeChecker = new TypeChecker(Puddi::GetRootObject(), ast, Schematic::GetSchematicByName("rounded_cube"));
-    typeChecker->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
+    //typeChecker->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
     typeChecker->SetVelocity(0.025f);
     typeChecker->SetHomePosition(ast->GetPosition() + vec4(0.0f, 0.0f, 7.0f, 1.0f));
     typeChecker->SetPosition(vec4(0.0f, 0.0f, 7.0f, 1.0f));

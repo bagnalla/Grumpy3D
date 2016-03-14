@@ -1,14 +1,7 @@
-def f(x:int, y:bool) : int {   // -+ x and y go into scope
-  let z = ref x in             // -+ z goes into scope
-  {                            //  |
-    let w = !z in              // ---+ w goes into scope
-    z := w + 1                 //  | |
-  };                           // ---+ w goes out of scope
-  !z + 1                      //  |
-}                              // -+ x,y, and z go out of scope
-
-def g(x:int) : unit {
-  let a = 1.23 in if a < 2.0 then putchar(x) else putchar(0)
-}
-
-f(3, false)
+let x = ref 7 in
+let y = ref 0 in
+while not (!x < 0) {
+  x := !x - 1;
+  y := !y + 1
+};
+!y

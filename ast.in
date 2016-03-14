@@ -1,6 +1,10 @@
-[prog { `32`fundefs: [~0~~1~`17`fundef { nm: f, ~2~args: ~4~~3~x : ~5~TyInt~6~, ~8~~7~y : ~9~TyBool, ~10~~11~ret_ty: ~12~TyInt, ~13~body: [`16`#int#$16$~14~Elet(~15~z, ~16~[`1`#int
-ref#$1$~17~ERef([`0`#int#$0$~18~EId(x)])], ~19~[`15`#int#$15$ESeq([`10`#unit#$10$~20~EScope([`9`#unit#$9$~21~Elet(~22~w, ~23~[`3`#int#$3$EUnop(~24~UDeref, [`2`#int
-ref#$2$~25~EId(z)])], ~26~[`8`#unit#$8$EBinop(~27~BUpdate, [`4`#int
-ref#$4$~28~EId(z)], [`7`#int#$7$EBinop(~29~BPlus, [`5`#int#$5$~30~EId(w)], [`6`#int#$6$~31~EInt(1)])])])]~32~)]~33~; [`14`#int#$14$EBinop(~34~BPlus, [`12`#int#$12$EUnop(~35~UDeref, [`11`#int
-ref#$11$~36~EId(z)])], [`13`#int#$13$~37~EInt(1)])])])] }~38~][~39~~40~`28`fundef { nm: g, ~41~args: ~43~~42~x : ~44~TyInt, ~45~~46~ret_ty: ~47~TyUnit, ~48~body: [`27`#unit#$26$~49~Elet(~50~a, ~51~[`18`#float#$17$~52~EFloat(1.230000)], ~53~[`26`#unit#$25$~54~EIf([`21`#bool#$20$EBinop(~55~BLt, [`19`#float#$18$~56~EId(a)], [`20`#float#$19$~57~EFloat(2.000000)])], ~58~[`23`#unit#$22$ECall(~59~putchar, ~60~[`22`#int#$21$~61~EId(x)]~62~)], ~63~[`25`#unit#$24$ECall(~64~putchar, ~65~[`24`#int#$23$~66~EInt(0)]~67~)])])] }~68~]
-, result: [`31`#int#$29$ECall(~69~f, ~70~[`29`#int#$28$~71~EInt(3)]~72~, [`30`#bool#$27$~73~EFalse]~74~)] }~75~]
+[prog { `28`fundefs: 
+, result: [`27`#int#$27$~0~Elet(~1~x, ~2~[`1`#int
+ref#$1$~3~ERef([`0`#int#$0$~4~EInt(7)])], ~5~[`26`#int#$26$~6~Elet(~7~y, ~8~[`3`#int
+ref#$3$~9~ERef([`2`#int#$2$~10~EInt(0)])], ~11~[`25`#int#$25$ESeq([`22`#unit#$22$~12~EWhile([`8`#bool#$8$EUnop(~13~UNot, [`7`#bool#$7$~14~EBinop(~15~BLt, [`5`#int#$5$EUnop(~16~UDeref, [`4`#int
+ref#$4$~17~EId(x)])], [`6`#int#$6$~18~EInt(0)])]~19~)], ~20~[`21`#unit#$21$ESeq([`14`#unit#$14$EBinop(~21~BUpdate, [`9`#int
+ref#$9$~22~EId(x)], [`13`#int#$13$EBinop(~23~BMinus, [`11`#int#$11$EUnop(~24~UDeref, [`10`#int
+ref#$10$~25~EId(x)])], [`12`#int#$12$~26~EInt(1)])])]~27~; [`20`#unit#$20$EBinop(~28~BUpdate, [`15`#int
+ref#$15$~29~EId(y)], [`19`#int#$19$EBinop(~30~BPlus, [`17`#int#$17$EUnop(~31~UDeref, [`16`#int
+ref#$16$~32~EId(y)])], [`18`#int#$18$~33~EInt(1)])])])]~34~)]~35~; [`24`#int#$24$EUnop(~36~UDeref, [`23`#int
+ref#$23$~37~EId(y)])])])])] }~38~]
