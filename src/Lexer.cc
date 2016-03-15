@@ -10,7 +10,9 @@
 #include "Texture.h"
 #include "Schematic.h"
 #include "GrumpyConfig.h"
+#include "TokenQueue.h"
 #include <iostream>
+#include <regex>
 
 using namespace puddi;
 using namespace std;
@@ -19,10 +21,11 @@ namespace grumpy
 {
     // PUBLIC
 
-    Lexer::Lexer(Object* par, SourceCode *code, const vector<LexToken> &lToks) : DrawableObject(par)
+    Lexer::Lexer(Object* par, SourceCode *code, const vector<LexToken> &lToks, TokenQueue *tq) : DrawableObject(par)
     {
         sourceCode = code;
         lTokens = lToks;
+        tokenQueue = tq;
         currentCharacterIndex = 0;
         currentTokenIndex = 0;
         currentTokenStartPos = vec4(0.0f, 0.0f, 0.0f, 1.0f);
@@ -50,7 +53,7 @@ namespace grumpy
     void Lexer::Update()
     {
         if (currentCharacterIndex >= sourceCode->characters.size() || currentTokenIndex >= lTokens.size())
-                return;
+            return;
 
         // get current token in token stream
         LexToken currentToken = lTokens[currentTokenIndex];
@@ -178,53 +181,106 @@ namespace grumpy
             state = LEXER_STATE_SKIPPING;
 	}
 
+    LexerState Lexer::GetState() const
+    {
+        return state;
+    }
+
     // PRIVATE
 
 	void Lexer::produceToken(size_t glyphBegin, size_t glyphEnd)
 	{
-		Token *t = new Token(Puddi::GetRootObject(), lTokens[currentTokenIndex], parser, Schematic::GetSchematicByName("rounded_cube"));
-		Token *parserTokenTail = parser->GetTokenTail();
-		t->SetNext(parserTokenTail);
-		if (parserTokenTail != nullptr)
-			parserTokenTail->SetPrevious(t);
-		//t->SetVelocity(0.1f);
-		t->SetVelocity(0.2f);
+		Token *t = new Token(Puddi::GetRootObject(), lTokens[currentTokenIndex], tokenQueue, parser, Schematic::GetSchematicByName("rounded_cube"));
+		//t->SetVelocity(0.2f);
+		t->SetVelocity(0.01f);
 		//t->SetMaterial(Material::Medium(vec4(0.0f, 1.0f, 1.0f, 1.0f)));
 		t->SetMaterial(Material::Medium(chooseTokenColor(t->LToken)));
 		t->SetBumpMap(Texture::GetBumpMapByName("rough4"));
-		t->SetScaleX((glyphEnd - glyphBegin) / 2.0f);
+		//t->SetScaleX((glyphEnd - glyphBegin) / 2.0f);
+		t->SetScaleX(lTokens[currentTokenIndex].name.length() / 2.25f);
 		t->SetPosition(position - vec4(t->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f));
+		t->CreateGlyphs(sourceCode->font);
 		Puddi::ForceModelUpdate();
 		tokensProduced.push_back(t);
+		//parser->AddToken(t);
+		tokenQueue->AddToken(t);
 	}
 
 	vec4 Lexer::chooseTokenColor(const LexToken& t)
 	{
-        vector<string> words({ "DEF", "LET", "WHILE", "IF", "THEN", "ELSE", "REF", "IN" });
-        vector<string> types({ "INT", "FLOAT", "BOOL", "UNIT", "TT" });
+        vector<string> words({ "DEF", "LET", "WHILE", "IF", "THEN", "ELSE", "REF", "IN", "TT" });
+        vector<string> types({ "INT", "FLOAT", "BOOL", "UNIT" });
+        vector<string> values({ "INTCONST.*", "FLOATCONST.*", "BOOLCONST.*", "ID.*" });
         vector<string> unops({ "NOT", "DEREF" });
         vector<string> binops({ "PLUS", "MINUS", "TIMES", "DIV", "AND", "OR", "LT", "INT_EQ", "DEFEQ" });
         vector<string> separators({ "LPAREN", "RPAREN", "LBRACE", "RBRACE", "SEMI", "EQ", "COLON", "COMMA", "EOF" });
 
-        auto it = find(words.begin(), words.end(), t.name);
-        if (it != words.end())
-            return vec4(0.25f, 0.25f, 0.25f, 1.0f);
+        for (auto it = words.begin(); it != words.end(); ++it)
+        {
+            std::regex pattern(*it);
+            if (std::regex_match(t.name, pattern))
+                return vec4(0.25f, 0.25f, 0.25f, 1.0f);
+        }
 
-        it = find(types.begin(), types.end(), t.name);
-        if (it != types.end())
-            return vec4(0.0f, 0.0f, 0.75f, 1.0f);
+        for (auto it = values.begin(); it != values.end(); ++it)
+        {
+            std::regex pattern(*it);
+            if (std::regex_match(t.name, pattern))
+                return vec4(1.0f, 1.0f, 1.0f, 1.0f);
+        }
 
-        it = find(unops.begin(), unops.end(), t.name);
-        if (it != unops.end())
-            return vec4(0.0f, 0.75f, 0.25f, 1.0f);
+        for (auto it = types.begin(); it != types.end(); ++it)
+        {
+            std::regex pattern(*it);
+            if (std::regex_match(t.name, pattern))
+                return vec4(0.0f, 0.0f, 0.75f, 1.0f);
+        }
 
-        it = find(binops.begin(), binops.end(), t.name);
-        if (it != binops.end())
-            return vec4(0.0f, 0.75f, 0.0f, 1.0f);
+        for (auto it = unops.begin(); it != unops.end(); ++it)
+        {
+            std::regex pattern(*it);
+            if (std::regex_match(t.name, pattern))
+                return vec4(0.0f, 0.75f, 0.25f, 1.0f);
+        }
 
-        it = find(separators.begin(), separators.end(), t.name);
-        if (it != separators.end())
-            return vec4(0.25f, 0.75f, 0.0f, 1.0f);
+        for (auto it = binops.begin(); it != binops.end(); ++it)
+        {
+            std::regex pattern(*it);
+            if (std::regex_match(t.name, pattern))
+                return vec4(0.0f, 0.75f, 0.0f, 1.0f);
+        }
+
+        for (auto it = separators.begin(); it != separators.end(); ++it)
+        {
+            std::regex pattern(*it);
+            if (std::regex_match(t.name, pattern))
+                return vec4(0.25f, 0.75f, 0.0f, 1.0f);
+        }
+
+//        // words
+//        auto it = find(words.begin(), words.end(), t.name);
+//        if (it != words.end())
+//            return vec4(0.25f, 0.25f, 0.25f, 1.0f);
+//
+//        // types
+//        it = find(types.begin(), types.end(), t.name);
+//        if (it != types.end())
+//            return vec4(0.0f, 0.0f, 0.75f, 1.0f);
+//
+//        // unops
+//        it = find(unops.begin(), unops.end(), t.name);
+//        if (it != unops.end())
+//            return vec4(0.0f, 0.75f, 0.25f, 1.0f);
+//
+//        // binops
+//        it = find(binops.begin(), binops.end(), t.name);
+//        if (it != binops.end())
+//            return vec4(0.0f, 0.75f, 0.0f, 1.0f);
+//
+//        // separators
+//        it = find(separators.begin(), separators.end(), t.name);
+//        if (it != separators.end())
+//            return vec4(0.25f, 0.75f, 0.0f, 1.0f);
 
         return vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	}

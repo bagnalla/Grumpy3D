@@ -9,6 +9,7 @@ namespace grumpy
 {
     class SourceCode;
 	class SyntaxParser;
+	class TokenQueue;
 
     enum LexerState : int
     {
@@ -23,7 +24,7 @@ namespace grumpy
     class Lexer : public puddi::DrawableObject
     {
     public:
-        Lexer(Object* par, SourceCode *code, const std::vector<LexToken> &lToks);
+        Lexer(Object* par, SourceCode *code, const std::vector<LexToken> &lToks, TokenQueue *tq);
 
         ~Lexer();
 
@@ -39,9 +40,12 @@ namespace grumpy
 
 		void Lex();
 
+		LexerState GetState() const;
+
     private:
         SourceCode *sourceCode;
 		SyntaxParser *parser;
+		TokenQueue *tokenQueue;
         std::vector<LexToken> lTokens;
         std::vector<Token*> tokensProduced;
         size_t currentCharacterIndex;

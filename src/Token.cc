@@ -4,6 +4,9 @@
 #include "Schematic.h"
 #include "Util.h"
 #include "GrumpyConfig.h"
+#include "Font.h"
+#include "Puddi.h"
+#include "TokenQueue.h"
 #include <iostream>
 
 using namespace puddi;
@@ -26,45 +29,48 @@ namespace grumpy
 
     // Token PUBLIC
 
-    Token::Token(Object *par, const LexToken &lTok, SyntaxParser *pars) : DrawableObject(par)
+    Token::Token(Object *par, const LexToken &lTok, TokenQueue *tq, SyntaxParser *pars) : DrawableObject(par)
     {
-        init(lTok, pars);
+        init(lTok, tq, pars);
     }
 
-    Token::Token(Object *par, const LexToken &lTok, SyntaxParser *pars, SchematicNode *schematic) : DrawableObject(par, schematic)
+    Token::Token(Object *par, const LexToken &lTok, TokenQueue *tq, SyntaxParser *pars, SchematicNode *schematic) : DrawableObject(par, schematic)
     {
-        init(lTok, pars);
+        init(lTok, tq, pars);
     }
 
-    Token* Token::GetNext() const
-    {
-        return next;
-    }
-    void Token::SetNext(Token *t)
-    {
-        next = t;
-    }
+//    Token* Token::GetNext() const
+//    {
+//        return next;
+//    }
+//    void Token::SetNext(Token *t)
+//    {
+//        next = t;
+//    }
 
-    Token* Token::GetPrevious() const
-    {
-        return previous;
-    }
-    void Token::SetPrevious(Token *t)
-    {
-        previous = t;
-    }
+//    Token* Token::GetPrevious() const
+//    {
+//        return previous;
+//    }
+//    void Token::SetPrevious(Token *t)
+//    {
+//        previous = t;
+//    }
 
     void Token::SetVelocity(float v)
     {
         velocity = v;
     }
 
+    void Token::SetTargetPosition(const glm::vec4 p)
+    {
+        targetPosition = p;
+        reachedTargetPosition = false;
+    }
+
     void Token::Consume()
     {
-        if (previous != nullptr)
-            previous->SetNext(next);
-        if (next != nullptr)
-            next->SetPrevious(previous);
+        reachedTargetPosition = true;
     }
 
     void Token::Update()
@@ -100,32 +106,50 @@ namespace grumpy
 //        }
 //
 //		LookAt(target->GetPosition());
+
+        if (reachedTargetPosition)
+            return;
+
+        float moveAmount = velocity * GrumpyConfig::GetGameSpeedFactor();
+        MoveToPoint(targetPosition, moveAmount, [&](){ tokenQueue->TokenIsReady(this); reachedTargetPosition = true; });
     }
 
-	vec4 Token::GetTokenConnectionHead() const
-	{
-		return parentModel * model * vec4(scale.x / 2.0f, 0.0f, 0.0f, 1.0f);
-	}
-
-    vec4 Token::GetTokenConnectionTail() const
+    void Token::CreateGlyphs(std::string font)
     {
-        return parentModel * model * vec4(-scale.x / 2.0f, 0.0f, 0.0f, 1.0f);
+        for (auto it = glyphs.begin(); it != glyphs.end(); ++it)
+            delete *it;
+
+        glyphs = Font::CreateGlyphString(this, font, LToken.name, 0.6f);
+        for_each(glyphs.begin(), glyphs.end(), [&](DrawableObject *g)
+        {
+            g->AddIgnoreParentModelFlag(IGNORE_PARENT_SCALE);
+            g->Translate(vec4(g->GetScaleX() / 2.0f - (g->GetScaleX() * glyphs.size()) / 2.0f, -0.51f, 0.0f, 0.0f));
+        });
     }
+
+//	vec4 Token::GetTokenConnectionHead() const
+//	{
+//		return parentModel * model * vec4(scale.x / 2.0f, 0.0f, 0.0f, 1.0f);
+//	}
+//
+//    vec4 Token::GetTokenConnectionTail() const
+//    {
+//        return parentModel * model * vec4(-scale.x / 2.0f, 0.0f, 0.0f, 1.0f);
+//    }
 
     // PRIVATE
 
-    void Token::init(const LexToken &lTok, SyntaxParser *pars)
+    void Token::init(const LexToken &lTok, TokenQueue *tq, SyntaxParser *pars)
     {
         LToken = lTok;
+        tokenQueue = tq;
         parser = pars;
-        next = nullptr;
-        previous = nullptr;
+//        next = nullptr;
+//        previous = nullptr;
         velocity = 1.0f;
 		rotationVelocity = 1.0f;
-        addedToParser = false;
-
-        addedToParser = true;
-        parser->AddToken(this);
+		targetPosition = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+		reachedTargetPosition = false;
     }
 
 	void Token::rotateToward(const vec4 &point)

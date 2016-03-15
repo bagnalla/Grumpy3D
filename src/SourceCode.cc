@@ -2,6 +2,7 @@
 #include "Util.h"
 #include "GlmHeaders.h"
 #include "Texture.h"
+#include "Font.h"
 
 using namespace puddi;
 using namespace std;
@@ -12,9 +13,11 @@ namespace grumpy
 
     SourceCode::SourceCode(Object *par, const string &path, const std::string &font) : DrawableObject(par)
     {
-        characters = Util::ReadAllBytes(path);
+        auto chars = Util::ReadAllBytes(path);
+        characters = string(chars.data());
         this->font = font;
-        createGlyphs();
+        //createGlyphs();
+        glyphs = Font::CreateGlyphString(this, font, characters);
     }
 
     // PRIVATE

@@ -7,6 +7,7 @@
 #include "Schematic.h"
 #include "TypeChecker.h"
 #include "GrumpyConfig.h"
+#include "TokenQueue.h"
 #include <iostream>
 #include <algorithm>
 
@@ -17,14 +18,14 @@ namespace grumpy
 {
     // PUBLIC
 
-	SyntaxParser::SyntaxParser(Object *par, Lexer *lex, ASTNode *root) : DrawableObject(par)
+	SyntaxParser::SyntaxParser(Object *par, Lexer *lex, TokenQueue *tq, ASTNode *root) : DrawableObject(par)
     {
-		init(lex, root);
+		init(lex, tq, root);
     }
 
-	SyntaxParser::SyntaxParser(Object* par, Lexer *lex, ASTNode *root, SchematicNode *schematic) : DrawableObject(par, schematic)
+	SyntaxParser::SyntaxParser(Object* par, Lexer *lex, TokenQueue *tq, ASTNode *root, SchematicNode *schematic) : DrawableObject(par, schematic)
 	{
-		init(lex, root);
+		init(lex, tq, root);
 	}
 
     void SyntaxParser::Update()
@@ -53,14 +54,21 @@ namespace grumpy
         {
             auto requiredTokens = targetNode->GetRequiredTokenNumbers();
             int tokensNeeded = 0;
+            auto readyTokens = tokenQueue->GetReadyTokens();
             for (auto it = requiredTokens.begin(); it != requiredTokens.end(); ++it)
             {
                 // + 1 for each required token not in tokenQueue
-                tokensNeeded += !std::any_of(tokenQueue.begin(), tokenQueue.end(), [&](Token *t) { return t->LToken.number == *it; });
+                tokensNeeded += !std::any_of(readyTokens.begin(), readyTokens.end(), [&](Token *t) { return t->LToken.number == *it; });
             }
             if (!tokensNeeded)
             {
                 state = SYNTAXPARSER_STATE_MOVING;
+            }
+            else
+            {
+                // if readyTokens == allTokens or they are empty and the lexer is idle, need to Lex() for a new token
+                if ((readyTokens.size() == tokenQueue->GetAllTokens().size() || !tokenQueue->GetAllTokens().size()) && lexer->GetState() == LEXER_STATE_WAITING)
+                    lexer->Lex();
             }
             //targetNode->Show();
 			//astRoot->Resize();
@@ -94,17 +102,15 @@ namespace grumpy
 				astRoot->Resize();
 
 				auto requiredTokens = targetNode->GetRequiredTokenNumbers();
+				auto readyTokens = tokenQueue->GetReadyTokens();
 				for (auto it = requiredTokens.begin(); it != requiredTokens.end(); ++it)
 				{
                     auto tNum = *it;
-                    for (size_t i = 0; i < tokenQueue.size();)
+                    for (size_t i = 0; i < readyTokens.size();)
                     {
-                        if (tokenQueue[i]->LToken.number == tNum)
+                        if (readyTokens[i]->LToken.number == tNum)
                         {
-                            auto tok = tokenQueue[i];
-                            tok->Consume();
-                            tokenQueue.erase(tokenQueue.begin() + i);
-                            tok->Cull();
+                            tokenQueue->ConsumeToken(readyTokens[i]);
                             break;
                         }
                         else
@@ -123,7 +129,7 @@ namespace grumpy
                 int tokensNeeded = 0;
                 for (auto it = requiredTokens.begin(); it != requiredTokens.end(); ++it)
                 {
-                    tokensNeeded += !std::any_of(tokenQueue.begin(), tokenQueue.end(), [&](Token *t) { return t->LToken.number == *it; });
+                    tokensNeeded += !std::any_of(readyTokens.begin(), readyTokens.end(), [&](Token *t) { return t->LToken.number == *it; });
                     //if (!std::any_of(tokenQueue.begin(), tokenQueue.end(), [&](Token *t) { return t->LToken.number == *it; }))
                         //cout << "parser needs token " << *it << endl;
                 }
@@ -132,7 +138,7 @@ namespace grumpy
                     //cout << "parser waiting on " << tokensNeeded << " tokens from the lexer. tokenQueue size = " << tokenQueue.size() << "\n";
 					state = SYNTAXPARSER_STATE_WAITING;
                     // request x number of tokens from lexer
-					lexer->Lex();
+					//lexer->Lex();
                 }
 			});
         }
@@ -152,34 +158,34 @@ namespace grumpy
         homePosition = v;
 	}
 
-	void SyntaxParser::AddToken(Token *t)
-	{
-        tokenQueue.push_back(t);
-        //cout << "adding token " << t->LToken.number << " to parser\n";
+//	void SyntaxParser::AddToken(Token *t)
+//	{
+//        tokenQueue.push_back(t);
+//        //cout << "adding token " << t->LToken.number << " to parser\n";
+//
+//        ASTNode *targetNode = nodesVector[currentNodeIndex];
+//        auto requiredTokens = targetNode->GetRequiredTokenNumbers();
+//        int tokensNeeded = 0;
+//        for (auto it = requiredTokens.begin(); it != requiredTokens.end(); ++it)
+//        {
+//            tokensNeeded += !std::any_of(tokenQueue.begin(), tokenQueue.end(), [&](Token *t) { return t->LToken.number == *it; });
+//        }
+//        if (tokensNeeded)
+//        {
+//            //cout << "parser waiting on " << tokensNeeded << " tokens from the lexer. tokenQueue size = " << tokenQueue.size() << "\n";
+//            //state = SYNTAXPARSER_STATE_WAITING;
+//            // request x number of tokens from lexer
+//            lexer->Lex();
+//        }
+//	}
 
-        ASTNode *targetNode = nodesVector[currentNodeIndex];
-        auto requiredTokens = targetNode->GetRequiredTokenNumbers();
-        int tokensNeeded = 0;
-        for (auto it = requiredTokens.begin(); it != requiredTokens.end(); ++it)
-        {
-            tokensNeeded += !std::any_of(tokenQueue.begin(), tokenQueue.end(), [&](Token *t) { return t->LToken.number == *it; });
-        }
-        if (tokensNeeded)
-        {
-            //cout << "parser waiting on " << tokensNeeded << " tokens from the lexer. tokenQueue size = " << tokenQueue.size() << "\n";
-            //state = SYNTAXPARSER_STATE_WAITING;
-            // request x number of tokens from lexer
-            lexer->Lex();
-        }
-	}
-
-	Token* SyntaxParser::GetTokenTail()
-	{
-        if (tokenQueue.size())
-            return tokenQueue[tokenQueue.size() - 1];
-        else
-            return nullptr;
-	}
+//	Token* SyntaxParser::GetTokenTail()
+//	{
+//        if (tokenQueue.size())
+//            return tokenQueue[tokenQueue.size() - 1];
+//        else
+//            return nullptr;
+//	}
 
 	void SyntaxParser::SetTypeChecker(TypeChecker *tc)
 	{
@@ -188,9 +194,10 @@ namespace grumpy
 
     // PRIVATE
 
-	void SyntaxParser::init(Lexer *lex, ASTNode *root)
+	void SyntaxParser::init(Lexer *lex, TokenQueue *tq, ASTNode *root)
 	{
 		lexer = lex;
+		tokenQueue = tq;
 		typeChecker = nullptr;
 		astRoot = root;
 		currentNodeIndex = 0;

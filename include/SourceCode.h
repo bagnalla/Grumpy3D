@@ -18,7 +18,7 @@ namespace grumpy
         // parallel vectors
         // characters with no glyph will have a
         // corresponding null entry in the glyphs vector
-        std::vector<char> characters;
+        std::string characters;
         std::vector<DrawableObject*> glyphs;
         std::string font;
 

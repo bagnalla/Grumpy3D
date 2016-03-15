@@ -6,6 +6,7 @@
 
 namespace grumpy
 {
+    class TokenQueue;
     class SyntaxParser;
 
     /** \brief A struct to contain the token information produced by the actual Grumpy lexer.
@@ -29,36 +30,41 @@ namespace grumpy
     class Token : public puddi::DrawableObject
     {
     public:
-        Token(puddi::Object *par, const LexToken &lTok, SyntaxParser *pars);
+        Token(puddi::Object *par, const LexToken &lTok, TokenQueue *tq, SyntaxParser *pars);
 
-        Token(puddi::Object *par, const LexToken &lTok, SyntaxParser *pars, puddi::SchematicNode *schematic);
+        Token(puddi::Object *par, const LexToken &lTok, TokenQueue *tq, SyntaxParser *pars, puddi::SchematicNode *schematic);
 
         LexToken LToken;
 
-        Token* GetNext() const;
-        void SetNext(Token *t);
-
-        Token* GetPrevious() const;
-        void SetPrevious(Token *t);
+//        Token* GetNext() const;
+//        void SetNext(Token *t);
+//
+//        Token* GetPrevious() const;
+//        void SetPrevious(Token *t);
 
         void SetVelocity(float v);
+
+        void SetTargetPosition(const glm::vec4 p);
 
         void Consume();
 
         void Update();
 
-		glm::vec4 GetTokenConnectionHead() const;
-        glm::vec4 GetTokenConnectionTail() const;
+        void CreateGlyphs(std::string font);
+
+//		glm::vec4 GetTokenConnectionHead() const;
+//      glm::vec4 GetTokenConnectionTail() const;
 
     private:
+        TokenQueue *tokenQueue;
         SyntaxParser *parser;
-        Token *next;
-        Token *previous;
         float velocity;
 		float rotationVelocity;
-        bool addedToParser;
+		std::vector<DrawableObject*> glyphs;
+		glm::vec4 targetPosition;
+		bool reachedTargetPosition;
 
-        void init(const LexToken &lTok, SyntaxParser *pars);
+        void init(const LexToken &lTok, TokenQueue *tq, SyntaxParser *pars);
 
 		void rotateToward(const glm::vec4 &point);
     };

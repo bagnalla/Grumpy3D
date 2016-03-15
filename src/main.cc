@@ -21,6 +21,7 @@
 #include "SyntaxParser.h"
 #include "TypeChecker.h"
 #include "GrumpyConfig.h"
+#include "TokenQueue.h"
 #include <vector>
 #include <iostream>
 #include <string>
@@ -39,6 +40,7 @@ DrawableObject *wall;
 
 SourceCode *sourceCode;
 Lexer *lexer;
+TokenQueue *tokenQueue;
 ASTNode *ast;
 SyntaxParser *parser;
 TypeChecker *typeChecker;
@@ -163,9 +165,9 @@ void init(void)
     skybox->SetScale(Puddi::ViewDistance);
     skybox->DisableShadowCasting();
 
-    DrawableObject *cat = new DrawableObject(Puddi::GetRootObject(), Schematic::GetSchematicByName("grumpycat"));
-    cat->SetScale(0.5f);
-    cat->Translate(vec4(0.0f, 0.0f, 5.0f, 0.0f));
+//    DrawableObject *cat = new DrawableObject(Puddi::GetRootObject(), Schematic::GetSchematicByName("grumpycat"));
+//    cat->SetScale(0.5f);
+//    cat->Translate(vec4(0.0f, 0.0f, 5.0f, 0.0f));
 
     // OBJECTS
     //rect = new Rectangle(objectContainer);
@@ -205,6 +207,7 @@ void reset()
 {
     delete sourceCode;
     delete lexer;
+    delete tokenQueue;
     delete ast;
     delete parser;
     delete typeChecker;
@@ -232,7 +235,10 @@ void reset()
         //cout << tok.name << endl;
     }
 
-    lexer = new Lexer(Puddi::GetRootObject(), sourceCode, lTokens);
+    tokenQueue = new TokenQueue(Puddi::GetRootObject());
+    tokenQueue->SetPosition(sourceCode->GetPosition() + vec4(0.0f, 0.0f, 2.0f, 0.0f));
+
+    lexer = new Lexer(Puddi::GetRootObject(), sourceCode, lTokens, tokenQueue);
     auto *mesh = new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("cube"));
     lexer->AddVertexMesh(mesh);
     lexer->SetTexture(Texture::GetTextureByName("shrek"));
@@ -273,7 +279,7 @@ void reset()
 
     /*parser = new SyntaxParser(Puddi::GetRootObject(), ast);
     parser->AddVertexMesh(new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("cube")));*/
-    parser = new SyntaxParser(Puddi::GetRootObject(), lexer, ast, Schematic::GetSchematicByName("rounded_cube"));
+    parser = new SyntaxParser(Puddi::GetRootObject(), lexer, tokenQueue, ast, Schematic::GetSchematicByName("rounded_cube"));
     parser->SetTexture(Texture::GetTextureByName("shrek"));
 //    parser->SetEmissive(true);
 //    parser->SetEmissionColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
@@ -290,7 +296,7 @@ void reset()
     lexer->SetParser(parser);
 
     typeChecker = new TypeChecker(Puddi::GetRootObject(), ast, Schematic::GetSchematicByName("rounded_cube"));
-    //typeChecker->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
+    typeChecker->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
     typeChecker->SetVelocity(0.025f);
     typeChecker->SetHomePosition(ast->GetPosition() + vec4(0.0f, 0.0f, 7.0f, 1.0f));
     typeChecker->SetPosition(vec4(0.0f, 0.0f, 7.0f, 1.0f));

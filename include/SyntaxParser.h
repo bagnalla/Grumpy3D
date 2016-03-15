@@ -11,6 +11,7 @@ namespace grumpy
 	class ASTNode;
 	class Token;
 	class TypeChecker;
+	class TokenQueue;
 
     enum SyntaxParserState : int
     {
@@ -25,8 +26,8 @@ namespace grumpy
     class SyntaxParser : public puddi::DrawableObject
     {
     public:
-		SyntaxParser(Object* par, Lexer *lex, ASTNode *root);
-		SyntaxParser(Object* par, Lexer *lex, ASTNode *root, puddi::SchematicNode *schematic);
+		SyntaxParser(Object* par, Lexer *lex, TokenQueue *tq, ASTNode *root);
+		SyntaxParser(Object* par, Lexer *lex, TokenQueue *tq, ASTNode *root, puddi::SchematicNode *schematic);
 
         void Update();
 
@@ -35,11 +36,9 @@ namespace grumpy
 
 		void SetHomePosition(glm::vec4 v);
 
-		void AddToken(Token *t);
+		//void AddToken(Token *t);
 
 		void SetTypeChecker(TypeChecker *tc);
-
-		Token* GetTokenTail();
 
     private:
 		Lexer *lexer;
@@ -51,9 +50,9 @@ namespace grumpy
         SyntaxParserState state;
         glm::vec4 homePosition;
 
-        std::vector<Token*> tokenQueue;
+        TokenQueue *tokenQueue;
 
-		void init(Lexer *lex, ASTNode *root);
+		void init(Lexer *lex, TokenQueue *tq, ASTNode *root);
         void createNodesVector();
         void addToNodesVectorRecursive(ASTNode *node);
 
