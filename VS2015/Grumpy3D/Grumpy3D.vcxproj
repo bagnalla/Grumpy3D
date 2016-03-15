@@ -170,6 +170,7 @@
     <ClCompile Include="..\..\src\SourceCode.cc" />
     <ClCompile Include="..\..\src\SyntaxParser.cc" />
     <ClCompile Include="..\..\src\Token.cc" />
+    <ClCompile Include="..\..\src\TokenQueue.cc" />
     <ClCompile Include="..\..\src\TypeChecker.cc" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +180,7 @@
     <ClInclude Include="..\..\include\SourceCode.h" />
     <ClInclude Include="..\..\include\SyntaxParser.h" />
     <ClInclude Include="..\..\include\Token.h" />
+    <ClInclude Include="..\..\include\TokenQueue.h" />
     <ClInclude Include="..\..\include\TypeChecker.h" />
     <ClInclude Include="..\..\puddi\include\Bagnall.h" />
     <ClInclude Include="..\..\puddi\include\Camera.h" />

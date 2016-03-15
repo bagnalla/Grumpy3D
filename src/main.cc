@@ -55,7 +55,7 @@ void init(void)
     Puddi::AddRenderGraph();
     Puddi::AddRenderGraph();
 
-    GLuint texture = Texture::LoadTexture("shrek", "textures/Shrek-and-Yoda.jpg", "bumpmaps/Shrek-and-Yoda_NRM.jpg");
+    GLuint texture = Texture::LoadTexture("grumpycat", "textures/grumpycat1.png", "bumpmaps/grumpycat1_medium.png");
     //GLuint texture = Texture::LoadTexture("rough", "textures/rough4.jpg", "bumpmaps/rough4_bumpmap_fine.jpg");
     Texture::LoadBumpMap("rough1", "bumpmaps/rough1_bumpmap_fine.jpg");
     Texture::LoadBumpMap("rough2", "bumpmaps/rough2_bumpmap_fine.jpg");
@@ -241,7 +241,7 @@ void reset()
     lexer = new Lexer(Puddi::GetRootObject(), sourceCode, lTokens, tokenQueue);
     auto *mesh = new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("cube"));
     lexer->AddVertexMesh(mesh);
-    lexer->SetTexture(Texture::GetTextureByName("shrek"));
+    lexer->SetTexture(Texture::GetTextureByName("grumpycat"));
     lexer->SetSkipVelocity(0.1f);
     lexer->SetReadVelocity(0.01f);
     //lexer->Translate(vec4(0.0f, -10.0f, 0.0f, 0.0f));
@@ -280,7 +280,7 @@ void reset()
     /*parser = new SyntaxParser(Puddi::GetRootObject(), ast);
     parser->AddVertexMesh(new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("cube")));*/
     parser = new SyntaxParser(Puddi::GetRootObject(), lexer, tokenQueue, ast, Schematic::GetSchematicByName("rounded_cube"));
-    parser->SetTexture(Texture::GetTextureByName("shrek"));
+    parser->SetTexture(Texture::GetTextureByName("grumpycat"));
 //    parser->SetEmissive(true);
 //    parser->SetEmissionColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
     parser->SetVelocity(0.025f);
