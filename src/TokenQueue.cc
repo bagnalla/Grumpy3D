@@ -63,11 +63,18 @@ namespace grumpy
 
         vec4 pos = GetWorldPosition();
 
-        for (auto it = tokens.begin(); it != tokens.end(); ++it)
+//        for (auto it = tokens.begin(); it != tokens.end(); ++it)
+//        {
+//            (*it)->SetTargetPosition(pos + vec4((*it)->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f));
+//
+//            pos += vec4((*it)->GetScaleX(), 0.0f, 0.0f, 0.0f);
+//        }
+        for (auto it = tokens.rbegin(); it != tokens.rend(); ++it)
         {
-            (*it)->SetTargetPosition(pos + vec4((*it)->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f));
+            (*it)->SetTargetPosition(pos - vec4((*it)->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f));
 
-            pos += vec4((*it)->GetScaleX(), 0.0f, 0.0f, 0.0f);
+            pos -= vec4((*it)->GetScaleX(), 0.0f, 0.0f, 0.0f);
         }
+
     }
 }

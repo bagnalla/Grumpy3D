@@ -236,9 +236,11 @@ void reset()
     }
 
     tokenQueue = new TokenQueue(Puddi::GetRootObject());
-    tokenQueue->SetPosition(sourceCode->GetPosition() + vec4(0.0f, 0.0f, 2.0f, 0.0f));
+    tokenQueue->SetPosition(sourceCode->GetPosition() + vec4(5.0f, 0.0f, 2.0f, 0.0f));
 
     lexer = new Lexer(Puddi::GetRootObject(), sourceCode, lTokens, tokenQueue);
+    //lexer->BuildFromSchematic(Schematic::GetSchematicByName("grumpycat"));
+    //lexer->SetScale(0.05f);
     auto *mesh = new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("cube"));
     lexer->AddVertexMesh(mesh);
     lexer->SetTexture(Texture::GetTextureByName("grumpycat"));

@@ -102,15 +102,15 @@ namespace grumpy
 				astRoot->Resize();
 
 				auto requiredTokens = targetNode->GetRequiredTokenNumbers();
-				auto readyTokens = tokenQueue->GetReadyTokens();
+				auto allTokens = tokenQueue->GetAllTokens();
 				for (auto it = requiredTokens.begin(); it != requiredTokens.end(); ++it)
 				{
                     auto tNum = *it;
-                    for (size_t i = 0; i < readyTokens.size();)
+                    for (size_t i = 0; i < allTokens.size();)
                     {
-                        if (readyTokens[i]->LToken.number == tNum)
+                        if (allTokens[i]->LToken.number == tNum)
                         {
-                            tokenQueue->ConsumeToken(readyTokens[i]);
+                            tokenQueue->ConsumeToken(allTokens[i]);
                             break;
                         }
                         else
@@ -126,6 +126,7 @@ namespace grumpy
 
 				targetNode = nodesVector[currentNodeIndex];
 				requiredTokens = targetNode->GetRequiredTokenNumbers();
+				auto readyTokens = tokenQueue->GetReadyTokens();
                 int tokensNeeded = 0;
                 for (auto it = requiredTokens.begin(); it != requiredTokens.end(); ++it)
                 {

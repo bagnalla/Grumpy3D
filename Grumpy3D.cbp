@@ -6,6 +6,7 @@
 		<Option makefile_is_custom="1" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="src/;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="debug/Grumpy3D" prefix_auto="1" extension_auto="1" />
@@ -52,12 +53,7 @@
 		<Unit filename="Makefile" />
 		<Unit filename="README.md" />
 		<Unit filename="bumpmaps/Shrek-and-Yoda_NRM.jpg" />
-		<Unit filename="bumpmaps/ben_NRM.jpg" />
-		<Unit filename="bumpmaps/bill_NRM.jpg" />
-		<Unit filename="bumpmaps/costanza_NRM.jpg" />
 		<Unit filename="bumpmaps/cubemap_test_1_NRM.jpg" />
-		<Unit filename="bumpmaps/dowm furry_NRM.jpg" />
-		<Unit filename="bumpmaps/finalformsquare_NRM.jpg" />
 		<Unit filename="bumpmaps/grass1_NRM.jpg" />
 		<Unit filename="bumpmaps/rough1_bumpmap_fine.jpg" />
 		<Unit filename="bumpmaps/rough2_bumpmap_fine.jpg" />
@@ -68,26 +64,14 @@
 		<Unit filename="bumpmaps/snow1_NRM.jpg" />
 		<Unit filename="bumpmaps/stone1_NRM.jpg" />
 		<Unit filename="bumpmaps/stone_wall_NRM.jpg" />
-		<Unit filename="heightmaps/jackson_height.png" />
-		<Unit filename="heightmaps/north_america_height.png" />
-		<Unit filename="heightmaps/north_america_height2.jpg" />
-		<Unit filename="heightmaps/north_america_height_small.png" />
-		<Unit filename="heightmaps/seamless_heightmap_1.jpg" />
-		<Unit filename="heightmaps/terrain.png" />
-		<Unit filename="heightmaps/terrain1_height.jpg" />
-		<Unit filename="heightmaps/terrain2.jpg" />
-		<Unit filename="heightmaps/terrain3.jpg" />
-		<Unit filename="heightmaps/west_norway.png" />
-		<Unit filename="heightmaps/world_height_lowres.jpg" />
 		<Unit filename="include/AST.h" />
 		<Unit filename="include/GrumpyConfig.h" />
 		<Unit filename="include/Lexer.h" />
 		<Unit filename="include/SourceCode.h" />
 		<Unit filename="include/SyntaxParser.h" />
 		<Unit filename="include/Token.h" />
+		<Unit filename="include/TokenQueue.h" />
 		<Unit filename="include/TypeChecker.h" />
-		<Unit filename="lexer.in" />
-		<Unit filename="parser.in" />
 		<Unit filename="program.gpy" />
 		<Unit filename="puddi/Makefile" />
 		<Unit filename="puddi/include/Bagnall.h" />
@@ -187,20 +171,15 @@
 		<Unit filename="src/SourceCode.cc" />
 		<Unit filename="src/SyntaxParser.cc" />
 		<Unit filename="src/Token.cc" />
+		<Unit filename="src/TokenQueue.cc" />
 		<Unit filename="src/TypeChecker.cc" />
 		<Unit filename="src/main.cc" />
 		<Unit filename="src/malloc.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="textures/Shrek-and-Yoda (copy).jpg" />
 		<Unit filename="textures/Shrek-and-Yoda.jpg" />
-		<Unit filename="textures/ben.jpg" />
-		<Unit filename="textures/bill.png" />
 		<Unit filename="textures/blackblue.tga" />
-		<Unit filename="textures/costanza.jpg" />
 		<Unit filename="textures/cubemap_test_1.jpg" />
-		<Unit filename="textures/dowm furry.jpg" />
-		<Unit filename="textures/finalformsquare.jpg" />
 		<Unit filename="textures/font.png" />
 		<Unit filename="textures/font1.png" />
 		<Unit filename="textures/font2.png" />

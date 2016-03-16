@@ -29,6 +29,8 @@ namespace puddi
 
 		void AddVertexMesh(VertexMesh *vertexMesh);
 
+		void BuildFromSchematic(SchematicNode *schematic);
+
 		void SetEmissive(bool e);
 
 		virtual void SetEmissionColor(const vec4& color);

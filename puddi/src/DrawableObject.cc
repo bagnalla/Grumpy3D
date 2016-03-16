@@ -41,16 +41,7 @@ namespace puddi
 
 	DrawableObject::DrawableObject(Object *par, SchematicNode *schematic) : DrawableObject(par)
 	{
-		for (auto it = schematic->vertexMeshes.begin(); it != schematic->vertexMeshes.end(); ++it)
-		{
-			vertexMeshes.push_back(new VertexMesh(*it));
-			vertexMeshes[vertexMeshes.size() - 1]->SetOwner(this);
-		}
-
-		for (auto it = schematic->children.begin(); it != schematic->children.end(); ++it)
-			new DrawableObject(this, *it);
-
-		updateRenderNodes();
+		BuildFromSchematic(schematic);
 	}
 
 	DrawableObject::~DrawableObject()
@@ -77,6 +68,20 @@ namespace puddi
 	{
 		vertexMeshes.push_back(vertexMesh);
 		vertexMeshes[vertexMeshes.size() - 1]->SetOwner(this);
+		updateRenderNodes();
+	}
+
+	void DrawableObject::BuildFromSchematic(SchematicNode *schematic)
+	{
+	    for (auto it = schematic->vertexMeshes.begin(); it != schematic->vertexMeshes.end(); ++it)
+		{
+			vertexMeshes.push_back(new VertexMesh(*it));
+			vertexMeshes[vertexMeshes.size() - 1]->SetOwner(this);
+		}
+
+		for (auto it = schematic->children.begin(); it != schematic->children.end(); ++it)
+			new DrawableObject(this, *it);
+
 		updateRenderNodes();
 	}
 

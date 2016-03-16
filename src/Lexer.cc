@@ -219,7 +219,7 @@ namespace grumpy
         {
             std::regex pattern(*it);
             if (std::regex_match(t.name, pattern))
-                return vec4(0.25f, 0.25f, 0.25f, 1.0f);
+                return vec4(0.5f, 0.5f, 0.5f, 1.0f);
         }
 
         for (auto it = values.begin(); it != values.end(); ++it)
@@ -247,14 +247,14 @@ namespace grumpy
         {
             std::regex pattern(*it);
             if (std::regex_match(t.name, pattern))
-                return vec4(0.0f, 0.75f, 0.0f, 1.0f);
+                return vec4(0.75f, 0.25f, 0.0f, 1.0f);
         }
 
         for (auto it = separators.begin(); it != separators.end(); ++it)
         {
             std::regex pattern(*it);
             if (std::regex_match(t.name, pattern))
-                return vec4(0.25f, 0.75f, 0.0f, 1.0f);
+                return vec4(0.5f, 0.25f, 0.75f, 1.0f);
         }
 
 //        // words
