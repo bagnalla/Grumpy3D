@@ -56,6 +56,7 @@ void init(void)
     Puddi::AddRenderGraph();
 
     GLuint texture = Texture::LoadTexture("grumpycat", "textures/grumpycat1.png", "bumpmaps/grumpycat1_medium.png");
+    //GLuint texture = Texture::LoadTexture("grumpycat", "textures/grumpycat1_d.png");
     //GLuint texture = Texture::LoadTexture("rough", "textures/rough4.jpg", "bumpmaps/rough4_bumpmap_fine.jpg");
     Texture::LoadBumpMap("rough1", "bumpmaps/rough1_bumpmap_fine.jpg");
     Texture::LoadBumpMap("rough2", "bumpmaps/rough2_bumpmap_fine.jpg");
@@ -83,19 +84,19 @@ void init(void)
     lightSource->UpdateMatrix();
     LightSource::UpdateLightSourceMatricesInShaders();
 
-//    //wall = new Cube(Puddi::GetRootObject());
-//    wall = new DrawableObject(Puddi::GetRootObject(), Schematic::GetSchematicByName("rounded_cube"));
-//    wall->RotateX(static_cast<float>(M_PI / 2.0f));
-//    //wall->SetScaleX(200.0f);
-//    //wall->SetScaleY(100.0f);
-//    //wall->SetScale(10.0f);
-//    wall->SetPosition(vec4(0.0f, 10.f, 0.0f, 1.0f));
-//    //wall->SetMaterial(Material::Plastic(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
-//    //wall->SetMaterial(Material::Vibrant(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
-//    wall->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
-//    //wall->SetMaterial(Material::BlackRubber());
-//    wall->SetBumpMap(bump);
-//    //wall->SetTexture(texture);
+    //wall = new Cube(Puddi::GetRootObject());
+    //wall = new DrawableObject(Puddi::GetRootObject(), Schematic::GetSchematicByName("geodesic_weave"));
+    //wall->RotateX(static_cast<float>(M_PI / 2.0f));
+    //wall->SetScaleX(200.0f);
+    //wall->SetScaleY(100.0f);
+    //wall->SetScale(10.0f);
+    //wall->SetPosition(vec4(0.0f, 10.f, 0.0f, 1.0f));
+    //wall->SetMaterial(Material::Plastic(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
+    //wall->SetMaterial(Material::Vibrant(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
+    //wall->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
+    //wall->SetMaterial(Material::BlackRubber());
+    //wall->SetBumpMap(bump);
+    //wall->SetTexture(texture);
 
     auto terrainMesh = new TerrainVertexMesh(HeightMapTerrain::CreateTerrainMeshFromFile("textures/ocaml_logo_2.png", 25.0f, 25.0f, 0.1f));
     //auto terrainMesh = new TerrainVertexMesh(HeightMapTerrain::CreateTerrainMeshFromFile("textures/ou_logo_1.png", 25.0f, 25.0f, 0.1f));
@@ -241,7 +242,8 @@ void reset()
     lexer = new Lexer(Puddi::GetRootObject(), sourceCode, lTokens, tokenQueue);
     //lexer->BuildFromSchematic(Schematic::GetSchematicByName("grumpycat"));
     //lexer->SetScale(0.05f);
-    auto *mesh = new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("cube"));
+    //auto *mesh = new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("cube"));
+    auto *mesh = new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("sphere"));
     lexer->AddVertexMesh(mesh);
     lexer->SetTexture(Texture::GetTextureByName("grumpycat"));
     lexer->SetSkipVelocity(0.1f);

@@ -106,6 +106,8 @@ namespace puddi
 			std::vector<vec4> vertices;
 			for (size_t j = 0; j < mesh->mNumVertices; ++j)
 				vertices.push_back(vec4(mesh->mVertices[j].x, mesh->mVertices[j].y, mesh->mVertices[j].z, 1.0f));
+            // add to global array
+            Shader::Vertices.insert(Shader::Vertices.end(), vertices.begin(), vertices.end());
 
 			// vertex normals
 			std::vector<vec4> normals;
@@ -113,10 +115,14 @@ namespace puddi
 			{
 				for (size_t j = 0; j < mesh->mNumVertices; ++j)
 					normals.push_back(vec4(mesh->mNormals[j].x, mesh->mNormals[j].y, mesh->mNormals[j].z, 0.0f));
+                // add to global array
+                Shader::Normals.insert(Shader::Normals.end(), normals.begin(), normals.end());
+                normals.clear();
+                normals.shrink_to_fit();
 			}
 			else
 			{
-				normals = std::vector<vec4>(vertices);
+				Shader::Normals.insert(Shader::Normals.end(), vertices.begin(), vertices.end());
 			}
 
 			// vertex tangents and binormals
@@ -126,13 +132,21 @@ namespace puddi
 			{
 				for (size_t j = 0; j < mesh->mNumVertices; ++j)
 					tangents.push_back(vec4(mesh->mTangents[j].x, mesh->mTangents[j].y, mesh->mTangents[j].z, 0.0f));
+                // add to global array
+                Shader::Tangents.insert(Shader::Tangents.end(), tangents.begin(), tangents.end());
+                tangents.clear();
+                tangents.shrink_to_fit();
 				for (size_t j = 0; j < mesh->mNumVertices; ++j)
 					binormals.push_back(vec4(mesh->mBitangents[j].x, mesh->mBitangents[j].y, mesh->mBitangents[j].z, 0.0f));
+                // add to global array
+                Shader::Binormals.insert(Shader::Binormals.end(), binormals.begin(), binormals.end());
+                binormals.clear();
+                binormals.shrink_to_fit();
 			}
 			else
 			{
-				tangents = std::vector<vec4>(vertices);
-				binormals = std::vector<vec4>(vertices);
+				Shader::Tangents.insert(Shader::Tangents.end(), vertices.begin(), vertices.end());
+				Shader::Binormals.insert(Shader::Binormals.end(), vertices.begin(), vertices.end());
 			}
 
 			// vertex texture coordinates
@@ -151,6 +165,10 @@ namespace puddi
 				for (size_t j = 0; j < mesh->mNumVertices; ++j)
 					textureCoordinates.push_back(vec2(0.0f, 0.0f));
 			}
+			// add to global array
+			Shader::TextureCoordinates.insert(Shader::TextureCoordinates.end(), textureCoordinates.begin(), textureCoordinates.end());
+            textureCoordinates.clear();
+            textureCoordinates.shrink_to_fit();
 
 			// mesh indices
 			std::vector<uint> indices;
@@ -168,13 +186,14 @@ namespace puddi
 			int indexOffset = Shader::VertexIndices.size();
 			int indexCount = indices.size();
 
-			// ADD ALL VERTEX DATA TO GLOBAL ARRAYS
-			Shader::Vertices.insert(Shader::Vertices.end(), vertices.begin(), vertices.end());
-			Shader::Normals.insert(Shader::Normals.end(), normals.begin(), normals.end());
-			Shader::Tangents.insert(Shader::Tangents.end(), tangents.begin(), tangents.end());
-			Shader::Binormals.insert(Shader::Binormals.end(), binormals.begin(), binormals.end());
-			Shader::TextureCoordinates.insert(Shader::TextureCoordinates.end(), textureCoordinates.begin(), textureCoordinates.end());
+			// add to global array
 			Shader::VertexIndices.insert(Shader::VertexIndices.end(), indices.begin(), indices.end());
+			indices.clear();
+			indices.shrink_to_fit();
+
+            // clear vertices
+			vertices.clear();
+			vertices.shrink_to_fit();
 
 			// MATERIAL
 			auto aiMat = scene->mMaterials[mesh->mMaterialIndex];
@@ -197,7 +216,6 @@ namespace puddi
 			float shininess;
 			aiMat->Get(AI_MATKEY_SHININESS, shininess);
 			mat.shininess = shininess;
-
 
 			// TEXTURE
 			aiString texturePath;
