@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Grumpy3D: puddi/include/UpdateGraph.h Source File</title>
+<title>Grumpy3D: UpdateGraph.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">Grumpy3D
    </div>
-   <div id="projectbrief">3D visualization of the Grumpy compiler</div>
   </td>
  </tr>
  </tbody>
@@ -45,9 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +90,7 @@ $(document).ready(function(){initNavTree('_update_graph_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,25 +111,25 @@ $(document).ready(function(){initNavTree('_update_graph_8h_source.html','');});
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>puddi</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">class </span>Object;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keyword">class </span>Object;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structpuddi_1_1_update_node.html">   10</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a> *parent;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        std::vector&lt;UpdateNode*&gt; children;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="classpuddi_1_1_object.html">Object</a> *object;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordtype">bool</span> parallel;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structpuddi_1_1_update_node.html">   10</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                <a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a> *parent;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                std::vector&lt;UpdateNode*&gt; children;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                <a class="code" href="classpuddi_1_1_object.html">Object</a> *object;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                <span class="keywordtype">bool</span> parallel;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a>(<a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a> *par, <a class="code" href="classpuddi_1_1_object.html">Object</a> *o);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                <a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a>(<a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a> *par, <a class="code" href="classpuddi_1_1_object.html">Object</a> *o);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        ~<a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                ~<a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a>();</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordtype">void</span> Update();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <span class="keywordtype">void</span> Update();</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">void</span> AddChild(<a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a> *child);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keywordtype">void</span> AddChild(<a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a> *child);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordtype">void</span> RemoveChild(<a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a> *child);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keywordtype">void</span> RemoveChild(<a class="code" href="structpuddi_1_1_update_node.html">UpdateNode</a> *child);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        };</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -144,8 +140,8 @@ $(document).ready(function(){initNavTree('_update_graph_8h_source.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_fb99bafb7c29f9efdb2792d1421c2c83.html">puddi</a></li><li class="navelem"><a class="el" href="dir_01113aa1436bd802ca763634c575e338.html">include</a></li><li class="navelem"><b>UpdateGraph.h</b></li>
-    <li class="footer">Generated on Sat Mar 19 2016 12:49:32 for Grumpy3D by
+    <li class="navelem"><a class="el" href="dir_37daeaf0513de694c9ba84fce1067cd5.html">puddi</a></li><li class="navelem"><a class="el" href="dir_f1eadbe71f003e878247066c4112ad35.html">include</a></li><li class="navelem"><b>UpdateGraph.h</b></li>
+    <li class="footer">Generated on Sat Mar 19 2016 16:56:24 for Grumpy3D by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

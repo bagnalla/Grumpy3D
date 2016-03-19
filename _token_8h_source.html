@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Grumpy3D: include/Token.h Source File</title>
+<title>Grumpy3D: Token.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">Grumpy3D
    </div>
-   <div id="projectbrief">3D visualization of the Grumpy compiler</div>
   </td>
  </tr>
  </tbody>
@@ -45,9 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +90,7 @@ $(document).ready(function(){initNavTree('_token_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -121,9 +117,9 @@ $(document).ready(function(){initNavTree('_token_8h_source.html','');});
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structgrumpy_1_1_lex_token.html">   16</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structgrumpy_1_1_lex_token.html">LexToken</a></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordtype">size_t</span> number;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <span class="keywordtype">size_t</span> number;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        std::string name;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordtype">size_t</span> start;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <span class="keywordtype">size_t</span> start;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordtype">size_t</span> end;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        std::string value;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
@@ -148,7 +144,7 @@ $(document).ready(function(){initNavTree('_token_8h_source.html','');});
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">void</span> SetVelocity(<span class="keywordtype">float</span> v);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">void</span> SetTargetPosition(<span class="keyword">const</span> <a class="code" href="structglm_1_1tvec4.html">glm::vec4</a> p);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">void</span> SetTargetPosition(<span class="keyword">const</span> glm::vec4 p);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">void</span> Consume();</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
@@ -156,28 +152,27 @@ $(document).ready(function(){initNavTree('_token_8h_source.html','');});
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">void</span> CreateGlyphs(std::string font);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">//      glm::vec4 GetTokenConnectionHead() const;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">//              glm::vec4 GetTokenConnectionHead() const;</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">//      glm::vec4 GetTokenConnectionTail() const;</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="classgrumpy_1_1_token_queue.html">TokenQueue</a> *tokenQueue;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="classgrumpy_1_1_syntax_parser.html">SyntaxParser</a> *parser;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">float</span> velocity;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">float</span> rotationVelocity;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        std::vector&lt;DrawableObject*&gt; glyphs;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="structglm_1_1tvec4.html">glm::vec4</a> targetPosition;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">bool</span> reachedTargetPosition;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordtype">float</span> rotationVelocity;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                std::vector&lt;DrawableObject*&gt; glyphs;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                glm::vec4 targetPosition;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keywordtype">bool</span> reachedTargetPosition;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">void</span> init(<span class="keyword">const</span> <a class="code" href="structgrumpy_1_1_lex_token.html">LexToken</a> &amp;lTok, <a class="code" href="classgrumpy_1_1_token_queue.html">TokenQueue</a> *tq, <a class="code" href="classgrumpy_1_1_syntax_parser.html">SyntaxParser</a> *pars);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> rotateToward(<span class="keyword">const</span> <a class="code" href="structglm_1_1tvec4.html">glm::vec4</a> &amp;point);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="keywordtype">void</span> rotateToward(<span class="keyword">const</span> glm::vec4 &amp;point);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    };</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classgrumpy_1_1_token_queue_html"><div class="ttname"><a href="classgrumpy_1_1_token_queue.html">grumpy::TokenQueue</a></div><div class="ttdef"><b>Definition:</b> TokenQueue.h:11</div></div>
 <div class="ttc" id="structpuddi_1_1_schematic_node_html"><div class="ttname"><a href="structpuddi_1_1_schematic_node.html">puddi::SchematicNode</a></div><div class="ttdef"><b>Definition:</b> Schematic.h:15</div></div>
-<div class="ttc" id="structglm_1_1tvec4_html"><div class="ttname"><a href="structglm_1_1tvec4.html">glm::tvec4</a></div><div class="ttdef"><b>Definition:</b> type_mat.hpp:46</div></div>
 <div class="ttc" id="classpuddi_1_1_drawable_object_html"><div class="ttname"><a href="classpuddi_1_1_drawable_object.html">puddi::DrawableObject</a></div><div class="ttdef"><b>Definition:</b> DrawableObject.h:24</div></div>
 <div class="ttc" id="classgrumpy_1_1_syntax_parser_html"><div class="ttname"><a href="classgrumpy_1_1_syntax_parser.html">grumpy::SyntaxParser</a></div><div class="ttdoc">Syntax parser object. &quot;Constructs&quot; a given AST by calling Lex() on a Lexer object and consuming Token...</div><div class="ttdef"><b>Definition:</b> SyntaxParser.h:26</div></div>
 <div class="ttc" id="_drawable_object_8h_html"><div class="ttname"><a href="_drawable_object_8h.html">DrawableObject.h</a></div><div class="ttdoc">Base class for objects that are composed of drawable meshes. </div></div>
@@ -189,8 +184,8 @@ $(document).ready(function(){initNavTree('_token_8h_source.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_8baf43107b1730541902cd079ec69970.html">include</a></li><li class="navelem"><b>Token.h</b></li>
-    <li class="footer">Generated on Sat Mar 19 2016 12:49:32 for Grumpy3D by
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Token.h</b></li>
+    <li class="footer">Generated on Sat Mar 19 2016 16:56:24 for Grumpy3D by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

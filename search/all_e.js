@@ -1,25 +1,8 @@
 var searchData=
 [
-  ['name',['name',['../structai_export_data_blob.html#af7f006ac5ad818c0d81d520a84f74c3e',1,'aiExportDataBlob::name()'],['../struct_s_d_l___renderer_info.html#a433ecb2865c81ba9f28038e56a4ae6f3',1,'SDL_RendererInfo::name()']]],
-  ['needed',['needed',['../struct_s_d_l___audio_c_v_t.html#ac600a035a48df05e14d3712fd6953ad4',1,'SDL_AudioCVT']]],
-  ['next',['next',['../structai_export_data_blob.html#a3e98fa760f45983ff1bccec6715f3817',1,'aiExportDataBlob::next()'],['../structblock__meta.html#a258ef6a550b4292c95c9b2e7a8a097f8',1,'block_meta::next()']]],
-  ['next_5ffloat',['next_float',['../group__gtc__ulp.html#gae516ae554faa6117660828240e8bdaf0',1,'glm::next_float(genType const &amp;x)'],['../group__gtc__ulp.html#gad107ec3d9697ef82032a33338a73ebdd',1,'glm::next_float(genType const &amp;x, uint const &amp;Distance)']]],
-  ['nlz',['nlz',['../group__gtx__integer.html#gacbe62fd2384464c16ea30ecc4defc11c',1,'glm']]],
-  ['noise_2ehpp',['noise.hpp',['../noise_8hpp.html',1,'']]],
-  ['noise_2einl',['noise.inl',['../noise_8inl.html',1,'']]],
-  ['norm_2ehpp',['norm.hpp',['../norm_8hpp.html',1,'']]],
-  ['norm_2einl',['norm.inl',['../norm_8inl.html',1,'']]],
-  ['normal',['NORMAL',['../class_assimp_1_1_logger.html#a8b6248a0fd062431e8572556350d29e6a79d16f85dc21486ee489f300027e8eda',1,'Assimp::Logger']]],
-  ['normal_2ehpp',['normal.hpp',['../normal_8hpp.html',1,'']]],
-  ['normal_2einl',['normal.inl',['../normal_8inl.html',1,'']]],
-  ['normalize',['normalize',['../group__core__func__geometric.html#gada9451ec170a36fe53552812b9c03a68',1,'glm::normalize(vecType&lt; T, P &gt; const &amp;x)'],['../group__core__func__geometric.html#gada9451ec170a36fe53552812b9c03a68',1,'glm::normalize(vecType&lt; T, P &gt; const &amp;x)'],['../group__gtc__quaternion.html#ga35b6bcb22ac6d1e4a85440f5b69bdf86',1,'glm::normalize(tquat&lt; T, P &gt; const &amp;q)'],['../group__gtc__quaternion.html#ga35b6bcb22ac6d1e4a85440f5b69bdf86',1,'glm::normalize(tquat&lt; T, P &gt; const &amp;q)'],['../group__gtx__dual__quaternion.html#ga495818aa48c23e9e730f87a3c337d1d5',1,'glm::normalize(tdualquat&lt; T, P &gt; const &amp;q)'],['../group__gtx__dual__quaternion.html#ga495818aa48c23e9e730f87a3c337d1d5',1,'glm::normalize(tdualquat&lt; T, P &gt; const &amp;q)']]],
-  ['normalize_5fdot_2ehpp',['normalize_dot.hpp',['../normalize__dot_8hpp.html',1,'']]],
-  ['normalize_5fdot_2einl',['normalize_dot.inl',['../normalize__dot_8inl.html',1,'']]],
-  ['normalizedot',['normalizeDot',['../group__gtx__normalize__dot.html#gaffbc2f2cb15838de8886a68048f9004d',1,'glm::normalizeDot(vecType&lt; T, P &gt; const &amp;x, vecType&lt; T, P &gt; const &amp;y)'],['../group__gtx__normalize__dot.html#gaffbc2f2cb15838de8886a68048f9004d',1,'glm::normalizeDot(vecType&lt; T, P &gt; const &amp;x, vecType&lt; T, P &gt; const &amp;y)']]],
-  ['not_5f',['not_',['../group__core__func__vector__relational.html#ga4329ecbc2ef012c9ec704bd09da1f177',1,'glm::not_(vecType&lt; bool, P &gt; const &amp;v)'],['../group__core__func__vector__relational.html#ga4329ecbc2ef012c9ec704bd09da1f177',1,'glm::not_(vecType&lt; bool, P &gt; const &amp;v)']]],
-  ['notequal',['notEqual',['../group__core__func__vector__relational.html#ga5aca2b745e5eb0096716bbc394846309',1,'glm::notEqual(vecType&lt; T, P &gt; const &amp;x, vecType&lt; T, P &gt; const &amp;y)'],['../group__core__func__vector__relational.html#ga5aca2b745e5eb0096716bbc394846309',1,'glm::notEqual(vecType&lt; T, P &gt; const &amp;x, vecType&lt; T, P &gt; const &amp;y)'],['../group__gtc__quaternion.html#ga484c4633f7c05d8e29ee8b452350f539',1,'glm::notEqual(tquat&lt; T, P &gt; const &amp;x, tquat&lt; T, P &gt; const &amp;y)'],['../group__gtc__quaternion.html#ga484c4633f7c05d8e29ee8b452350f539',1,'glm::notEqual(tquat&lt; T, P &gt; const &amp;x, tquat&lt; T, P &gt; const &amp;y)']]],
-  ['nulllogger',['NullLogger',['../class_assimp_1_1_null_logger.html',1,'Assimp']]],
-  ['num_5ftexture_5fformats',['num_texture_formats',['../struct_s_d_l___renderer_info.html#acdec165b2053b914313f5996983ec6b8',1,'SDL_RendererInfo']]],
-  ['number_5fprecision_2ehpp',['number_precision.hpp',['../number__precision_8hpp.html',1,'']]],
-  ['number_5fprecision_2einl',['number_precision.inl',['../number__precision_8inl.html',1,'']]]
+  ['realloc',['realloc',['../malloc_8c.html#a1a6b5e8d2f1c37e5b43e4345586075be',1,'malloc.c']]],
+  ['rectangle',['Rectangle',['../classpuddi_1_1_rectangle.html',1,'puddi']]],
+  ['rendergraph',['RenderGraph',['../classpuddi_1_1_render_graph.html',1,'puddi']]],
+  ['rendernode',['RenderNode',['../structpuddi_1_1_render_node.html',1,'puddi']]],
+  ['round_5fup_5fmultof',['round_up_multof',['../malloc_8c.html#aa866b8f2558901528ab694abe1ba2f54',1,'malloc.c']]]
 ];

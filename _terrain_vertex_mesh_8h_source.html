@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Grumpy3D: puddi/include/TerrainVertexMesh.h Source File</title>
+<title>Grumpy3D: TerrainVertexMesh.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">Grumpy3D
    </div>
-   <div id="projectbrief">3D visualization of the Grumpy compiler</div>
   </td>
  </tr>
  </tbody>
@@ -45,9 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +90,7 @@ $(document).ready(function(){initNavTree('_terrain_vertex_mesh_8h_source.html','
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,68 +111,67 @@ $(document).ready(function(){initNavTree('_terrain_vertex_mesh_8h_source.html','
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>puddi</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classpuddi_1_1_terrain_vertex_mesh.html">    8</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a> : <span class="keyword">public</span> <a class="code" href="classpuddi_1_1_vertex_mesh.html">VertexMesh</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a>(<span class="keyword">const</span> <a class="code" href="structpuddi_1_1_material.html">Material</a>&amp; mat, <span class="keywordtype">int</span> iOffset, <span class="keywordtype">int</span> iCount);</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classpuddi_1_1_terrain_vertex_mesh.html">    8</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a> : <span class="keyword">public</span> <a class="code" href="classpuddi_1_1_vertex_mesh.html">VertexMesh</a></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                <a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a>(<span class="keyword">const</span> <a class="code" href="structpuddi_1_1_material.html">Material</a>&amp; mat, <span class="keywordtype">int</span> iOffset, <span class="keywordtype">int</span> iCount);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        ~<a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                ~<a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a>();</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordtype">void</span> DrawWithoutBumpMap() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                <span class="keywordtype">void</span> DrawWithoutBumpMap() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">void</span> DrawWithBumpMap() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                <span class="keywordtype">void</span> DrawWithBumpMap() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordtype">void</span> UpdateRenderNode();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <span class="keywordtype">void</span> UpdateRenderNode();</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        GLuint GetTexture1() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        GLuint GetTexture2() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        GLuint GetTexture3() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        GLuint GetTexture4() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="structglm_1_1tvec4.html">vec4</a> GetTextureHeights() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">float</span> GetGroundCoordZ() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">float</span> GetScaleZ() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">float</span> GetMaxHeight() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">int</span> GetSizeX() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">int</span> GetSizeY() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                GLuint GetTexture1() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                GLuint GetTexture2() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                GLuint GetTexture3() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                GLuint GetTexture4() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                vec4 GetTextureHeights() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordtype">float</span> GetGroundCoordZ() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordtype">float</span> GetScaleZ() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordtype">float</span> GetMaxHeight() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordtype">int</span> GetSizeX() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keywordtype">int</span> GetSizeY() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">void</span> SetTexture1(GLuint tex1);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">void</span> SetTexture2(GLuint tex2);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordtype">void</span> SetTexture3(GLuint tex3);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">void</span> SetTexture4(GLuint tex4);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">void</span> SetTextureHeights(<span class="keyword">const</span> <a class="code" href="structglm_1_1tvec4.html">vec4</a>&amp; texHeights);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">void</span> SetGroundCoordZ(<span class="keywordtype">float</span> z);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">void</span> SetScaleZ(<span class="keywordtype">float</span> z);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">void</span> SetMaxHeight(<span class="keywordtype">float</span> h);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">void</span> SetSizeX(<span class="keywordtype">int</span> x);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">void</span> SetSizeY(<span class="keywordtype">int</span> y);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <span class="keywordtype">void</span> SetTexture1(GLuint tex1);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="keywordtype">void</span> SetTexture2(GLuint tex2);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <span class="keywordtype">void</span> SetTexture3(GLuint tex3);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordtype">void</span> SetTexture4(GLuint tex4);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <span class="keywordtype">void</span> SetTextureHeights(<span class="keyword">const</span> vec4&amp; texHeights);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keywordtype">void</span> SetGroundCoordZ(<span class="keywordtype">float</span> z);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keywordtype">void</span> SetScaleZ(<span class="keywordtype">float</span> z);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">void</span> SetMaxHeight(<span class="keywordtype">float</span> h);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keywordtype">void</span> SetSizeX(<span class="keywordtype">int</span> x);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keywordtype">void</span> SetSizeY(<span class="keywordtype">int</span> y);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        GLuint texture1;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        GLuint texture2;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        GLuint texture3;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        GLuint texture4;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="structglm_1_1tvec4.html">vec4</a> textureHeights;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">float</span> groundCoordZ;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordtype">float</span> scaleZ;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">float</span> maxHeight;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                GLuint texture1;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                GLuint texture2;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                GLuint texture3;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                GLuint texture4;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                vec4 textureHeights;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordtype">float</span> groundCoordZ;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordtype">float</span> scaleZ;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordtype">float</span> maxHeight;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">int</span> sizeX;  <span class="comment">// this * scale.x = x size of mesh</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">int</span> sizeY; <span class="comment">// this * scale.y = y size of mesh</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    };</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordtype">int</span> sizeX;  <span class="comment">// this * scale.x = x size of mesh</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordtype">int</span> sizeY; <span class="comment">// this * scale.y = y size of mesh</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        };</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classpuddi_1_1_vertex_mesh_html"><div class="ttname"><a href="classpuddi_1_1_vertex_mesh.html">puddi::VertexMesh</a></div><div class="ttdef"><b>Definition:</b> VertexMesh.h:17</div></div>
-<div class="ttc" id="structglm_1_1tvec4_html"><div class="ttname"><a href="structglm_1_1tvec4.html">glm::tvec4</a></div><div class="ttdef"><b>Definition:</b> type_mat.hpp:46</div></div>
-<div class="ttc" id="structpuddi_1_1_material_html"><div class="ttname"><a href="structpuddi_1_1_material.html">puddi::Material</a></div><div class="ttdef"><b>Definition:</b> Material.h:10</div></div>
+<div class="ttc" id="structpuddi_1_1_material_html"><div class="ttname"><a href="structpuddi_1_1_material.html">puddi::Material</a></div><div class="ttdef"><b>Definition:</b> Material.h:20</div></div>
 <div class="ttc" id="classpuddi_1_1_terrain_vertex_mesh_html"><div class="ttname"><a href="classpuddi_1_1_terrain_vertex_mesh.html">puddi::TerrainVertexMesh</a></div><div class="ttdef"><b>Definition:</b> TerrainVertexMesh.h:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_fb99bafb7c29f9efdb2792d1421c2c83.html">puddi</a></li><li class="navelem"><a class="el" href="dir_01113aa1436bd802ca763634c575e338.html">include</a></li><li class="navelem"><b>TerrainVertexMesh.h</b></li>
-    <li class="footer">Generated on Sat Mar 19 2016 12:49:32 for Grumpy3D by
+    <li class="navelem"><a class="el" href="dir_37daeaf0513de694c9ba84fce1067cd5.html">puddi</a></li><li class="navelem"><a class="el" href="dir_f1eadbe71f003e878247066c4112ad35.html">include</a></li><li class="navelem"><b>TerrainVertexMesh.h</b></li>
+    <li class="footer">Generated on Sat Mar 19 2016 16:56:24 for Grumpy3D by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

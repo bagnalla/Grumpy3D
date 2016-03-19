@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Grumpy3D: include/Lexer.h Source File</title>
+<title>Grumpy3D: Lexer.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">Grumpy3D
    </div>
-   <div id="projectbrief">3D visualization of the Grumpy compiler</div>
   </td>
  </tr>
  </tbody>
@@ -45,9 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +90,7 @@ $(document).ready(function(){initNavTree('_lexer_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -118,12 +114,12 @@ $(document).ready(function(){initNavTree('_lexer_8h_source.html','');});
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>grumpy</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">class </span>SourceCode;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">class </span>SyntaxParser;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">class </span>TokenQueue;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keyword">class </span>SyntaxParser;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keyword">class </span>TokenQueue;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">enum</span> LexerState : <span class="keywordtype">int</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        LEXER_STATE_WAITING,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                LEXER_STATE_WAITING,</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        LEXER_STATE_SKIPPING,</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        LEXER_STATE_READING</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    };</div>
@@ -143,40 +139,39 @@ $(document).ready(function(){initNavTree('_lexer_8h_source.html','');});
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">float</span> GetReadVelocity() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">void</span> SetReadVelocity(<span class="keywordtype">float</span> v);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">void</span> SetParser(<a class="code" href="classgrumpy_1_1_syntax_parser.html">SyntaxParser</a> *pars);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">void</span> SetParser(<a class="code" href="classgrumpy_1_1_syntax_parser.html">SyntaxParser</a> *pars);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">void</span> Lex();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keywordtype">void</span> Lex();</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        LexerState GetState() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                LexerState GetState() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="classgrumpy_1_1_source_code.html">SourceCode</a> *sourceCode;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classgrumpy_1_1_syntax_parser.html">SyntaxParser</a> *parser;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classgrumpy_1_1_token_queue.html">TokenQueue</a> *tokenQueue;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <a class="code" href="classgrumpy_1_1_syntax_parser.html">SyntaxParser</a> *parser;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <a class="code" href="classgrumpy_1_1_token_queue.html">TokenQueue</a> *tokenQueue;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        std::vector&lt;LexToken&gt; lTokens;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        std::vector&lt;Token*&gt; tokensProduced;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">size_t</span> currentCharacterIndex;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">size_t</span> currentTokenIndex;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="structglm_1_1tvec4.html">glm::vec4</a> currentTokenStartPos;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordtype">size_t</span> currentTokenIndex;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        glm::vec4 currentTokenStartPos;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">float</span> skipVelocity;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">float</span> readVelocity;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        LexerState state;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="structglm_1_1tvec4.html">glm::vec4</a> scanBarColor;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        glm::vec4 scanBarColor;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        DrawableObject *scanBar;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">void</span> produceToken(<span class="keywordtype">size_t</span> glyphBegin, <span class="keywordtype">size_t</span> glyphEnd);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordtype">void</span> produceToken(<span class="keywordtype">size_t</span> glyphBegin, <span class="keywordtype">size_t</span> glyphEnd);</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="structglm_1_1tvec4.html">glm::vec4</a> chooseTokenColor(<span class="keyword">const</span> <a class="code" href="structgrumpy_1_1_lex_token.html">LexToken</a>&amp; t);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                glm::vec4 chooseTokenColor(<span class="keyword">const</span> <a class="code" href="structgrumpy_1_1_lex_token.html">LexToken</a>&amp; t);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    };</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classgrumpy_1_1_source_code_html"><div class="ttname"><a href="classgrumpy_1_1_source_code.html">grumpy::SourceCode</a></div><div class="ttdoc">Contains characters and their corresponding glyphs for a source code file. Can be constructed by pass...</div><div class="ttdef"><b>Definition:</b> SourceCode.h:13</div></div>
 <div class="ttc" id="classgrumpy_1_1_token_queue_html"><div class="ttname"><a href="classgrumpy_1_1_token_queue.html">grumpy::TokenQueue</a></div><div class="ttdef"><b>Definition:</b> TokenQueue.h:11</div></div>
-<div class="ttc" id="structglm_1_1tvec4_html"><div class="ttname"><a href="structglm_1_1tvec4.html">glm::tvec4</a></div><div class="ttdef"><b>Definition:</b> type_mat.hpp:46</div></div>
 <div class="ttc" id="classgrumpy_1_1_lexer_html"><div class="ttname"><a href="classgrumpy_1_1_lexer.html">grumpy::Lexer</a></div><div class="ttdoc">Lexer object. Responds to Lex() requests from a SyntaxParser object by scanning through glyphs of a S...</div><div class="ttdef"><b>Definition:</b> Lexer.h:24</div></div>
 <div class="ttc" id="classpuddi_1_1_drawable_object_html"><div class="ttname"><a href="classpuddi_1_1_drawable_object.html">puddi::DrawableObject</a></div><div class="ttdef"><b>Definition:</b> DrawableObject.h:24</div></div>
 <div class="ttc" id="classgrumpy_1_1_syntax_parser_html"><div class="ttname"><a href="classgrumpy_1_1_syntax_parser.html">grumpy::SyntaxParser</a></div><div class="ttdoc">Syntax parser object. &quot;Constructs&quot; a given AST by calling Lex() on a Lexer object and consuming Token...</div><div class="ttdef"><b>Definition:</b> SyntaxParser.h:26</div></div>
@@ -187,8 +182,8 @@ $(document).ready(function(){initNavTree('_lexer_8h_source.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_8baf43107b1730541902cd079ec69970.html">include</a></li><li class="navelem"><b>Lexer.h</b></li>
-    <li class="footer">Generated on Sat Mar 19 2016 12:49:32 for Grumpy3D by
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Lexer.h</b></li>
+    <li class="footer">Generated on Sat Mar 19 2016 16:56:24 for Grumpy3D by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

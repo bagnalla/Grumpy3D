@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Grumpy3D: puddi/include/RenderGraph.h Source File</title>
+<title>Grumpy3D: RenderGraph.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">Grumpy3D
    </div>
-   <div id="projectbrief">3D visualization of the Grumpy compiler</div>
   </td>
  </tr>
  </tbody>
@@ -45,9 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +90,7 @@ $(document).ready(function(){initNavTree('_render_graph_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,63 +108,63 @@ $(document).ready(function(){initNavTree('_render_graph_8h_source.html','');});
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define RENDERGRAPH_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;RenderNode.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;Material.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_material_8h.html">Material.h</a>&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;GL/glew.h&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>puddi</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">class </span>TerrainVertexMesh;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keyword">class </span>TerrainVertexMesh;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classpuddi_1_1_render_graph.html">   14</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classpuddi_1_1_render_graph.html">RenderGraph</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="comment">// constructor</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="classpuddi_1_1_render_graph.html">RenderGraph</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classpuddi_1_1_render_graph.html">   14</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classpuddi_1_1_render_graph.html">RenderGraph</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                <span class="comment">// constructor</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <a class="code" href="classpuddi_1_1_render_graph.html">RenderGraph</a>();</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="comment">// root node for objects with cube map without bump maps and normal lighting</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        std::unordered_map&lt;GLuint, CubeMapNode*&gt; cubeMapNodeMap;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <span class="comment">// root node for objects with cube map without bump maps and normal lighting</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                std::unordered_map&lt;GLuint, CubeMapNode*&gt; cubeMapNodeMap;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="comment">// root node for objects with cube map with bump maps and normal lighting</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        std::unordered_map&lt;GLuint, CubeMapBumpNode*&gt; cubeMapBumpNodeMap;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="comment">// root node for objects with cube map with bump maps and normal lighting</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                std::unordered_map&lt;GLuint, CubeMapBumpNode*&gt; cubeMapBumpNodeMap;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="comment">// root node for emissive objects with cube map</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        std::unordered_map&lt;GLuint, CubeMapEmissiveNode*&gt; cubeMapEmissiveNodeMap;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="comment">// root node for emissive objects with cube map</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                std::unordered_map&lt;GLuint, CubeMapEmissiveNode*&gt; cubeMapEmissiveNodeMap;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="comment">// root node for textured objects with bump maps and normal lighting</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        std::unordered_map&lt;GLuint, TextureBumpNode*&gt; textureBumpNodeMap;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="comment">// root node for textured objects with bump maps and normal lighting</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                std::unordered_map&lt;GLuint, TextureBumpNode*&gt; textureBumpNodeMap;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="comment">// root node for textured objects without bump maps and normal lighting</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        std::unordered_map&lt;GLuint, TextureNode*&gt; textureNodeMap;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <span class="comment">// root node for textured objects without bump maps and normal lighting</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                std::unordered_map&lt;GLuint, TextureNode*&gt; textureNodeMap;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">// root node for textured emissive objects</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        std::unordered_map&lt;GLuint, TextureEmissiveNode*&gt; textureEmissiveNodeMap;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="comment">// root node for textured emissive objects</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                std::unordered_map&lt;GLuint, TextureEmissiveNode*&gt; textureEmissiveNodeMap;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="comment">// root node for non-textured objects with normal lighting</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        std::unordered_map&lt;Material, MaterialNode*&gt; materialNodeMap;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="comment">// root node for non-textured objects with normal lighting</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                std::unordered_map&lt;Material, MaterialNode*&gt; materialNodeMap;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">// root node for non-textured objects with normal lighting and bumpmaps</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        std::unordered_map&lt;GLuint, MaterialBumpNode*&gt; materialBumpNodeMap;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="comment">// root node for non-textured objects with normal lighting and bumpmaps</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                std::unordered_map&lt;GLuint, MaterialBumpNode*&gt; materialBumpNodeMap;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// root node for emissive objects</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        std::unordered_map&lt;vec4, EmissiveNode*&gt; emissiveNodeMap;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="comment">// root node for emissive objects</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                std::unordered_map&lt;vec4, EmissiveNode*&gt; emissiveNodeMap;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">// list of TERRAIN textured objects without bump maps and normal lighting</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::vector&lt;TerrainVertexMesh*&gt; terrainVertexMeshes;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="comment">// list of TERRAIN textured objects without bump maps and normal lighting</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                std::vector&lt;TerrainVertexMesh*&gt; terrainVertexMeshes;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="comment">// list of TERRAIN textured objects with bump maps and normal lighting</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        std::vector&lt;TerrainVertexMesh*&gt; terrainVertexMeshesWithBump;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="comment">// list of TERRAIN textured objects with bump maps and normal lighting</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                std::vector&lt;TerrainVertexMesh*&gt; terrainVertexMeshesWithBump;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">// add an object to the graph</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="structpuddi_1_1_render_node.html">RenderNode</a>* AddVertexMesh(<a class="code" href="classpuddi_1_1_vertex_mesh.html">VertexMesh</a> *o);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="comment">// add an object to the graph</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <a class="code" href="structpuddi_1_1_render_node.html">RenderNode</a>* AddVertexMesh(<a class="code" href="classpuddi_1_1_vertex_mesh.html">VertexMesh</a> *o);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">void</span> AddTerrainVertexMesh(<a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a> *o);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">void</span> RemoveTerrainVertexMesh(<a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a> *o);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <span class="keywordtype">void</span> AddTerrainVertexMesh(<a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a> *o);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordtype">void</span> RemoveTerrainVertexMesh(<a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a> *o);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">// render everything</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">void</span> Render() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    };</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                <span class="comment">// render everything</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keywordtype">void</span> Render() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        };</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -176,13 +172,14 @@ $(document).ready(function(){initNavTree('_render_graph_8h_source.html','');});
 <div class="ttc" id="classpuddi_1_1_vertex_mesh_html"><div class="ttname"><a href="classpuddi_1_1_vertex_mesh.html">puddi::VertexMesh</a></div><div class="ttdef"><b>Definition:</b> VertexMesh.h:17</div></div>
 <div class="ttc" id="classpuddi_1_1_terrain_vertex_mesh_html"><div class="ttname"><a href="classpuddi_1_1_terrain_vertex_mesh.html">puddi::TerrainVertexMesh</a></div><div class="ttdef"><b>Definition:</b> TerrainVertexMesh.h:8</div></div>
 <div class="ttc" id="structpuddi_1_1_render_node_html"><div class="ttname"><a href="structpuddi_1_1_render_node.html">puddi::RenderNode</a></div><div class="ttdef"><b>Definition:</b> RenderNode.h:14</div></div>
+<div class="ttc" id="_material_8h_html"><div class="ttname"><a href="_material_8h.html">Material.h</a></div><div class="ttdoc">Provides functions for creating materials. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_fb99bafb7c29f9efdb2792d1421c2c83.html">puddi</a></li><li class="navelem"><a class="el" href="dir_01113aa1436bd802ca763634c575e338.html">include</a></li><li class="navelem"><b>RenderGraph.h</b></li>
-    <li class="footer">Generated on Sat Mar 19 2016 12:49:32 for Grumpy3D by
+    <li class="navelem"><a class="el" href="dir_37daeaf0513de694c9ba84fce1067cd5.html">puddi</a></li><li class="navelem"><a class="el" href="dir_f1eadbe71f003e878247066c4112ad35.html">include</a></li><li class="navelem"><b>RenderGraph.h</b></li>
+    <li class="footer">Generated on Sat Mar 19 2016 16:56:24 for Grumpy3D by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

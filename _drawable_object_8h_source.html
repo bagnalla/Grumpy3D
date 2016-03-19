@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Grumpy3D: puddi/include/DrawableObject.h Source File</title>
+<title>Grumpy3D: DrawableObject.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,6 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">Grumpy3D
    </div>
-   <div id="projectbrief">3D visualization of the Grumpy compiler</div>
   </td>
  </tr>
  </tbody>
@@ -45,9 +44,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +90,7 @@ $(document).ready(function(){initNavTree('_drawable_object_8h_source.html','');}
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,92 +113,90 @@ $(document).ready(function(){initNavTree('_drawable_object_8h_source.html','');}
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span>puddi</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">class </span>VertexMesh;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">class </span>TerrainVertexMesh;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">struct </span>SchematicNode;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">class </span>VertexMesh;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">class </span>TerrainVertexMesh;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">struct </span>SchematicNode;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classpuddi_1_1_drawable_object.html">   24</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a> : <span class="keyword">public</span> <a class="code" href="classpuddi_1_1_object.html">Object</a></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a>(<a class="code" href="classpuddi_1_1_object.html">Object</a> *par);</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classpuddi_1_1_drawable_object.html">   24</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a> : <span class="keyword">public</span> <a class="code" href="classpuddi_1_1_object.html">Object</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a>(<a class="code" href="classpuddi_1_1_object.html">Object</a> *par);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a>(<a class="code" href="classpuddi_1_1_object.html">Object</a> *par, <span class="keyword">const</span> <a class="code" href="classpuddi_1_1_vertex_mesh.html">VertexMesh</a> &amp;mesh);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a>(<a class="code" href="classpuddi_1_1_object.html">Object</a> *par, <span class="keyword">const</span> <a class="code" href="classpuddi_1_1_vertex_mesh.html">VertexMesh</a> &amp;mesh);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a>(<a class="code" href="classpuddi_1_1_object.html">Object</a> *par, <a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a> *mesh);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a>(<a class="code" href="classpuddi_1_1_object.html">Object</a> *par, <a class="code" href="classpuddi_1_1_terrain_vertex_mesh.html">TerrainVertexMesh</a> *mesh);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a>(<a class="code" href="classpuddi_1_1_object.html">Object</a> *par, <a class="code" href="structpuddi_1_1_schematic_node.html">SchematicNode</a> *schematic);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a>(<a class="code" href="classpuddi_1_1_object.html">Object</a> *par, <a class="code" href="structpuddi_1_1_schematic_node.html">SchematicNode</a> *schematic);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        ~<a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                ~<a class="code" href="classpuddi_1_1_drawable_object.html">DrawableObject</a>();</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="comment">//virtual void Draw() const;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="comment">//virtual void Draw() const;</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">void</span> SendTransformToGPU();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordtype">void</span> SendTransformToGPU();</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">void</span> AddVertexMesh(<a class="code" href="classpuddi_1_1_vertex_mesh.html">VertexMesh</a> *vertexMesh);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keywordtype">void</span> AddVertexMesh(<a class="code" href="classpuddi_1_1_vertex_mesh.html">VertexMesh</a> *vertexMesh);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">void</span> BuildFromSchematic(<a class="code" href="structpuddi_1_1_schematic_node.html">SchematicNode</a> *schematic);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordtype">void</span> BuildFromSchematic(<a class="code" href="structpuddi_1_1_schematic_node.html">SchematicNode</a> *schematic);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">void</span> SetEmissive(<span class="keywordtype">bool</span> <a class="code" href="group__gtc__constants.html#ga4b7956eb6e2fbedfc7cf2e46e85c5139">e</a>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keywordtype">void</span> SetEmissive(<span class="keywordtype">bool</span> e);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetEmissionColor(<span class="keyword">const</span> <a class="code" href="structglm_1_1tvec4.html">vec4</a>&amp; color);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetEmissionColor(<span class="keyword">const</span> vec4&amp; color);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="comment">//void SetBlend(bool b);</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="comment">//void SetBlend(bool b);</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMaterial(<span class="keyword">const</span> <a class="code" href="structpuddi_1_1_material.html">Material</a>&amp; m);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMaterial(<span class="keyword">const</span> <a class="code" href="structpuddi_1_1_material.html">Material</a>&amp; m);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">void</span> SetTexture(GLuint tex);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordtype">void</span> SetTexture(GLuint tex);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">void</span> SetBumpMap(GLuint bump);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordtype">void</span> SetBumpMap(GLuint bump);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">void</span> SetCubeMap (GLuint cm);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordtype">void</span> SetCubeMap (GLuint cm);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">void</span> EnableRender(<span class="keywordtype">bool</span> propagate = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                <span class="keywordtype">void</span> EnableRender(<span class="keywordtype">bool</span> propagate = <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">void</span> DisableRender(<span class="keywordtype">bool</span> propagate = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <span class="keywordtype">void</span> DisableRender(<span class="keywordtype">bool</span> propagate = <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">void</span> Cull();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordtype">void</span> Cull();</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">void</span> UnCull();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keywordtype">void</span> UnCull();</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">bool</span> GetRenderEnabled() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                <span class="keywordtype">bool</span> GetRenderEnabled() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> SetBumpMapEnabled(<span class="keywordtype">bool</span> b);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="keywordtype">void</span> SetBumpMapEnabled(<span class="keywordtype">bool</span> b);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">void</span> SetReflectiveCubeMap(<span class="keywordtype">bool</span> b);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="keywordtype">void</span> SetReflectiveCubeMap(<span class="keywordtype">bool</span> b);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span> DisableShadowCasting();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keywordtype">void</span> DisableShadowCasting();</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">void</span> SetRenderGraph(<span class="keywordtype">size_t</span> index);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keywordtype">void</span> SetRenderGraph(<span class="keywordtype">size_t</span> index);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">bool</span> renderEnabled;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordtype">bool</span> renderEnabled;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        std::vector&lt;VertexMesh*&gt; vertexMeshes;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                std::vector&lt;VertexMesh*&gt; vertexMeshes;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">void</span> init();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="keywordtype">void</span> init();</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordtype">void</span> updateRenderNodes();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    };</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keywordtype">void</span> updateRenderNodes();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        };</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classpuddi_1_1_vertex_mesh_html"><div class="ttname"><a href="classpuddi_1_1_vertex_mesh.html">puddi::VertexMesh</a></div><div class="ttdef"><b>Definition:</b> VertexMesh.h:17</div></div>
 <div class="ttc" id="structpuddi_1_1_schematic_node_html"><div class="ttname"><a href="structpuddi_1_1_schematic_node.html">puddi::SchematicNode</a></div><div class="ttdef"><b>Definition:</b> Schematic.h:15</div></div>
-<div class="ttc" id="structglm_1_1tvec4_html"><div class="ttname"><a href="structglm_1_1tvec4.html">glm::tvec4</a></div><div class="ttdef"><b>Definition:</b> type_mat.hpp:46</div></div>
 <div class="ttc" id="classpuddi_1_1_drawable_object_html"><div class="ttname"><a href="classpuddi_1_1_drawable_object.html">puddi::DrawableObject</a></div><div class="ttdef"><b>Definition:</b> DrawableObject.h:24</div></div>
-<div class="ttc" id="structpuddi_1_1_material_html"><div class="ttname"><a href="structpuddi_1_1_material.html">puddi::Material</a></div><div class="ttdef"><b>Definition:</b> Material.h:10</div></div>
+<div class="ttc" id="structpuddi_1_1_material_html"><div class="ttname"><a href="structpuddi_1_1_material.html">puddi::Material</a></div><div class="ttdef"><b>Definition:</b> Material.h:20</div></div>
 <div class="ttc" id="classpuddi_1_1_terrain_vertex_mesh_html"><div class="ttname"><a href="classpuddi_1_1_terrain_vertex_mesh.html">puddi::TerrainVertexMesh</a></div><div class="ttdef"><b>Definition:</b> TerrainVertexMesh.h:8</div></div>
 <div class="ttc" id="_object_8h_html"><div class="ttname"><a href="_object_8h.html">Object.h</a></div><div class="ttdoc">Base class for objects that have a position, scale, and rotation. </div></div>
-<div class="ttc" id="group__gtc__constants_html_ga4b7956eb6e2fbedfc7cf2e46e85c5139"><div class="ttname"><a href="group__gtc__constants.html#ga4b7956eb6e2fbedfc7cf2e46e85c5139">glm::e</a></div><div class="ttdeci">GLM_FUNC_DECL GLM_CONSTEXPR genType e()</div><div class="ttdef"><b>Definition:</b> constants.inl:146</div></div>
 <div class="ttc" id="classpuddi_1_1_object_html"><div class="ttname"><a href="classpuddi_1_1_object.html">puddi::Object</a></div><div class="ttdef"><b>Definition:</b> Object.h:52</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_fb99bafb7c29f9efdb2792d1421c2c83.html">puddi</a></li><li class="navelem"><a class="el" href="dir_01113aa1436bd802ca763634c575e338.html">include</a></li><li class="navelem"><a class="el" href="_drawable_object_8h.html">DrawableObject.h</a></li>
-    <li class="footer">Generated on Sat Mar 19 2016 12:49:32 for Grumpy3D by
+    <li class="navelem"><a class="el" href="dir_37daeaf0513de694c9ba84fce1067cd5.html">puddi</a></li><li class="navelem"><a class="el" href="dir_f1eadbe71f003e878247066c4112ad35.html">include</a></li><li class="navelem"><a class="el" href="_drawable_object_8h.html">DrawableObject.h</a></li>
+    <li class="footer">Generated on Sat Mar 19 2016 16:56:24 for Grumpy3D by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
