@@ -1,13 +1,90 @@
 var NAVTREE =
 [
   [ "Grumpy3D", "index.html", [
-    [ "Grumpy3D", "md__r_e_a_d_m_e.html", null ]
+    [ "Grumpy3D", "md__r_e_a_d_m_e.html", null ],
+    [ "Todo List", "todo.html", null ],
+    [ "Deprecated List", "deprecated.html", null ],
+    [ "Modules", "modules.html", "modules" ],
+    [ "Namespaces", null, [
+      [ "Namespace List", "namespaces.html", "namespaces" ]
+    ] ],
+    [ "Classes", null, [
+      [ "Class List", "annotated.html", "annotated" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Typedefs", "functions_type.html", null ],
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
+      ] ]
+    ] ],
+    [ "Files", null, [
+      [ "File List", "files.html", "files" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", "globals_dup" ],
+        [ "Functions", "globals_func.html", "globals_func" ],
+        [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", "globals_eval" ],
+        [ "Macros", "globals_defs.html", null ]
+      ] ]
+    ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"index.html"
+".html",
+"_s_d_l__audio_8h.html#ac81f9cc5739cea67436daf2689d29559",
+"_s_d_l__events_8h.html#a3b589e89be6b35c02e0dd34a55f3fccaafba4080bfbad335e520097b2024f0dff",
+"_s_d_l__joystick_8h.html#a293471a907265fb92ea12caf5bcc8065abdec428b76e198adbaf36d0f2d6a3807",
+"_s_d_l__keycode_8h.html#a7ff5f2dff38e7639981794c43dc9167bad37c85d87edbed526c1d45cf01ca11d9",
+"_s_d_l__opengl_8h.html#a09f4940e31e048a2ef33152939a8f68f",
+"_s_d_l__opengl_8h.html#a3d95b487982e8d2ee281dd3d0fc4d1da",
+"_s_d_l__opengl_8h.html#a6de7d27243b3d0fdd4a359928369e0e5",
+"_s_d_l__opengl_8h.html#a9e3a3ded630592037491f0c62fd8a381",
+"_s_d_l__opengl_8h.html#acf684a80b8a32988e8232d978c60c582",
+"_s_d_l__opengles2__gl2ext_8h_source.html",
+"_s_d_l__rwops_8h.html#ad1e973a8b9f9c6cae33f2870c9f76b7d",
+"_s_d_l__scancode_8h.html#a82ab7cff701034fb40a47b5b3a02777bafca27f123e21c17efb28402a7225f05d",
+"_s_d_l__test__font_8h.html#ac5ece4b232de5964c2565360a7318a77",
+"_s_d_l__video_8h.html#ab10f4fd6a082ef06fcae96860c95fb18aa722d0955c297fc60c09b10e1679684c",
+"class_assimp_1_1_exporter.html#ac45a55fc178256576d2d21b58bd944a0",
+"classpuddi_1_1_drawable_object.html#ad9049431eb4cd0d024dbbb3164b2796b",
+"compatibility_8hpp.html#ga7500192cce87fb3a48f7119d6646af5a",
+"dual__quaternion_8hpp.html#gada9799afe2b62394dc498534beb5bc78",
+"func__common_8inl.html#a41834d29828f9832a3c79931c9043ccf",
+"functions_h.html",
+"fwd_8hpp.html#ab7fe8fe919b172a99f22b6c86a4cfda6",
+"geometric_8hpp.html",
+"group__core__precision.html#ga29884defff6f7109b1e99ef8a6ce7e0a",
+"group__core__types.html#gaeddc14adb4963d9bad73866cc202fb40",
+"group__gtc__quaternion.html#ga4fd705376c6c1fd667be0055a0ea58ec",
+"group__gtc__type__ptr.html#ga36fb9a17664c8b6848a5d005e4068a2f",
+"group__gtx__fast__trigonometry.html#ga069527c6dbd64f53435b8ebc4878b473",
+"group__gtx__type__aligned.html#ga31940e6012b72110e26fdb0f54805033",
+"gtc_2quaternion_8hpp.html#ga91a40d16a3b5bb47d71ac1a3fb688ffa",
+"material_8h.html",
+"matrix__query_8inl.html#ga37e535cbeaea383b8c1247b98875cd4b",
+"postprocess_8h.html#a64795260b95f5a4b3f3dc1be4f52e410a620b08f185e87a67a3efd9295eed6e82",
+"setup_8hpp.html#a6893d4a6bf0ecab00f7c73166379245a",
+"struct_s_d_l___assert_data.html#a4913c57d4affb813feea82fc5f48a25c",
+"struct_s_d_l___mouse_button_event.html#a5bb9c61b86e999f58637511e32e3a076",
+"struct_s_d_l_test___test_case_reference.html",
+"structglm_1_1detail_1_1__swizzle__base2_3_01_value_type_00_01_p_00_01_vec_type_00_01_n_00_01_e0_fc19218d69dc8988a4a57fbe7f79725c.html#a2f3a45edbb24ca7e12182c3123dde632",
+"structglm_1_1io_1_1precision.html#aa359e1766fd74b88e049d5449d521447",
+"structglm_1_1tmat3x3.html#a168abb413d19f4ff78005b4a4015c9e1",
+"structglm_1_1tmat4x4.html#ad1fd4876433fc643c5445fff52be9dc8",
+"structglm_1_1tvec3.html#a5dd85e96e456dee71a1e62bfed87aaf5",
+"structpuddi_1_1_material.html#aa2af0370d7d1fadff4dd473b8e4cf86c",
+"type__aligned_8hpp.html#ga912a16432608b822f1e13607529934c1",
+"type__mat2x4_8hpp.html#afa42e22075be67b320a24532d84bf6ef",
+"type__mat4x4_8inl.html#ae255ad250d33a8cfb077044ce0950c27",
+"type__vec2_8hpp.html#a505f81e8d6b9a6fbd077b42e8975479b",
+"ulp_8inl.html#a2e00104097b2f3967e97131933595309"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
