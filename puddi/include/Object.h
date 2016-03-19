@@ -1,3 +1,14 @@
+/**
+ * @file Object.h
+ * @author Alexander Bagnall
+ * @brief Base class for objects that have a position, scale, and rotation.
+ *
+ * Objects may be composed in a hierarchical manner. The transformations
+ * on a child object are concatenated to the parent transformations.
+ * In other words, the parent's model space serves as the frame of
+ * reference for the child's coordinate system.
+ */
+
 #ifndef OBJECT_H
 #define OBJECT_H
 
@@ -157,7 +168,7 @@ namespace puddi
 
 		unsigned int changedFlags; // flags for tracking changes to the object
 		unsigned int ignoreParentModelFlags;
-		mat4 model; // model-view matrix
+		mat4 model; // model matrix
 		//mat4 inverseModel;
 
 		mat4 parentModel; // the parent transform matrix

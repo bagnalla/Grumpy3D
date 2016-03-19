@@ -17,7 +17,6 @@ namespace puddi
 		parent = par;
 		object = o;
 		parallel = false;
-		dead = false;
 
 		if (parent != NULL)
 			parent->AddChild(this);

@@ -1,3 +1,12 @@
+/**
+ * @file InitShader.h
+ * @author Alexander Bagnall
+ * @brief Provides functions for compiling and attaching shader programs.
+ *
+ * This is taken from Chelberg's CS 4250 class. I think it is from the
+ * Interactive Computer Graphics 6th Edition (Angel, Shreiner) textbook.
+ */
+
 #ifndef INITSHADER_H
 #define INITSHADER_H
 

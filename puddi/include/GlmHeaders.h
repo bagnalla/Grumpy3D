@@ -1,4 +1,10 @@
-#define GLM_FORCE_RADIANS
+/**
+ * @file GlmHeaders.h
+ * @author Alexander Bagnall
+ * @brief Convenience header for including commonly used GLM headers.
+ */
+
+ #define GLM_FORCE_RADIANS
 
 #ifdef _WIN32
     #define M_PI    3.14159265358979323846264338327950288

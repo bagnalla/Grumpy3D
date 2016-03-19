@@ -1,3 +1,11 @@
+/**
+ * @file Cube.h
+ * @author Alexander Bagnall
+ * @brief Cube object.
+ *
+ * Convenience class for objects with a cube mesh.
+ */
+
 #ifndef CUBE_H
 #define CUBE_H
 

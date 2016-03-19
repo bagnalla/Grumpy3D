@@ -88,7 +88,7 @@ namespace puddi
                 std::cerr << "in VerteshMesh::UpdateRenderNode(): attempted to remove self from rendernode that didnt know about me. this should never happen\n";
         }
 
-        renderNode = Puddi::GetRenderGraph(renderGraphIndex)->AddVertexMesh(this);
+        renderNode = engine::GetRenderGraph(renderGraphIndex)->AddVertexMesh(this);
 
 		Shadow::AddToDepthRenderList(this);
 	}

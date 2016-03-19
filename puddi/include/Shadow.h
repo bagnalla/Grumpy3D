@@ -29,41 +29,24 @@ namespace puddi
 		SHADOW_RESOLUTION_EXTRA_HIGH = 4096
 	};
 
-	class Shadow
+	namespace Shadow
 	{
-	public:
-		static void Init();
+		void Init();
 
-		static void RenderShadowOrthoMap(const glm::vec3& lightDir);
+		void RenderShadowOrthoMap(const glm::vec3& lightDir);
 
-		static void RenderShadowCubeMap(const glm::vec3& sourcePos, DrawableObject* source);
+		void RenderShadowCubeMap(const glm::vec3& sourcePos, DrawableObject* source);
 
-		static void AddToDepthRenderList(VertexMesh *o);
+		void AddToDepthRenderList(VertexMesh *o);
 
-		static void RemoveFromDepthRenderList(VertexMesh *o);
+		void RemoveFromDepthRenderList(VertexMesh *o);
 
-		static ShadowMode GetMode();
-		static void SetMode(ShadowMode mode);
+		ShadowMode GetMode();
+		void SetMode(ShadowMode mode);
 
-		static void SetZRange(float zNear, float zFar);
+		void SetZRange(float zNear, float zFar);
 
-		static void SetResolution(ShadowResolution res);
-
-	private:
-		static GLuint frameBuffer;
-		static GLuint depthBuffer; // for shadow ortho map
-		static GLuint depthCubeMap; // for shadow cube map
-		static glm::vec2 zRange;
-		static ShadowMode mode;
-		static int resolution;
-
-		static std::vector<VertexMesh*> depthRenderList;
-
-		static void configureDepthAndCubeMapBuffers();
-
-		static void renderDepthRenderList();
-
-		static glm::mat4 computeOrthoCamAndProjection(const glm::vec3 lightDir, glm::mat4& cam);
+		void SetResolution(ShadowResolution res);
 	};
 }
 

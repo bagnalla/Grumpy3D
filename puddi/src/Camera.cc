@@ -77,11 +77,11 @@ namespace puddi
 				holdingD = true;
 				break;
 			case SDLK_z:
-				//Translate(vec4(0.0f, 0.0f, -Puddi::WorldSize / 100.0f, 0.0f));
+				//Translate(vec4(0.0f, 0.0f, -engine::WorldSize / 100.0f, 0.0f));
 				holdingZ = true;
 				break;
 			case SDLK_SPACE:
-				//Translate(vec4(0.0f, 0.0f, Puddi::WorldSize / 100.0f, 0.0f));
+				//Translate(vec4(0.0f, 0.0f, engine::WorldSize / 100.0f, 0.0f));
 				holdingSpace = true;
 				break;
 			}
@@ -140,7 +140,7 @@ namespace puddi
         if (holdingSpace)
 			moveDirection += vec4(0.0f, 0.0f, 1.0f, 0.0f);
 
-		vec4 finalMove = moveDirection * Puddi::WorldSize / 10000.0f * static_cast<float>(FpsTracker::GetFrameTimeMs());
+		vec4 finalMove = moveDirection * engine::WorldSize / 10000.0f * static_cast<float>(FpsTracker::GetFrameTimeMs());
 
 		Translate(finalMove);
 	}
@@ -151,12 +151,12 @@ namespace puddi
 
 		vec4 zoomOffset = -(normalize(lookPos - position)) * zoomOut;
 
-		Puddi::CameraMatrix = lookAt(vec3(position + zoomOffset), vec3(lookPos), vec3(0.0f, 0.0f, 1.0f));
-		//Puddi::Camera = Util::LookAt(vec3(position + zoomOffset), vec3(lookPos), vec3(0.0f, 0.0f, 1.0f));
-		Shader::SetCamera(Puddi::CameraMatrix);
-		//Puddi::MainRenderGraph->SetCameraInAll(Puddi::Camera);
+		engine::CameraMatrix = lookAt(vec3(position + zoomOffset), vec3(lookPos), vec3(0.0f, 0.0f, 1.0f));
+		//engine::Camera = Util::LookAt(vec3(position + zoomOffset), vec3(lookPos), vec3(0.0f, 0.0f, 1.0f));
+		Shader::SetCamera(engine::CameraMatrix);
+		//engine::MainRenderGraph->SetCameraInAll(engine::Camera);
 
-		Puddi::CameraPosition = position + zoomOffset;
-		Shader::SetCameraPosition(Puddi::CameraPosition);
+		engine::CameraPosition = position + zoomOffset;
+		Shader::SetCameraPosition(engine::CameraPosition);
 	}
 }

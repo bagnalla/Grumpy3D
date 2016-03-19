@@ -190,7 +190,7 @@ namespace grumpy
 
 	void Lexer::produceToken(size_t glyphBegin, size_t glyphEnd)
 	{
-		Token *t = new Token(Puddi::GetRootObject(), lTokens[currentTokenIndex], tokenQueue, parser, Schematic::GetSchematicByName("rounded_cube"));
+		Token *t = new Token(engine::GetRootObject(), lTokens[currentTokenIndex], tokenQueue, parser, Schematic::GetSchematicByName("rounded_cube"));
 		//t->SetVelocity(0.2f);
 		t->SetVelocity(0.01f);
 		//t->SetMaterial(Material::Medium(vec4(0.0f, 1.0f, 1.0f, 1.0f)));
@@ -200,7 +200,7 @@ namespace grumpy
 		t->SetScaleX(lTokens[currentTokenIndex].name.length() / 2.25f);
 		t->SetPosition(position - vec4(t->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f));
 		t->CreateGlyphs(sourceCode->font);
-		Puddi::ForceModelUpdate();
+		engine::ForceModelUpdate();
 		tokensProduced.push_back(t);
 		//parser->AddToken(t);
 		tokenQueue->AddToken(t);

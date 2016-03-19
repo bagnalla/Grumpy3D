@@ -9,42 +9,26 @@
 
 namespace puddi
 {
-	class Texture
+	namespace Texture
 	{
-	public:
-		static void InitTextureLoading();
-		static void EndTextureLoading();
+		void InitTextureLoading();
+		void EndTextureLoading();
 
-		static GLuint LoadTexture(const char *name, const char *filePath, const char *bumpPath = nullptr);
-		static GLuint LoadBumpMap(const char *name, const char *bumpPath);
-		static GLuint LoadCubeMap(const char *name, const char *filePath, const char *bumpPath = nullptr);
-		static GLuint LoadCubeMapMirrored(const char *name, const char *filePath, const char *bumpPath = nullptr);
+		GLuint LoadTexture(const char *name, const char *filePath, const char *bumpPath = nullptr);
+		GLuint LoadBumpMap(const char *name, const char *bumpPath);
+		GLuint LoadCubeMap(const char *name, const char *filePath, const char *bumpPath = nullptr);
+		GLuint LoadCubeMapMirrored(const char *name, const char *filePath, const char *bumpPath = nullptr);
 
-		static GLuint GetTextureByName(std::string name);
-		static GLuint GetBumpMapByName(std::string name); // only works if it was loaded by name
-		static GLuint GetTextureByFile(std::string path);
-		static GLuint GetBumpMapByTexture(GLuint tex);
+		GLuint GetTextureByName(std::string name);
+		GLuint GetBumpMapByName(std::string name); // only works if it was loaded by name
+		GLuint GetTextureByFile(std::string path);
+		GLuint GetBumpMapByTexture(GLuint tex);
 
-		static GLuint GetCubeMapByName(std::string name);
-		static GLuint GetCubeMapByFile(std::string path);
-		static GLuint GetBumpMapByCubeMap(GLuint cubeMap);
+		GLuint GetCubeMapByName(std::string name);
+		GLuint GetCubeMapByFile(std::string path);
+		GLuint GetBumpMapByCubeMap(GLuint cubeMap);
 
-		static void DestroyTexture(const std::string &name, const std::string &path = "");
-
-	private:
-		static std::unordered_map<std::string, GLuint> textureMap;
-		static std::unordered_map<std::string, GLuint> textureFileMap;
-		static std::unordered_map<GLuint, GLuint> bumpMapMap;
-		static std::unordered_map<std::string, GLuint> bumpMapNameMap;
-
-		static std::unordered_map<std::string, GLuint> cubeMapMap;
-		static std::unordered_map<std::string, GLuint> cubeMapFileMap;
-		static std::unordered_map<GLuint, GLuint> cubeBumpMapMap;
-
-		static GLuint loadTexture(const char *path);
-		//static GLuint loadTextureFromSurface(SDL_Surface *surface, GLint internalFormat, GLint format);
-		static GLuint loadCubeMap(const char *path);
-		static GLuint loadCubeMapMirrored(const char *path);
+		void DestroyTexture(const std::string &name, const std::string &path = "");
 	};
 }
 

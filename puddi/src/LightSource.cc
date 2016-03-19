@@ -68,17 +68,17 @@ namespace puddi
 
 	void LightSource::UpdateLightSourceMatricesInShaders()
 	{
-		//glUniformMatrix4fv(Puddi::LightSourcesLoc, NUM_LIGHT_SOURCES, GL_FALSE, lightSourceMatrices);
-		//glUniform4fv(Puddi::LightSourcesLoc, NUM_LIGHT_SOURCES * 16, lightSourceMatrices);
+		//glUniformMatrix4fv(engine::LightSourcesLoc, NUM_LIGHT_SOURCES, GL_FALSE, lightSourceMatrices);
+		//glUniform4fv(engine::LightSourcesLoc, NUM_LIGHT_SOURCES * 16, lightSourceMatrices);
 		mat4 lightSource;
 		memcpy(&lightSource[0], lightSourceMatrices, sizeof(lightSourceMatrices));
 		Shader::SetLightSource(lightSource);
-		//Puddi::MainRenderGraph->SetLightSourceInAll(lightSource);
+		//engine::MainRenderGraph->SetLightSourceInAll(lightSource);
 	}
 
 	void LightSource::UpdateMatrix()
 	{
-		//glUniformMatrix4fv(Puddi::LightSourcesLoc, index, GL_FALSE, mat4(ambient, diffuse, specular, position));
+		//glUniformMatrix4fv(engine::LightSourcesLoc, index, GL_FALSE, mat4(ambient, diffuse, specular, position));
 		//lightSourceMatrices[index] = mat4(ambient, diffuse, specular, position);
 		mat4 lightSource(ambient, diffuse, specular, position);
 		memcpy(&lightSourceMatrices[index * 16], &lightSource, 16 * sizeof(GLfloat));

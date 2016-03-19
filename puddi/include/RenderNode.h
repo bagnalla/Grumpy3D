@@ -16,6 +16,9 @@ namespace puddi
 		std::vector<VertexMesh*> meshes;
 
 		virtual void Render() const;
+
+    // prevent instantiation of the base struct
+    protected: RenderNode() {};
 	};
 
 	struct EmissiveNode : public RenderNode

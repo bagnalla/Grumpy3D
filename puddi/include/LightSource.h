@@ -1,3 +1,13 @@
+/**
+ * @file LightSource.h
+ * @author Alexander Bagnall
+ * @brief Provides functions for manipulating the world's light source(s)
+ *
+ * Currently, none of the shader programs support multiple light
+ * sources. It isn't terribly difficult to add but I don't consider
+ * it to be important.
+ */
+
 #ifndef LIGHTSOURCE_H
 #define LIGHTSOURCE_H
 

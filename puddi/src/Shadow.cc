@@ -9,279 +9,284 @@
 
 namespace puddi
 {
-	// PUBLIC
+    namespace Shadow
+    {
+        // PRIVATE
+        namespace
+        {
+            GLuint frameBuffer;
+            GLuint depthBuffer;
+            GLuint depthCubeMap;
+            vec2 zRange = vec2(1.0f, 2.0f);
+            ShadowMode mode = SHADOW_MODE_NONE;
+            int resolution = SHADOW_MAP_SIZE_DEFAULT;
 
-	void Shadow::Init()
-	{
-		// SET UP FRAME BUFFER OBJECT
-		glDeleteFramebuffers(1, &frameBuffer);
-		glGenFramebuffers(1, &frameBuffer);
-		glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-		glEnable(GL_DEPTH_TEST);
-		glDrawBuffer(GL_NONE);
-		glReadBuffer(GL_NONE);
+            std::vector<VertexMesh*> depthRenderList;
 
-		// SET UP DEPTH BUFFER
-		glDeleteTextures(1, &depthBuffer);
-		glGenTextures(1, &depthBuffer);
-		glBindTexture(GL_TEXTURE_2D, depthBuffer);
+            void configureDepthAndCubeMapBuffers()
+            {
+            }
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+            void renderDepthRenderList()
+            {
+                for (auto it = depthRenderList.begin(); it != depthRenderList.end(); ++it)
+                {
+                    auto o = *it;
+                    if (o->GetRenderEnabled())
+                        o->Draw();
+                }
+            }
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+            mat4 computeOrthoCamAndProjection(const glm::vec3 lightDir, mat4& cam)
+            {
+                const int NUM_CORNERS = 8;
+                vec4 cornersInClipSpace[] =
+                {
+                    vec4(-1.0f, -1.0f, -1.0f, 1.0f),
+                    vec4(-1.0f, 1.0f, -1.0f, 1.0f),
+                    vec4(1.0f, 1.0f, -1.0f, 1.0f),
+                    vec4(1.0f, -1.0f, -1.0f, 1.0f),
+                    vec4(-1.0f, -1.0f, 1.0f, 1.0f),
+                    vec4(-1.0f, 1.0f, 1.0f, 1.0f),
+                    vec4(1.0f, 1.0f, 1.0f, 1.0f),
+                    vec4(1.0f, -1.0f, 1.0f, 1.0f)
+                };
 
-		glBindTexture(GL_TEXTURE_2D, 0);
+                mat4 inverseProj = inverse(engine::ProjectionMatrix * engine::CameraMatrix);
 
-		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthBuffer, 0);
+                std::vector<vec4> cornersInWorldSpace;
+                for (int i = 0; i < NUM_CORNERS; ++i)
+                    cornersInWorldSpace.push_back(inverseProj * cornersInClipSpace[i]);
+                for (int i = 0; i < NUM_CORNERS; ++i)
+                    cornersInWorldSpace[i] = cornersInWorldSpace[i] / cornersInWorldSpace[i].w;
+                for (int i = 0; i < NUM_CORNERS; ++i)
+                    cornersInWorldSpace[i].w = 1.0f;
 
-		// Always check that our framebuffer is ok
-		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		{
-			std::cerr << "Shadow::Init() - frame buffer error\n";
-		}
+                vec4 sum = vec4(0.0f, 0.0f, 0.0f, 0.0f);
+                for (int i = 0; i < NUM_CORNERS; ++i)
+                    sum += cornersInWorldSpace[i];
 
-		// SET UP DEPTH CUBE MAP
-		glDeleteTextures(1, &depthCubeMap);
-		glGenTextures(1, &depthCubeMap);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubeMap);
+                vec4 centroid = sum / static_cast<float>(NUM_CORNERS);
 
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_BASE_LEVEL, 0);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAX_LEVEL, 0);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
-		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+                cam = lookAt(vec3(centroid) + normalize(lightDir) * engine::ViewDistance * 1.25f, vec3(centroid), vec3(0.0f, 0.0f, 1.0f));
 
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+                std::vector<vec4> cornersInLightViewSpace;
+                for (int i = 0; i < NUM_CORNERS; ++i)
+                    cornersInLightViewSpace.push_back(cam * cornersInWorldSpace[i]);
 
-		glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+                float minX, minY, minZ, maxX, maxY, maxZ;
+                minX = minY = minZ = FLT_MAX;
+                maxX = maxY = maxZ = FLT_MIN;
+                for (int i = 0; i < NUM_CORNERS; ++i)
+                {
+                    vec4 corner = cornersInLightViewSpace[i];
+                    if (corner.x < minX)
+                        minX = corner.x;
+                    if (corner.y < minY)
+                        minY = corner.y;
+                    if (corner.z < minZ)
+                        minZ = corner.z;
+                    if (corner.x > maxX)
+                        maxX = corner.x;
+                    if (corner.y > maxY)
+                        maxY = corner.y;
+                    if (corner.z > maxZ)
+                        maxZ = corner.z;
+                }
 
-		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_POSITIVE_Y, depthCubeMap, 0);
+                return ortho(minX, maxX, minY, maxY, -maxZ, -minZ);
+            }
+        }
 
-		// Always check that our framebuffer is ok
-		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		{
-			std::cerr << "Shadow::Init() - frame buffer error after depth cube map initialiation\n";
-		}
+        // PUBLIC
 
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	}
+        void Init()
+        {
+            // SET UP FRAME BUFFER OBJECT
+            glDeleteFramebuffers(1, &frameBuffer);
+            glGenFramebuffers(1, &frameBuffer);
+            glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+            glEnable(GL_DEPTH_TEST);
+            glDrawBuffer(GL_NONE);
+            glReadBuffer(GL_NONE);
 
-	void Shadow::RenderShadowOrthoMap(const vec3& lightDir)
-	{
-		Shader::SetProgram("depth");
+            // SET UP DEPTH BUFFER
+            glDeleteTextures(1, &depthBuffer);
+            glGenTextures(1, &depthBuffer);
+            glBindTexture(GL_TEXTURE_2D, depthBuffer);
 
-		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frameBuffer);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
 
-		glViewport(0, 0, resolution, resolution);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
 
-		mat4 cam;
-		mat4 proj = computeOrthoCamAndProjection(lightDir, cam);
+            glBindTexture(GL_TEXTURE_2D, 0);
 
-		//mat4 projection = ortho(-zRange.y / 2.0f, zRange.y / 2.0f, -zRange.y / 2.0f, zRange.y / 2.0f, -zRange.y, zRange.y);
-		//mat4 projection = ortho(-zRange.y, zRange.y, -zRange.y, zRange.y, zRange.x, zRange.y);
-		//mat4 projection = perspective(static_cast<float>(M_PI) / 2.0f, 1.0f, zRange.x, zRange.y);
-		Shader::SetProjection(proj);
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthBuffer, 0);
 
-		Shader::SetLightProjection(proj * cam);
+            // Always check that our framebuffer is ok
+            if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+            {
+                std::cerr << "Init() - frame buffer error\n";
+            }
 
-		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthBuffer, 0);
-		glClear(GL_DEPTH_BUFFER_BIT);
-		Shader::SetCamera(cam);
-		renderDepthRenderList();
+            // SET UP DEPTH CUBE MAP
+            glDeleteTextures(1, &depthCubeMap);
+            glGenTextures(1, &depthCubeMap);
+            glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubeMap);
 
-		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+            glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_BASE_LEVEL, 0);
+            glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAX_LEVEL, 0);
+            glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+            glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
 
-		Shader::SetCamera(Puddi::CameraMatrix);
-	}
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_DEPTH_COMPONENT16, resolution, resolution, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
 
-	void Shadow::RenderShadowCubeMap(const vec3& sourcePos, DrawableObject* source)
-	{
-		Shader::SetProgram("depth");
+            glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 
-		if (source != NULL)
-			source->DisableRender();
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_POSITIVE_Y, depthCubeMap, 0);
 
-		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frameBuffer);
+            // Always check that our framebuffer is ok
+            if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+            {
+                std::cerr << "Init() - frame buffer error after depth cube map initialiation\n";
+            }
 
-		glViewport(0, 0, resolution, resolution);
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        }
 
-		mat4 projection = perspective(static_cast<float>(M_PI) / 2.0f, 1.0f, zRange.x, zRange.y);
-		Shader::SetProjection(projection);
+        void RenderShadowOrthoMap(const vec3& lightDir)
+        {
+            Shader::SetProgram("depth");
 
-		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_POSITIVE_Y, depthCubeMap, 0);
-		glClear(GL_DEPTH_BUFFER_BIT);
-		Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(0.0f, 1.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f)));
-		renderDepthRenderList();
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frameBuffer);
 
-		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, depthCubeMap, 0);
-		glClear(GL_DEPTH_BUFFER_BIT);
-		Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(0.0f, -1.0f, 0.0f), vec3(0.0f, 0.0f, -1.0f)));
-		renderDepthRenderList();
+            glViewport(0, 0, resolution, resolution);
 
-		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_POSITIVE_X, depthCubeMap, 0);
-		glClear(GL_DEPTH_BUFFER_BIT);
-		Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, -1.0f, 0.0f)));
-		renderDepthRenderList();
+            mat4 cam;
+            mat4 proj = computeOrthoCamAndProjection(lightDir, cam);
 
-		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_NEGATIVE_X, depthCubeMap, 0);
-		glClear(GL_DEPTH_BUFFER_BIT);
-		Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, -1.0f, 0.0f)));
-		renderDepthRenderList();
+            //mat4 projection = ortho(-zRange.y / 2.0f, zRange.y / 2.0f, -zRange.y / 2.0f, zRange.y / 2.0f, -zRange.y, zRange.y);
+            //mat4 projection = ortho(-zRange.y, zRange.y, -zRange.y, zRange.y, zRange.x, zRange.y);
+            //mat4 projection = perspective(static_cast<float>(M_PI) / 2.0f, 1.0f, zRange.x, zRange.y);
+            Shader::SetProjection(proj);
 
-		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_POSITIVE_Z, depthCubeMap, 0);
-		glClear(GL_DEPTH_BUFFER_BIT);
-		Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, -1.0f, 0.0f)));
-		renderDepthRenderList();
+            Shader::SetLightProjection(proj * cam);
 
-		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, depthCubeMap, 0);
-		glClear(GL_DEPTH_BUFFER_BIT);
-		Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(0.0f, 0.0f, -1.0f), vec3(0.0f, -1.0f, 0.0f)));
-		renderDepthRenderList();
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthBuffer, 0);
+            glClear(GL_DEPTH_BUFFER_BIT);
+            Shader::SetCamera(cam);
+            renderDepthRenderList();
 
-		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
-		Shader::SetCamera(Puddi::CameraMatrix);
+            Shader::SetCamera(engine::CameraMatrix);
+        }
 
-		if (source != NULL)
-			source->EnableRender();
-	}
+        void RenderShadowCubeMap(const vec3& sourcePos, DrawableObject* source)
+        {
+            Shader::SetProgram("depth");
 
-	void Shadow::AddToDepthRenderList(VertexMesh *o)
-	{
-		auto it = std::find(depthRenderList.begin(), depthRenderList.end(), o);
-		if (it == depthRenderList.end())
-			depthRenderList.push_back(o);
-	}
+            if (source != NULL)
+                source->DisableRender();
 
-	void Shadow::RemoveFromDepthRenderList(VertexMesh *o)
-	{
-		auto it = std::find(depthRenderList.begin(), depthRenderList.end(), o);
-		if (it != depthRenderList.end())
-			depthRenderList.erase(it);
-	}
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frameBuffer);
 
-	ShadowMode Shadow::GetMode()
-	{
-		return mode;
-	}
+            glViewport(0, 0, resolution, resolution);
 
-	void Shadow::SetMode(ShadowMode m)
-	{
-		mode = m;
+            mat4 projection = perspective(static_cast<float>(M_PI) / 2.0f, 1.0f, zRange.x, zRange.y);
+            Shader::SetProjection(projection);
 
-		Shader::SetShadowMode(mode);
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_POSITIVE_Y, depthCubeMap, 0);
+            glClear(GL_DEPTH_BUFFER_BIT);
+            Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(0.0f, 1.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f)));
+            renderDepthRenderList();
 
-		if (mode == SHADOW_MODE_UNI)
-			Shader::BindShadowMap(depthBuffer, mode);
-		else
-			Shader::BindShadowMap(depthCubeMap, mode);
-	}
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, depthCubeMap, 0);
+            glClear(GL_DEPTH_BUFFER_BIT);
+            Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(0.0f, -1.0f, 0.0f), vec3(0.0f, 0.0f, -1.0f)));
+            renderDepthRenderList();
 
-	void Shadow::SetZRange(float zNear, float zFar)
-	{
-		zRange = vec2(zNear, zFar);
-		Shader::SetShadowZRange(zRange);
-	}
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_POSITIVE_X, depthCubeMap, 0);
+            glClear(GL_DEPTH_BUFFER_BIT);
+            Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, -1.0f, 0.0f)));
+            renderDepthRenderList();
 
-	void Shadow::SetResolution(ShadowResolution res)
-	{
-		resolution = res;
-		Init();
-	}
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_NEGATIVE_X, depthCubeMap, 0);
+            glClear(GL_DEPTH_BUFFER_BIT);
+            Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, -1.0f, 0.0f)));
+            renderDepthRenderList();
 
-	// PRIVATE
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_POSITIVE_Z, depthCubeMap, 0);
+            glClear(GL_DEPTH_BUFFER_BIT);
+            Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, -1.0f, 0.0f)));
+            renderDepthRenderList();
 
-	GLuint Shadow::frameBuffer;
-	GLuint Shadow::depthBuffer;
-	GLuint Shadow::depthCubeMap;
-	vec2 Shadow::zRange = vec2(1.0f, 2.0f);
-	ShadowMode Shadow::mode = SHADOW_MODE_NONE;
-	int Shadow::resolution = SHADOW_MAP_SIZE_DEFAULT;
+            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, depthCubeMap, 0);
+            glClear(GL_DEPTH_BUFFER_BIT);
+            Shader::SetCamera(lookAt(sourcePos, sourcePos + vec3(0.0f, 0.0f, -1.0f), vec3(0.0f, -1.0f, 0.0f)));
+            renderDepthRenderList();
 
-	std::vector<VertexMesh*> Shadow::depthRenderList;
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
-	void Shadow::configureDepthAndCubeMapBuffers()
-	{
-	}
+            Shader::SetCamera(engine::CameraMatrix);
 
-	void Shadow::renderDepthRenderList()
-	{
-		for (auto it = depthRenderList.begin(); it != depthRenderList.end(); ++it)
-		{
-			auto o = *it;
-			if (o->GetRenderEnabled())
-				o->Draw();
-		}
-	}
+            if (source != NULL)
+                source->EnableRender();
+        }
 
-	mat4 Shadow::computeOrthoCamAndProjection(const glm::vec3 lightDir, mat4& cam)
-	{
-		const int NUM_CORNERS = 8;
-		vec4 cornersInClipSpace[] =
-		{
-			vec4(-1.0f, -1.0f, -1.0f, 1.0f),
-			vec4(-1.0f, 1.0f, -1.0f, 1.0f),
-			vec4(1.0f, 1.0f, -1.0f, 1.0f),
-			vec4(1.0f, -1.0f, -1.0f, 1.0f),
-			vec4(-1.0f, -1.0f, 1.0f, 1.0f),
-			vec4(-1.0f, 1.0f, 1.0f, 1.0f),
-			vec4(1.0f, 1.0f, 1.0f, 1.0f),
-			vec4(1.0f, -1.0f, 1.0f, 1.0f)
-		};
+        void AddToDepthRenderList(VertexMesh *o)
+        {
+            auto it = std::find(depthRenderList.begin(), depthRenderList.end(), o);
+            if (it == depthRenderList.end())
+                depthRenderList.push_back(o);
+        }
 
-		mat4 inverseProj = inverse(Puddi::ProjectionMatrix * Puddi::CameraMatrix);
+        void RemoveFromDepthRenderList(VertexMesh *o)
+        {
+            auto it = std::find(depthRenderList.begin(), depthRenderList.end(), o);
+            if (it != depthRenderList.end())
+                depthRenderList.erase(it);
+        }
 
-		std::vector<vec4> cornersInWorldSpace;
-		for (int i = 0; i < NUM_CORNERS; ++i)
-			cornersInWorldSpace.push_back(inverseProj * cornersInClipSpace[i]);
-		for (int i = 0; i < NUM_CORNERS; ++i)
-			cornersInWorldSpace[i] = cornersInWorldSpace[i] / cornersInWorldSpace[i].w;
-		for (int i = 0; i < NUM_CORNERS; ++i)
-			cornersInWorldSpace[i].w = 1.0f;
+        ShadowMode GetMode()
+        {
+            return mode;
+        }
 
-		vec4 sum = vec4(0.0f, 0.0f, 0.0f, 0.0f);
-		for (int i = 0; i < NUM_CORNERS; ++i)
-			sum += cornersInWorldSpace[i];
+        void SetMode(ShadowMode m)
+        {
+            mode = m;
 
-		vec4 centroid = sum / static_cast<float>(NUM_CORNERS);
+            Shader::SetShadowMode(mode);
 
-		cam = lookAt(vec3(centroid) + normalize(lightDir) * Puddi::ViewDistance * 1.25f, vec3(centroid), vec3(0.0f, 0.0f, 1.0f));
+            if (mode == SHADOW_MODE_UNI)
+                Shader::BindShadowMap(depthBuffer, mode);
+            else
+                Shader::BindShadowMap(depthCubeMap, mode);
+        }
 
-		std::vector<vec4> cornersInLightViewSpace;
-		for (int i = 0; i < NUM_CORNERS; ++i)
-			cornersInLightViewSpace.push_back(cam * cornersInWorldSpace[i]);
+        void SetZRange(float zNear, float zFar)
+        {
+            zRange = vec2(zNear, zFar);
+            Shader::SetShadowZRange(zRange);
+        }
 
-		float minX, minY, minZ, maxX, maxY, maxZ;
-		minX = minY = minZ = FLT_MAX;
-		maxX = maxY = maxZ = FLT_MIN;
-		for (int i = 0; i < NUM_CORNERS; ++i)
-		{
-			vec4 corner = cornersInLightViewSpace[i];
-			if (corner.x < minX)
-				minX = corner.x;
-			if (corner.y < minY)
-				minY = corner.y;
-			if (corner.z < minZ)
-				minZ = corner.z;
-			if (corner.x > maxX)
-				maxX = corner.x;
-			if (corner.y > maxY)
-				maxY = corner.y;
-			if (corner.z > maxZ)
-				maxZ = corner.z;
-		}
-
-		return ortho(minX, maxX, minY, maxY, -maxZ, -minZ);
-	}
+        void SetResolution(ShadowResolution res)
+        {
+            resolution = res;
+            Init();
+        }
+    }
 }

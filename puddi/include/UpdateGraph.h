@@ -13,7 +13,6 @@ namespace puddi
 		std::vector<UpdateNode*> children;
 		Object *object;
 		bool parallel;
-		bool dead;
 
 		UpdateNode(UpdateNode *par, Object *o);
 

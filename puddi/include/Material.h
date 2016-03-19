@@ -1,3 +1,13 @@
+/**
+ * @file Material.h
+ * @author Alexander Bagnall
+ * @brief Provides functions for creating materials.
+ *
+ * There are functions for creating a material from a given color
+ * and there are a bunch of built-in materials.
+ */
+
+
 #ifndef MATERIAL_H
 #define MATERIAL_H
 

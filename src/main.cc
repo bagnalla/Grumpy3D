@@ -22,6 +22,7 @@
 #include "TypeChecker.h"
 #include "GrumpyConfig.h"
 #include "TokenQueue.h"
+#include "Camera.h"
 #include <vector>
 #include <iostream>
 #include <string>
@@ -51,9 +52,9 @@ void reset();
 
 void init(void)
 {
-    Puddi::AddRenderGraph();
-    Puddi::AddRenderGraph();
-    Puddi::AddRenderGraph();
+    engine::AddRenderGraph();
+    engine::AddRenderGraph();
+    engine::AddRenderGraph();
 
     GLuint texture = Texture::LoadTexture("grumpycat", "textures/grumpycat1.png", "bumpmaps/grumpycat1_medium.png");
     //GLuint texture = Texture::LoadTexture("grumpycat", "textures/grumpycat1_d.png");
@@ -72,9 +73,9 @@ void init(void)
     Schematic::InitSchematic("models/cube rounded - 554 faces.obj", "rounded_cube");
     Schematic::InitSchematic("models/grumpycat.obj", "grumpycat");
 
-    Puddi::MainCamera->SetPosition(vec4(0.0f, -5.0f, 0.0f, 1.0f));
-    Puddi::MainCamera->LookAt(vec4(0.0f, 0.0f, 0.0f, 1.0f));
-    //Puddi::MainCamera->SetZoomOut(10.0f);
+    engine::MainCamera->SetPosition(vec4(0.0f, -5.0f, 0.0f, 1.0f));
+    engine::MainCamera->LookAt(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    //engine::MainCamera->SetZoomOut(10.0f);
 
     lightSource = LightSource::ObtainLightSource();
     lightSource->ambient = vec4(1.0, 1.0, 1.0, 1.0);
@@ -84,8 +85,8 @@ void init(void)
     lightSource->UpdateMatrix();
     LightSource::UpdateLightSourceMatricesInShaders();
 
-    //wall = new Cube(Puddi::GetRootObject());
-    //wall = new DrawableObject(Puddi::GetRootObject(), Schematic::GetSchematicByName("geodesic_weave"));
+    //wall = new Cube(engine::GetRootObject());
+    //wall = new DrawableObject(engine::GetRootObject(), Schematic::GetSchematicByName("geodesic_weave"));
     //wall->RotateX(static_cast<float>(M_PI / 2.0f));
     //wall->SetScaleX(200.0f);
     //wall->SetScaleY(100.0f);
@@ -109,7 +110,7 @@ void init(void)
     terrainMesh->SetTexture3(Texture::GetTextureByName("stone1"));
     terrainMesh->SetTexture4(Texture::GetTextureByName("snow1"));
     terrainMesh->SetTextureHeights(vec4(0.0f, 0.3f, 0.5f, 0.9f));
-    //DrawableObject *terrainContainer = new DrawableObject(Puddi::GetRootObject(), terrainMesh);
+    //DrawableObject *terrainContainer = new DrawableObject(engine::GetRootObject(), terrainMesh);
     //terrainContainer->Scale(0.01f);
 
     //if (Schematic::InitSchematic("models/cube rounded.obj", "cube") < 0)
@@ -118,7 +119,7 @@ void init(void)
     //if (Schematic::InitSchematic("models/bb8.obj", "cube", "bb8") < 0)
     //    std::cerr << "error loading cube rounded model\n";
 
-    auto terrain = new DrawableObject(Puddi::GetRootObject());
+    auto terrain = new DrawableObject(engine::GetRootObject());
     terrain->AddVertexMesh(terrainMesh);
     terrain->SetScale(0.1f);
     terrain->SetScaleX(0.25f);
@@ -133,7 +134,7 @@ void init(void)
 //    {
 //        for (int j = 0; j < 1; ++j)
 //        {
-//            auto terrain = new DrawableObject(Puddi::GetRootObject());
+//            auto terrain = new DrawableObject(engine::GetRootObject());
 //            terrain->AddVertexMesh(new TerrainVertexMesh(*terrainMesh));
 //            terrain->SetScale(1.0f);
 //            //terrain->Translate(vec4(-1000.0f, -1000.0f, -1000.0f, 0.0f));
@@ -143,14 +144,14 @@ void init(void)
 //        }
 //    }
 //
-//    terrain = new DrawableObject(Puddi::GetRootObject());
+//    terrain = new DrawableObject(engine::GetRootObject());
 //    terrain->AddVertexMesh(new TerrainVertexMesh(*terrainMesh));
 //    terrain->SetScale(1.0f);
 //    //terrain->Translate(vec4(-1000.0f, -1000.0f, -1000.0f, 0.0f));
 //    terrain->Translate(vec4(-100.0f, -100.0f, -100.0f, 0.0f));
 //    terrain->Translate(vec4(0.0f, -254.0f, 0.0f, 0.0f));
 //
-//    terrain = new DrawableObject(Puddi::GetRootObject());
+//    terrain = new DrawableObject(engine::GetRootObject());
 //    terrain->AddVertexMesh(new TerrainVertexMesh(*terrainMesh));
 //    terrain->SetScale(1.0f);
 //    //terrain->Translate(vec4(-1000.0f, -1000.0f, -1000.0f, 0.0f));
@@ -158,15 +159,15 @@ void init(void)
 //    terrain->Translate(vec4(-254.0f, 0.0f, 0.0f, 0.0f));
 
     // CONTAINERS
-    objectContainer = new Object(Puddi::GetRootObject());
+    objectContainer = new Object(engine::GetRootObject());
 
-    Skybox *skybox = new Skybox(Puddi::MainCamera);
+    Skybox *skybox = new Skybox(engine::MainCamera);
     skybox->SetCubeMap(Texture::GetCubeMapByName("skybox_2"));
     skybox->SetEmissive(true);
-    skybox->SetScale(Puddi::ViewDistance);
+    skybox->SetScale(engine::ViewDistance);
     skybox->DisableShadowCasting();
 
-//    DrawableObject *cat = new DrawableObject(Puddi::GetRootObject(), Schematic::GetSchematicByName("grumpycat"));
+//    DrawableObject *cat = new DrawableObject(engine::GetRootObject(), Schematic::GetSchematicByName("grumpycat"));
 //    cat->SetScale(0.5f);
 //    cat->Translate(vec4(0.0f, 0.0f, 5.0f, 0.0f));
 
@@ -213,7 +214,7 @@ void reset()
     delete parser;
     delete typeChecker;
 
-    sourceCode = new SourceCode(Puddi::GetRootObject(), sourceFile, "myfont");
+    sourceCode = new SourceCode(engine::GetRootObject(), sourceFile, "myfont");
     sourceCode->Translate(vec4(0.0f, -30.0f, 0.0f, 0.0f));
 
     vector<LexToken> lTokens;
@@ -236,10 +237,10 @@ void reset()
         //cout << tok.name << endl;
     }
 
-    tokenQueue = new TokenQueue(Puddi::GetRootObject());
+    tokenQueue = new TokenQueue(engine::GetRootObject());
     tokenQueue->SetPosition(sourceCode->GetPosition() + vec4(5.0f, 0.0f, 2.0f, 0.0f));
 
-    lexer = new Lexer(Puddi::GetRootObject(), sourceCode, lTokens, tokenQueue);
+    lexer = new Lexer(engine::GetRootObject(), sourceCode, lTokens, tokenQueue);
     //lexer->BuildFromSchematic(Schematic::GetSchematicByName("grumpycat"));
     //lexer->SetScale(0.05f);
     //auto *mesh = new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("cube"));
@@ -274,16 +275,16 @@ void reset()
     for (size_t i = 0; i < sanitizedBytes.size(); ++i)
         q.push(sanitizedBytes[i]);
 
-    ast = new ASTNode(Puddi::GetRootObject(), nullptr, nullptr, q);
+    ast = new ASTNode(engine::GetRootObject(), nullptr, nullptr, q);
     //ast->Translate(vec4(ast->GetWidth() / 2.0f, 0.0f, 0.0f, 0.0f));
     ast->SetScaleX(0.5f);
     //ast->SetPosition(vec4(30.0f, 0.0f, 0.0f, 1.0f));
     //ast->SetAssignedLocation(vec4(30.0f, 0.0f, 0.0f, 1.0f));
     //ast->Hide();
 
-    /*parser = new SyntaxParser(Puddi::GetRootObject(), ast);
+    /*parser = new SyntaxParser(engine::GetRootObject(), ast);
     parser->AddVertexMesh(new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("cube")));*/
-    parser = new SyntaxParser(Puddi::GetRootObject(), lexer, tokenQueue, ast, Schematic::GetSchematicByName("rounded_cube"));
+    parser = new SyntaxParser(engine::GetRootObject(), lexer, tokenQueue, ast, Schematic::GetSchematicByName("rounded_cube"));
     parser->SetTexture(Texture::GetTextureByName("grumpycat"));
 //    parser->SetEmissive(true);
 //    parser->SetEmissionColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
@@ -293,13 +294,13 @@ void reset()
     parser->SetPosition(vec4(20.0f, 0.0f, 0.0f, 1.0f));
 
     //for (auto it = lTokens.begin(); it != lTokens.end(); ++it)
-    //    parser->AddToken(new Token(Puddi::GetRootObject(), *it));
+    //    parser->AddToken(new Token(engine::GetRootObject(), *it));
 //    for (int i = 0; i < lTokens.size() / 2; ++i)
-//        parser->AddToken(new Token(Puddi::GetRootObject(), lTokens[i]));
+//        parser->AddToken(new Token(engine::GetRootObject(), lTokens[i]));
 
     lexer->SetParser(parser);
 
-    typeChecker = new TypeChecker(Puddi::GetRootObject(), ast, Schematic::GetSchematicByName("rounded_cube"));
+    typeChecker = new TypeChecker(engine::GetRootObject(), ast, Schematic::GetSchematicByName("rounded_cube"));
     typeChecker->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
     typeChecker->SetVelocity(0.025f);
     typeChecker->SetHomePosition(ast->GetPosition() + vec4(0.0f, 0.0f, 7.0f, 1.0f));
@@ -317,7 +318,7 @@ int update()
     while (SDL_PollEvent(&ev))
     {
         // send event to camera
-        Puddi::MainCamera->InputEvent(ev);
+        engine::MainCamera->InputEvent(ev);
 
         // quit
         if (ev.type == SDL_QUIT)
@@ -335,10 +336,10 @@ int update()
                 break;
             // ENABLE FULLSCREEN
             case SDLK_f:
-                Puddi::ToggleFullScreen();
+                engine::ToggleFullScreen();
                 break;
             /*case SDLK_1:
-                parser->AddTokenToQueue(new Token(Puddi::GetRootObject(), LexToken()));
+                parser->AddTokenToQueue(new Token(engine::GetRootObject(), LexToken()));
                 break;*/
             case SDLK_r:
                 reset();
@@ -371,7 +372,7 @@ int update()
         // window event
         else if (ev.type == SDL_WINDOWEVENT)
         {
-            Puddi::UpdateProjectionMatrixAndViewport();
+            engine::UpdateProjectionMatrixAndViewport();
         }
     }
     if (cube != nullptr)
@@ -384,16 +385,16 @@ int update()
 
 void enableShadows()
 {
-    Puddi::EnableShadows(SHADOW_MODE_UNI, SHADOW_RESOLUTION_EXTRA_HIGH);
+    engine::EnableShadows(SHADOW_MODE_UNI, SHADOW_RESOLUTION_EXTRA_HIGH);
     // overwrite z range to give better shadow precision
-    Shadow::SetZRange(100.0f, Puddi::ViewDistance);
+    Shadow::SetZRange(100.0f, engine::ViewDistance);
 
-    Puddi::SetShadowLightPosition(vec3(lightSource->position));
+    engine::SetShadowLightPosition(vec3(lightSource->position));
 }
 
 int main(int argc, char **argv)
 {
-    if (int initStatus = Puddi::Init(1000.0f) != 0)
+    if (int initStatus = engine::Init(1000.0f) != 0)
         return initStatus;
 
     if (argc >= 4)
@@ -413,9 +414,9 @@ int main(int argc, char **argv)
 
     init();
 
-    Puddi::RegisterPostInitFunction(enableShadows);
+    engine::RegisterPostInitFunction(enableShadows);
 
-    Puddi::RegisterUpdateFunction(update);
+    engine::RegisterUpdateFunction(update);
 
-    return Puddi::Run();
+    return engine::Run();
 }

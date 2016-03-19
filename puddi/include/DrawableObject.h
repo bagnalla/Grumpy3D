@@ -1,3 +1,14 @@
+/**
+ * @file DrawableObject.h
+ * @author Alexander Bagnall
+ * @brief Base class for objects that are composed of drawable meshes.
+ *
+ * Inherits from Object. Some properties of meshes are settable via
+ * an object of this type and they are applied to all meshes under
+ * the domain of the object (either directly belonging to the object
+ * or to a child under the object)
+ */
+
 #ifndef DRAWABLEOBJECT_H
 #define DRAWABLEOBJECT_H
 

@@ -32,81 +32,45 @@ namespace puddi
 		TEXTURE_TERRAIN_BUMP_4,
 	};
 
-	class Shader
+	namespace Shader
 	{
-	public:
-		static std::vector<vec4> Vertices;
-		static std::vector<vec4> Normals;
-		static std::vector<vec4> Tangents;
-		static std::vector<vec4> Binormals;
-		static std::vector<vec2> TextureCoordinates;
+		extern std::vector<vec4> Vertices;
+		extern std::vector<vec4> Normals;
+		extern std::vector<vec4> Tangents;
+		extern std::vector<vec4> Binormals;
+		extern std::vector<vec2> TextureCoordinates;
 
-		static std::vector<uint> VertexIndices;
+		extern std::vector<uint> VertexIndices;
 
-		static void Init();
+		void Init();
 
-		static void SetProgram(std::string programName);
+		void SetProgram(std::string programName);
 
-		static void SetMaterialAmbient(const vec4& materialAmbient);
-		static void SetMaterialDiffuse(const vec4& materialDiffuse);
-		static void SetMaterialSpecular(const vec4& materialSpecular);
-		static void SetMaterialShininess(float materialShininess);
-		static void SetMaterial(const Material& material);
-		static void SetLightSource(const mat4& lightSource);
-		static void SetCameraPosition(const vec4& cameraPosition);
-		static void SetModel(const mat4& model);
-		static void SetCamera(const mat4& camera);
-		static void SetProjection(const mat4& projection);
-		static void SetLightProjection(const mat4& lightProj);
-		static void SetEmissionColor(const vec4& emissionColor);
-		static void SetTextureBlend(bool textureBlendb);
-		static void SetShadowMode(ShadowMode shadowMode);
-		static void SetShadowZRange(const vec2& shadowZRange);
-		static void SetReflectiveCubeMap(bool b);
+		void SetMaterialAmbient(const vec4& materialAmbient);
+		void SetMaterialDiffuse(const vec4& materialDiffuse);
+		void SetMaterialSpecular(const vec4& materialSpecular);
+		void SetMaterialShininess(float materialShininess);
+		void SetMaterial(const Material& material);
+		void SetLightSource(const mat4& lightSource);
+		void SetCameraPosition(const vec4& cameraPosition);
+		void SetModel(const mat4& model);
+		void SetCamera(const mat4& camera);
+		void SetProjection(const mat4& projection);
+		void SetLightProjection(const mat4& lightProj);
+		void SetEmissionColor(const vec4& emissionColor);
+		void SetTextureBlend(bool textureBlendb);
+		void SetShadowMode(ShadowMode shadowMode);
+		void SetShadowZRange(const vec2& shadowZRange);
+		void SetReflectiveCubeMap(bool b);
 
 		// terrain uniforms
-		static void SetGroundCoordZ(float z);
-		static void SetTerrainScaleZ(float z);
-		static void SetTerrainMaxHeight(float z);
-		static void SetTexHeights(const vec4& texHeights);
+		void SetGroundCoordZ(float z);
+		void SetTerrainScaleZ(float z);
+		void SetTerrainMaxHeight(float z);
+		void SetTexHeights(const vec4& texHeights);
 
 		// either depth texture or depth cubemap
-		static void BindShadowMap(GLuint shadowMap, ShadowMode mode);
-
-	private:
-		static GLuint vertexBuffer;
-		static GLuint elementBuffer;
-		static GLuint currentProgram;
-		static std::string currentProgramName;
-
-		static mat4 camera;
-		static vec4 cameraPosition;
-		static mat4 projection;
-		static mat4 lightSource;
-		static mat4 lightProjection;
-		static ShadowMode shadowMode;
-		static vec2 shadowZRange;
-		static float shaderVersion;
-
-		static std::unordered_map<std::string, GLuint> nameToProgramMap;
-		static std::unordered_map<GLuint, GLuint> programToVaoMap;
-		static std::unordered_map<GLuint, std::unordered_map<std::string, GLuint>> programToUniformMap;
-
-		static void initEmissiveColorProgram();
-		static void initEmissiveTextureProgram();
-		static void initEmissiveCubeMapProgram();
-		static void initDepthProgram();
-		static void initMaterialProgram();
-		static void initMaterialBumpProgram();
-		static void initTextureProgram();
-		static void initTextureBumpProgram();
-		static void initCubeMapProgram();
-		static void initCubeMapBumpProgram();
-		static void initTerrainTextureBumpProgram();
-
-		static GLuint getUniform(GLuint program, std::string name);
-
-		static GLuint getUniformFromCurrentProgram(std::string uniformName);
+		void BindShadowMap(GLuint shadowMap, ShadowMode mode);
 	};
 }
 

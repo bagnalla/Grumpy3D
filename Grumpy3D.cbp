@@ -74,7 +74,6 @@
 		<Unit filename="include/TypeChecker.h" />
 		<Unit filename="program.gpy" />
 		<Unit filename="puddi/Makefile" />
-		<Unit filename="puddi/include/Bagnall.h" />
 		<Unit filename="puddi/include/CRSpline.h" />
 		<Unit filename="puddi/include/Camera.h" />
 		<Unit filename="puddi/include/Cube.h" />
@@ -84,7 +83,6 @@
 		<Unit filename="puddi/include/FpsTracker.h" />
 		<Unit filename="puddi/include/Geometry.h" />
 		<Unit filename="puddi/include/GlmHeaders.h" />
-		<Unit filename="puddi/include/HeightMap.h" />
 		<Unit filename="puddi/include/HeightMapTerrain.h" />
 		<Unit filename="puddi/include/InitShader.h" />
 		<Unit filename="puddi/include/LightSource.h" />
@@ -142,7 +140,6 @@
 		<Unit filename="puddi/src/Font.cc" />
 		<Unit filename="puddi/src/FpsTracker.cc" />
 		<Unit filename="puddi/src/Geometry.cc" />
-		<Unit filename="puddi/src/HeightMap.cc" />
 		<Unit filename="puddi/src/HeightMapTerrain.cc" />
 		<Unit filename="puddi/src/InitShader.cc" />
 		<Unit filename="puddi/src/LightSource.cc" />

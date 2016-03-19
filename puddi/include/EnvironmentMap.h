@@ -1,3 +1,12 @@
+/**
+ * @file EnvironmentMap.h
+ * @author Alexander Bagnall
+ * @brief Provides environment map functionality. (reflective surfaces)
+ *
+ * Contains functions for creating a cube map and rendering the
+ * environment to it as seen from a given point.
+ */
+
 #ifndef ENVIRONMENTMAP_H
 #define ENVIRONMENTMAP_H
 
@@ -10,19 +19,14 @@ namespace puddi
 {
 	class DrawableObject;
 
-	class EnvironmentMap
+	namespace EnvironmentMap
 	{
-	public:
-		static void Init();
+		void Init();
 
-		static GLuint GenerateCubeMap();
+		GLuint GenerateCubeMap();
 
-		static void Render(GLuint targetCubeMap, const glm::vec3& sourcePos, DrawableObject* source, float zNear, float zFar);
-
-	private:
-		static GLuint frameBuffer;
-		static GLuint depthBuffer;
-	};
+		void Render(GLuint targetCubeMap, const glm::vec3& sourcePos, DrawableObject* source, float zNear, float zFar);
+	}
 }
 
 #endif

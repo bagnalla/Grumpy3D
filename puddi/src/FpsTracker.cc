@@ -4,44 +4,51 @@
 
 namespace puddi
 {
-	void FpsTracker::Update()
-	{
-		// calculate milliseconds elapsed since last call
-		int current_time = SDL_GetTicks();
-		frameTimeMs = current_time - last_frame_time;
-		last_frame_time = current_time;
+    namespace FpsTracker
+    {
+        // PRIVATE
+        namespace
+        {
+            int last_frame_time, // timestamp of the previous frame
+			frame_counter, // frame counter for tracking fps
+			frame_time_accum, // time accumulator for tracking fps
+			fps, // frames per second
+			frameTimeMs; // elapsed milliseconds since previous frame
+        }
 
-		// increment frame counter, update fps once per second
-		frame_counter++;
-		frame_time_accum += frameTimeMs;
-		if (frame_time_accum >= 1000)
-		{
-			fps = frame_counter;
-			frame_counter = frame_time_accum = 0;
-		}
-	}
+        // PUBLIC
+        void Update()
+        {
+            // calculate milliseconds elapsed since last call
+            int current_time = SDL_GetTicks();
+            frameTimeMs = current_time - last_frame_time;
+            last_frame_time = current_time;
 
-	int FpsTracker::GetFrameTimeMs()
-	{
-		return frameTimeMs;
-	}
+            // increment frame counter, update fps once per second
+            frame_counter++;
+            frame_time_accum += frameTimeMs;
+            if (frame_time_accum >= 1000)
+            {
+                fps = frame_counter;
+                frame_counter = frame_time_accum = 0;
+            }
+        }
 
-	int FpsTracker::GetFps()
-	{
-		return fps;
-	}
+        int GetFrameTimeMs()
+        {
+            return frameTimeMs;
+        }
 
-	void FpsTracker::Reset()
-	{
-		int current_time = SDL_GetTicks();
-		last_frame_time = current_time;
-		frame_counter = frame_time_accum = 0;
-	}
+        int GetFps()
+        {
+            return fps;
+        }
 
-	int FpsTracker::frameTimeMs;
-
-	int FpsTracker::last_frame_time = 0;
-	int FpsTracker::frame_counter = 0;
-	int FpsTracker::frame_time_accum = 0;
-	int FpsTracker::fps = 0;
+        void Reset()
+        {
+            int current_time = SDL_GetTicks();
+            last_frame_time = current_time;
+            frame_counter = frame_time_accum = 0;
+        }
+    }
 }

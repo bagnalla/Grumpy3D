@@ -1,0 +1,25 @@
+/home/alex/source/Grumpy3D/src/malloc.c:36: warning: documented symbol `x' was not declared or defined.
+/home/alex/source/Grumpy3D/src/SyntaxParser.cc:21: warning: no matching class member found for 
+  grumpy::SyntaxParser::SyntaxParser(puddi::Object *par, Lexer *lex, TokenQueue *tq, ASTNode *root)
+Possible candidates:
+  grumpy::SyntaxParser::SyntaxParser(Object *par, Lexer *lex, TokenQueue *tq, ASTNode *root)
+  grumpy::SyntaxParser::SyntaxParser(Object *par, Lexer *lex, TokenQueue *tq, ASTNode *root, puddi::SchematicNode *schematic)
+
+/home/alex/source/Grumpy3D/src/SyntaxParser.cc:26: warning: no matching class member found for 
+  grumpy::SyntaxParser::SyntaxParser(puddi::Object *par, Lexer *lex, TokenQueue *tq, ASTNode *root, SchematicNode *schematic)
+Possible candidates:
+  grumpy::SyntaxParser::SyntaxParser(Object *par, Lexer *lex, TokenQueue *tq, ASTNode *root)
+  grumpy::SyntaxParser::SyntaxParser(Object *par, Lexer *lex, TokenQueue *tq, ASTNode *root, puddi::SchematicNode *schematic)
+
+/home/alex/source/Grumpy3D/src/TypeChecker.cc:14: warning: no matching class member found for 
+  grumpy::TypeChecker::TypeChecker(puddi::Object *par, ASTNode *root)
+Possible candidates:
+  grumpy::TypeChecker::TypeChecker(Object *par, ASTNode *root)
+  grumpy::TypeChecker::TypeChecker(Object *par, ASTNode *root, puddi::SchematicNode *schematic)
+
+/home/alex/source/Grumpy3D/src/TypeChecker.cc:19: warning: no matching class member found for 
+  grumpy::TypeChecker::TypeChecker(puddi::Object *par, ASTNode *root, SchematicNode *schematic)
+Possible candidates:
+  grumpy::TypeChecker::TypeChecker(Object *par, ASTNode *root)
+  grumpy::TypeChecker::TypeChecker(Object *par, ASTNode *root, puddi::SchematicNode *schematic)
+
