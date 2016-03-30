@@ -67,10 +67,12 @@
 		<Unit filename="include/AST.h" />
 		<Unit filename="include/GrumpyConfig.h" />
 		<Unit filename="include/Lexer.h" />
+		<Unit filename="include/RTL.h" />
 		<Unit filename="include/SourceCode.h" />
 		<Unit filename="include/SyntaxParser.h" />
 		<Unit filename="include/Token.h" />
 		<Unit filename="include/TokenQueue.h" />
+		<Unit filename="include/Tree.h" />
 		<Unit filename="include/TypeChecker.h" />
 		<Unit filename="program.gpy" />
 		<Unit filename="puddi/Makefile" />
@@ -165,10 +167,12 @@
 		<Unit filename="src/AST.cc" />
 		<Unit filename="src/GrumpyConfig.cc" />
 		<Unit filename="src/Lexer.cc" />
+		<Unit filename="src/RTL.cc" />
 		<Unit filename="src/SourceCode.cc" />
 		<Unit filename="src/SyntaxParser.cc" />
 		<Unit filename="src/Token.cc" />
 		<Unit filename="src/TokenQueue.cc" />
+		<Unit filename="src/Tree.cc" />
 		<Unit filename="src/TypeChecker.cc" />
 		<Unit filename="src/main.cc" />
 		<Unit filename="src/malloc.c">

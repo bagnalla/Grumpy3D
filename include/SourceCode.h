@@ -23,7 +23,7 @@ namespace grumpy
         std::string font;
 
     private:
-        void createGlyphs();
+        //void createGlyphs();
     };
 }
 

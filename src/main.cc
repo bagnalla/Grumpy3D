@@ -22,6 +22,7 @@
 #include "TypeChecker.h"
 #include "GrumpyConfig.h"
 #include "TokenQueue.h"
+#include "RTL.h"
 #include "Camera.h"
 #include <vector>
 #include <iostream>
@@ -46,7 +47,7 @@ ASTNode *ast;
 SyntaxParser *parser;
 TypeChecker *typeChecker;
 
-string sourceFile, tokenFile, astFile;
+string sourceFile, tokenFile, astFile, rtlFile, rtlAstMapFile;
 
 void reset();
 
@@ -307,6 +308,28 @@ void reset()
     typeChecker->SetPosition(vec4(0.0f, 0.0f, 7.0f, 1.0f));
 
     parser->SetTypeChecker(typeChecker);
+
+    string rtl = string(Util::ReadAllBytes(rtlFile).data());
+    vector<RTLInstruction*> rtl_instrs;
+//    string line = "";
+//    for (int i = 0; i < rtl.length(); ++i)
+//    {
+//        char c = rtl[i];
+//        if (c == '\n' || c == '\r')
+//    }
+    stringstream ss(rtl);
+    string instr = "";
+    int instr_count = 0;
+    while (!ss.eof())
+    {
+        getline(ss, instr);
+        if (ss.eof()) break;
+        if (instr == "") continue;
+        auto rtl_instr = new RTLInstruction(engine::GetRootObject(), instr, "myfont");
+        rtl_instr->Translate(vec4(0.0f, 20.0f, -(instr_count++), 0.0f));
+        rtl_instrs.push_back(rtl_instr);
+        cout << instr << endl;
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -402,15 +425,24 @@ int main(int argc, char **argv)
         sourceFile = argv[1];
         tokenFile = argv[2];
         astFile = argv[3];
+        rtlFile = argv[4];
+        rtlAstMapFile = argv[5];
     }
     else
     {
         sourceFile = "program.gpy";
         tokenFile = "tokens.in";
         astFile = "ast.in";
+        rtlFile = "program.rtl";
+        rtlAstMapFile = "rtlMap.in";
         cout << "using default input file names.\n";
     }
-    cout << "source file: " << sourceFile << "\ntoken file: " << tokenFile << "\nAST file: " << astFile << endl;
+    cout << "source file: " << sourceFile
+        << "\ntoken file: " << tokenFile
+        << "\nAST file: " << astFile
+        << "\nRTL file: " << rtlFile
+        << "\nRTL->AST map file: " << rtlAstMapFile
+        << endl;
 
     init();
 

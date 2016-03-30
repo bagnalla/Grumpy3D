@@ -19,6 +19,7 @@ namespace grumpy
 		std::vector<ASTNode*> ChildNodes;
 
 		void Hide();
+
 		void Show();
 
 		void Resize();

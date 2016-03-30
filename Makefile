@@ -11,9 +11,9 @@ SRCDIR = src
 LINKDIR = puddi/release
 DEBUGLINKDIR = puddi/debug
 
-releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o TypeChecker.o GrumpyConfig.o TokenQueue.o )
+releaseobjects = $(addprefix $(RELEASEDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o TypeChecker.o GrumpyConfig.o TokenQueue.o Tree.o RTL.o )
 
-debugobjects = $(addprefix $(DEBUGDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o TypeChecker.o GrumpyConfig.o TokenQueue.o )
+debugobjects = $(addprefix $(DEBUGDIR)/$(OBJDIR)/, SourceCode.o Token.o Lexer.o AST.o SyntaxParser.o TypeChecker.o GrumpyConfig.o TokenQueue.o Tree.o RTL.o )
 
 Release: $(SRCDIR)/main.cc puddiRelease releasedirs $(releaseobjects)
 	$(CPP) $(SRCDIR)/main.cc $(releaseobjects) -I$(INCLUDEDIR) -L$(LINKDIR) $(OPTIONS) $(LDLIBS) -o $(RELEASEDIR)/Grumpy3D

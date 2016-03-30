@@ -1,0 +1,36 @@
+
+alloc _t1
+_t2 := 7
+store _t1 <- _t2
+alloc _t3
+_t4 := 0
+store _t3 <- _t4
+<LABEL _while_cond23>:
+_t11 := _t1
+_t9 := load _t11
+_t10 := 0
+_t8 := (_t9 < _t10)
+_t6 := (not _t8)
+branch _t6 _while_start24 _while_end25
+<LABEL _while_start24>:
+_t13 := _t1
+_t17 := _t1
+_t15 := load _t17
+_t16 := 1
+_t14 := (_t15 - _t16)
+store _t13 <- _t14
+_t12 := tt
+_t18 := _t3
+_t22 := _t3
+_t20 := load _t22
+_t21 := 1
+_t19 := (_t20 + _t21)
+store _t18 <- _t19
+_t7 := tt
+jmp _while_cond23
+<LABEL _while_end25>:
+_t5 := tt
+_t26 := _t3
+_t0 := load _t26
+ret _t0
+
