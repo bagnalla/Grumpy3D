@@ -68,7 +68,8 @@ namespace puddi
 		vec4 GetPosition() const;
 		vec4 GetWorldPosition() const;
 
-		void SetPosition(const vec4& position);
+		void SetPosition(const vec4 &p);
+		void SetWorldPosition(const vec4 &p);
 
 		void Translate(const vec4& translation);
 

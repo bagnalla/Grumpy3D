@@ -68,6 +68,7 @@
 		<Unit filename="include/GrumpyConfig.h" />
 		<Unit filename="include/Lexer.h" />
 		<Unit filename="include/RTL.h" />
+		<Unit filename="include/RTLCompiler.h" />
 		<Unit filename="include/SourceCode.h" />
 		<Unit filename="include/SyntaxParser.h" />
 		<Unit filename="include/Token.h" />
@@ -168,6 +169,7 @@
 		<Unit filename="src/GrumpyConfig.cc" />
 		<Unit filename="src/Lexer.cc" />
 		<Unit filename="src/RTL.cc" />
+		<Unit filename="src/RTLCompiler.cc" />
 		<Unit filename="src/SourceCode.cc" />
 		<Unit filename="src/SyntaxParser.cc" />
 		<Unit filename="src/Token.cc" />

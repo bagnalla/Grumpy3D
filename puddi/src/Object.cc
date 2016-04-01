@@ -110,6 +110,7 @@ namespace puddi
 	{
         return parentModel * position;
 	}
+
 	void Object::SetPosition(const vec4& p)
 	{
 		//vec4 translation = p - position;
@@ -119,6 +120,11 @@ namespace puddi
 		position = p;
 		changedFlags |= TRANSLATION_CHANGED;
 	}
+	void Object::SetWorldPosition(const vec4 &p)
+	{
+	    SetPosition(inverse(parentModel) * p);
+	}
+
 	void Object::Translate(const vec4& translation)
 	{
 		position += translation;

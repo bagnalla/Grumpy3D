@@ -25,6 +25,7 @@ namespace grumpy
     {
     public:
         Lexer(Object* par, SourceCode *code, const std::vector<LexToken> &lToks, TokenQueue *tq);
+        Lexer(Object* par, SourceCode *code, const std::vector<LexToken> &lToks, TokenQueue *tq, puddi::SchematicNode *schematic);
 
         ~Lexer();
 
@@ -60,8 +61,8 @@ namespace grumpy
         glm::vec4 scanBarColor;
         DrawableObject *scanBar;
 
+        void init(SourceCode *code, const std::vector<LexToken> &lToks, TokenQueue *tq);
 		void produceToken(size_t glyphBegin, size_t glyphEnd);
-
 		glm::vec4 chooseTokenColor(const LexToken& t);
     };
 }

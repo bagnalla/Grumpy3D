@@ -218,14 +218,17 @@ namespace puddi
                 return std::vector<char>();
             }
 
-            std::ifstream ifs(fileName, std::ios::binary | std::ios::ate);
-            std::ifstream::pos_type pos = ifs.tellg();
-
-            std::vector<char> result(static_cast<uint>(pos));
-
-            ifs.seekg(0, std::ios::beg);
-            ifs.read(&result[0], pos);
-
+            std::vector<char> result;
+            ifstream fin(fileName);
+            while (!fin.eof())
+            {
+                char c;
+                c = fin.get();
+                if (fin.fail() || fin.eof())
+                    break;
+                result.push_back(c);
+            }
+            fin.close();
             return result;
         }
 

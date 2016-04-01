@@ -23,25 +23,12 @@ namespace grumpy
 
     Lexer::Lexer(Object* par, SourceCode *code, const vector<LexToken> &lToks, TokenQueue *tq) : DrawableObject(par)
     {
-        sourceCode = code;
-        lTokens = lToks;
-        tokenQueue = tq;
-        currentCharacterIndex = 0;
-        currentTokenIndex = 0;
-        currentTokenStartPos = vec4(0.0f, 0.0f, 0.0f, 1.0f);
-        skipVelocity = 0.0f;
-        readVelocity = 0.0f;
-        parser = nullptr;
-        state = LEXER_STATE_WAITING;
+        init(code, lToks, tq);
+    }
 
-        scanBarColor = vec4(1.0f, 1.0f, 0.0f, 0.0f);
-
-        scanBar = new Cube(this);
-        scanBar->RotateX(static_cast<float>(M_PI / 2.0));
-        scanBar->SetEmissive(true);
-        scanBar->SetEmissionColor(scanBarColor);
-        scanBar->Scale(1.0f);
-        scanBar->SetRenderGraph(2);
+    Lexer::Lexer(Object* par, SourceCode *code, const std::vector<LexToken> &lToks, TokenQueue *tq, SchematicNode *schematic) : DrawableObject(par, schematic)
+    {
+        init(code, lToks, tq);
     }
 
     Lexer::~Lexer()
@@ -73,7 +60,7 @@ namespace grumpy
                 targetGlyph = sourceCode->glyphs[currentCharacterIndex];
             }
 
-            vec4 targetPosition = targetGlyph->GetWorldPosition() - vec4(targetGlyph->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f);
+            vec4 targetPosition = targetGlyph->GetWorldPosition() - vec4(targetGlyph->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f) + vec4(0.0f, 0.0f, scale.z / 2.0f, 0.0f);
             //vec4 targetPosition = targetGlyph->GetPosition();
 
             float moveAmount = skipVelocity * GrumpyConfig::GetGameSpeedFactor();
@@ -89,6 +76,9 @@ namespace grumpy
                     currentTokenStartPos = targetPosition;
                     scanBarColor.w = 0.5f;
                     scanBar->SetEmissionColor(scanBarColor);
+                    scanBar->SetPosition(vec4(-scanBar->GetScaleX() / 2.0f, -scale.z / 2.0f, 0.0f, 1.0f));
+                    scanBar->UpdateModel();
+                    scanBar->UnCull();
                     state = LEXER_STATE_READING;
                 }
                 else
@@ -107,11 +97,11 @@ namespace grumpy
             //update scan bar size/position
             vec4 displacement = currentTokenStartPos - position;
             scanBar->SetScaleX(Util::Length(displacement));
-            scanBar->SetPosition(vec4(-scanBar->GetScaleX() / 2.0f, 0.0f, 0.0f, 1.0f));
+            scanBar->SetPosition(vec4(-scanBar->GetScaleX() / 2.0f, -scale.z / 2.0f, 0.0f, 1.0f));
 
             DrawableObject *targetGlyph = sourceCode->glyphs[currentToken.end];
 
-            vec4 targetPosition = targetGlyph->GetWorldPosition() + vec4(targetGlyph->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f);
+            vec4 targetPosition = targetGlyph->GetWorldPosition() + vec4(targetGlyph->GetScaleX() / 2.0f, 0.0f, 0.0f, 0.0f) + vec4(0.0f, 0.0f, scale.z / 2.0f, 0.0f);
             //vec4 targetPosition = targetGlyph->GetPosition();
 
             float moveAmount = readVelocity * GrumpyConfig::GetGameSpeedFactor();
@@ -125,7 +115,7 @@ namespace grumpy
                 scanBarColor.w = 0.0f;
                 scanBar->SetEmissionColor(scanBarColor);
                 scanBar->SetScaleX(0.0f);
-                scanBar->SetPosition(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+                scanBar->Cull();
                 state = LEXER_STATE_WAITING;
 
                 size_t glyphBegin = currentCharacterIndex;
@@ -187,6 +177,29 @@ namespace grumpy
     }
 
     // PRIVATE
+
+    void Lexer::init(SourceCode *code, const vector<LexToken> &lToks, TokenQueue *tq)
+    {
+        sourceCode = code;
+        lTokens = lToks;
+        tokenQueue = tq;
+        currentCharacterIndex = 0;
+        currentTokenIndex = 0;
+        currentTokenStartPos = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        skipVelocity = 0.0f;
+        readVelocity = 0.0f;
+        parser = nullptr;
+        state = LEXER_STATE_WAITING;
+
+        scanBarColor = vec4(1.0f, 1.0f, 0.0f, 0.0f);
+
+        scanBar = new Cube(this);
+        scanBar->RotateX(static_cast<float>(M_PI / 2.0));
+        scanBar->SetEmissive(true);
+        scanBar->SetEmissionColor(scanBarColor);
+        scanBar->Scale(1.0f);
+        scanBar->SetRenderGraph(2);
+    }
 
 	void Lexer::produceToken(size_t glyphBegin, size_t glyphEnd)
 	{
@@ -256,31 +269,6 @@ namespace grumpy
             if (std::regex_match(t.name, pattern))
                 return vec4(0.5f, 0.25f, 0.75f, 1.0f);
         }
-
-//        // words
-//        auto it = find(words.begin(), words.end(), t.name);
-//        if (it != words.end())
-//            return vec4(0.25f, 0.25f, 0.25f, 1.0f);
-//
-//        // types
-//        it = find(types.begin(), types.end(), t.name);
-//        if (it != types.end())
-//            return vec4(0.0f, 0.0f, 0.75f, 1.0f);
-//
-//        // unops
-//        it = find(unops.begin(), unops.end(), t.name);
-//        if (it != unops.end())
-//            return vec4(0.0f, 0.75f, 0.25f, 1.0f);
-//
-//        // binops
-//        it = find(binops.begin(), binops.end(), t.name);
-//        if (it != binops.end())
-//            return vec4(0.0f, 0.75f, 0.0f, 1.0f);
-//
-//        // separators
-//        it = find(separators.begin(), separators.end(), t.name);
-//        if (it != separators.end())
-//            return vec4(0.25f, 0.75f, 0.0f, 1.0f);
 
         return vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	}

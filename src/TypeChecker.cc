@@ -1,6 +1,8 @@
 #include "TypeChecker.h"
 #include "GrumpyConfig.h"
 #include "AST.h"
+#include "RTLCompiler.h"
+#include "Schematic.h"
 #include <iostream>
 #include <algorithm>
 
@@ -37,7 +39,7 @@ namespace grumpy
 
 		if (currentNodeIndex >= nodesVector.size())
 		{
-			state = TYPECHECKER_STATE_DONE;
+			finish();
 			return;
 		}
 
@@ -59,7 +61,7 @@ namespace grumpy
 
 				if (++currentNodeIndex >= nodesVector.size())
                 {
-                    state = TYPECHECKER_STATE_DONE;
+                    finish();
                     return;
                 }
 			});
@@ -78,6 +80,11 @@ namespace grumpy
 	void TypeChecker::SetHomePosition(glm::vec4 v)
 	{
         homePosition = v;
+	}
+
+	void TypeChecker::SetRTLCompiler(RTLCompiler *c)
+	{
+	    rtlCompiler = c;
 	}
 
 	void TypeChecker::Start()
@@ -121,5 +128,11 @@ namespace grumpy
             nodesVector.push_back(node);
         for (auto it = node->ChildNodes.begin(); it != node->ChildNodes.end(); ++it)
             addToNodesVectorRecursive(*it);
+    }
+
+    void TypeChecker::finish()
+    {
+        state = TYPECHECKER_STATE_DONE;
+        rtlCompiler->Start();
     }
 }

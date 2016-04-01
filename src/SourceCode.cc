@@ -3,6 +3,7 @@
 #include "GlmHeaders.h"
 #include "Texture.h"
 #include "Font.h"
+#include <iostream>
 
 using namespace puddi;
 using namespace std;
@@ -15,6 +16,7 @@ namespace grumpy
     {
         auto chars = Util::ReadAllBytes(path);
         characters = string(chars.data());
+        cout << characters << endl;
         this->font = font;
         //createGlyphs();
         glyphs = Font::CreateGlyphString(this, font, characters);

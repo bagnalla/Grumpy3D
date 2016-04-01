@@ -23,6 +23,7 @@
 #include "GrumpyConfig.h"
 #include "TokenQueue.h"
 #include "RTL.h"
+#include "RTLCompiler.h"
 #include "Camera.h"
 #include <vector>
 #include <iostream>
@@ -46,6 +47,8 @@ TokenQueue *tokenQueue;
 ASTNode *ast;
 SyntaxParser *parser;
 TypeChecker *typeChecker;
+RTLProgram *rtlProgram;
+RTLCompiler *rtlCompiler;
 
 string sourceFile, tokenFile, astFile, rtlFile, rtlAstMapFile;
 
@@ -73,6 +76,7 @@ void init(void)
     Schematic::InitSchematic("models/rounded.obj", "pill");
     Schematic::InitSchematic("models/cube rounded - 554 faces.obj", "rounded_cube");
     Schematic::InitSchematic("models/grumpycat.obj", "grumpycat");
+    Schematic::InitSchematic("models/R2-D2.obj", "r2d2");
 
     engine::MainCamera->SetPosition(vec4(0.0f, -5.0f, 0.0f, 1.0f));
     engine::MainCamera->LookAt(vec4(0.0f, 0.0f, 0.0f, 1.0f));
@@ -214,6 +218,8 @@ void reset()
     delete ast;
     delete parser;
     delete typeChecker;
+    delete rtlProgram;
+    delete rtlCompiler;
 
     sourceCode = new SourceCode(engine::GetRootObject(), sourceFile, "myfont");
     sourceCode->Translate(vec4(0.0f, -30.0f, 0.0f, 0.0f));
@@ -237,20 +243,22 @@ void reset()
 
         //cout << tok.name << endl;
     }
+    infile.close();
 
     tokenQueue = new TokenQueue(engine::GetRootObject());
     tokenQueue->SetPosition(sourceCode->GetPosition() + vec4(5.0f, 0.0f, 2.0f, 0.0f));
 
-    lexer = new Lexer(engine::GetRootObject(), sourceCode, lTokens, tokenQueue);
+    lexer = new Lexer(engine::GetRootObject(), sourceCode, lTokens, tokenQueue, Schematic::GetSchematicByName("r2d2"));
     //lexer->BuildFromSchematic(Schematic::GetSchematicByName("grumpycat"));
     //lexer->SetScale(0.05f);
     //auto *mesh = new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("cube"));
-    auto *mesh = new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("sphere"));
-    lexer->AddVertexMesh(mesh);
-    lexer->SetTexture(Texture::GetTextureByName("grumpycat"));
+    //auto *mesh = new VertexMesh(VertexMesh::GetVertexMeshPrototypeByName("sphere"));
+    //lexer->AddVertexMesh(mesh);
+    //lexer->SetTexture(Texture::GetTextureByName("grumpycat"));
     lexer->SetSkipVelocity(0.1f);
     lexer->SetReadVelocity(0.01f);
     //lexer->Translate(vec4(0.0f, -10.0f, 0.0f, 0.0f));
+    lexer->RotateX(-M_PI / 2.0f);
 
     auto bytes = Util::ReadAllBytes(astFile);
     vector<char> sanitizedBytes;
@@ -268,7 +276,7 @@ void reset()
 
         sanitizedBytes.push_back(bytes[i]);
 
-        cout << bytes[i];;
+        //cout << bytes[i];;
     }
 
     queue<char> q;
@@ -291,8 +299,8 @@ void reset()
 //    parser->SetEmissionColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
     parser->SetVelocity(0.025f);
     //parser->DisableRender();
-    parser->SetHomePosition(ast->GetPosition() + vec4(0.0f, 0.0f, 5.0f, 1.0f));
-    parser->SetPosition(vec4(20.0f, 0.0f, 0.0f, 1.0f));
+    parser->SetPosition(ast->GetPosition() + vec4(0.0f, 0.0f, 5.0f, 1.0f));
+    parser->SetHomePosition(parser->GetPosition());
 
     //for (auto it = lTokens.begin(); it != lTokens.end(); ++it)
     //    parser->AddToken(new Token(engine::GetRootObject(), *it));
@@ -304,32 +312,20 @@ void reset()
     typeChecker = new TypeChecker(engine::GetRootObject(), ast, Schematic::GetSchematicByName("rounded_cube"));
     typeChecker->SetMaterial(Material::Medium(vec4(0.5f, 0.1f, 0.5f, 1.0f)));
     typeChecker->SetVelocity(0.025f);
-    typeChecker->SetHomePosition(ast->GetPosition() + vec4(0.0f, 0.0f, 7.0f, 1.0f));
-    typeChecker->SetPosition(vec4(0.0f, 0.0f, 7.0f, 1.0f));
+    typeChecker->SetPosition(ast->GetPosition() + vec4(0.0f, 0.0f, 7.0f, 1.0f));
+    typeChecker->SetHomePosition(typeChecker->GetPosition());
 
     parser->SetTypeChecker(typeChecker);
 
-    string rtl = string(Util::ReadAllBytes(rtlFile).data());
-    vector<RTLInstruction*> rtl_instrs;
-//    string line = "";
-//    for (int i = 0; i < rtl.length(); ++i)
-//    {
-//        char c = rtl[i];
-//        if (c == '\n' || c == '\r')
-//    }
-    stringstream ss(rtl);
-    string instr = "";
-    int instr_count = 0;
-    while (!ss.eof())
-    {
-        getline(ss, instr);
-        if (ss.eof()) break;
-        if (instr == "") continue;
-        auto rtl_instr = new RTLInstruction(engine::GetRootObject(), instr, "myfont");
-        rtl_instr->Translate(vec4(0.0f, 20.0f, -(instr_count++), 0.0f));
-        rtl_instrs.push_back(rtl_instr);
-        cout << instr << endl;
-    }
+    rtlProgram = new RTLProgram(engine::GetRootObject(), "myfont", rtlFile);
+    rtlProgram->Translate(vec4(0.0f, 25.0f, 0.0f, 0.0f));
+
+    rtlCompiler = new RTLCompiler(engine::GetRootObject(), ast, rtlProgram, 0.01f, rtlAstMapFile, Schematic::GetSchematicByName("rounded_cube"));
+    rtlCompiler->SetMaterial(Material::Medium(vec4(0.3f, 0.6f, 0.25f, 1.0f)));
+    rtlCompiler->SetPosition(ast->GetPosition() + vec4(0.0f, 0.0f, 9.0f, 1.0f));
+    rtlCompiler->SetHomePosition(rtlCompiler->GetPosition());
+
+    typeChecker->SetRTLCompiler(rtlCompiler);
 }
 
 //----------------------------------------------------------------------------
@@ -434,7 +430,7 @@ int main(int argc, char **argv)
         tokenFile = "tokens.in";
         astFile = "ast.in";
         rtlFile = "program.rtl";
-        rtlAstMapFile = "rtlMap.in";
+        rtlAstMapFile = "rtlmap.in";
         cout << "using default input file names.\n";
     }
     cout << "source file: " << sourceFile

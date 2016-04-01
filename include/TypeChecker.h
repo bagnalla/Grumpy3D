@@ -6,6 +6,7 @@
 namespace grumpy
 {
     class ASTNode;
+    class RTLCompiler;
 
     enum TypeCheckerState : int
     {
@@ -27,6 +28,8 @@ namespace grumpy
 
 		void SetHomePosition(glm::vec4 v);
 
+		void SetRTLCompiler(RTLCompiler *c);
+
 		void Start();
 
     private:
@@ -36,10 +39,12 @@ namespace grumpy
         float velocity;
         TypeCheckerState state;
         glm::vec4 homePosition;
+        RTLCompiler *rtlCompiler;
 
         void init(ASTNode *root);
         void createNodesVector();
         void addToNodesVectorRecursive(ASTNode *node);
+        void finish();
     };
 }
 
