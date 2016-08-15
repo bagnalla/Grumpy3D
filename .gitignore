@@ -35,3 +35,6 @@ release/
 
 #Code::Blocks
 *.layout
+
+#Emacs
+\#*\#

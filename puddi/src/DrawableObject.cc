@@ -73,7 +73,7 @@ namespace puddi
 
 	void DrawableObject::BuildFromSchematic(SchematicNode *schematic)
 	{
-	    for (auto it = schematic->vertexMeshes.begin(); it != schematic->vertexMeshes.end(); ++it)
+        for (auto it = schematic->vertexMeshes.begin(); it != schematic->vertexMeshes.end(); ++it)
 		{
 			vertexMeshes.push_back(new VertexMesh(*it));
 			vertexMeshes[vertexMeshes.size() - 1]->SetOwner(this);

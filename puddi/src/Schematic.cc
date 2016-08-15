@@ -102,7 +102,7 @@ namespace puddi
 
 			int vertexOffset = Shader::Vertices.size();
 
-			// vertex positiosn
+			// vertex positions
 			std::vector<vec4> vertices;
 			for (size_t j = 0; j < mesh->mNumVertices; ++j)
 				vertices.push_back(vec4(mesh->mVertices[j].x, mesh->mVertices[j].y, mesh->mVertices[j].z, 1.0f));

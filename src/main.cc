@@ -433,6 +433,7 @@ int main(int argc, char **argv)
         rtlAstMapFile = "rtlmap.in";
         cout << "using default input file names.\n";
     }
+
     cout << "source file: " << sourceFile
         << "\ntoken file: " << tokenFile
         << "\nAST file: " << astFile
