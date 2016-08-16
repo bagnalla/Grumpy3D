@@ -1,9 +1,0 @@
-g++
-libgl1-mesa (opengl)
-libglm
-libsdl2
-libglew
-libassimp
-libsdl-image1.2
-
-sudo apt-get install libgl1-mesa-* libglm-* libsdl2-* libglew-* libassimp-* libsdl-image1.2-*

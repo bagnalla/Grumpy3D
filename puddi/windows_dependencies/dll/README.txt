@@ -1,1 +1,0 @@
-copy these dlls into the same directory as the executable
