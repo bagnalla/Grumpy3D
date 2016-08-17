@@ -73,10 +73,10 @@ void init(void)
     //GLuint texture = Texture::LoadTexture("shrek", "textures/Shrek-and-Yoda (copy).jpg");
     //GLuint texture = Texture::CreateTextureFromString("bakow", "bakow_string", "fonts/Bitstream/VeraMono-Bold.ttf", 24, vec3(1.0f, 0.0f, 0.0f));
 
-    Schematic::InitSchematic("models/rounded.obj", "pill");
-    Schematic::InitSchematic("models/cube rounded - 554 faces.obj", "rounded_cube");
-    Schematic::InitSchematic("models/grumpycat.obj", "grumpycat");
-    Schematic::InitSchematic("models/R2-D2.obj", "r2d2");
+    Schematic::LoadSchematic("models/rounded.obj", "pill");
+    Schematic::LoadSchematic("models/cube rounded - 554 faces.obj", "rounded_cube");
+    Schematic::LoadSchematic("models/grumpycat.obj", "grumpycat");
+    Schematic::LoadSchematic("models/R2-D2.obj", "r2d2");
 
     engine::MainCamera->SetPosition(vec4(0.0f, -5.0f, 0.0f, 1.0f));
     engine::MainCamera->LookAt(vec4(0.0f, 0.0f, 0.0f, 1.0f));
