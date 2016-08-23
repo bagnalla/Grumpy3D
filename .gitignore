@@ -23,8 +23,8 @@
 *.app
 
 # build directories
-debug/
-release/
+Debug/
+Release/
 
 #Visual Studio
 *.sdf
@@ -38,3 +38,15 @@ release/
 
 #Emacs
 \#*\#
+
+#CMake
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Makefile
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+
+#CLion
+.idea/
