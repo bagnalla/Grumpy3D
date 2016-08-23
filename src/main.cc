@@ -1,11 +1,7 @@
 #include "Puddi.h"
-#include "FpsTracker.h"
 #include "LightSource.h"
 #include "DrawableObject.h"
 #include "Texture.h"
-#include "Cube.h"
-#include "GlmHeaders.h"
-#include "Rectangle.h"
 #include "Skybox.h"
 #include "Font.h"
 #include "Util.h"
@@ -67,7 +63,7 @@ void init(void)
     Texture::LoadBumpMap("rough2", "bumpmaps/rough2_bumpmap_fine.jpg");
     Texture::LoadBumpMap("rough3", "bumpmaps/rough3_bumpmap_fine.jpg");
     Texture::LoadBumpMap("rough5", "bumpmaps/rough5_bumpmap_fine.jpg");
-    GLuint bump = Texture::LoadBumpMap("rough4", "bumpmaps/rough4_bumpmap_fine.jpg");
+    Texture::LoadBumpMap("rough4", "bumpmaps/rough4_bumpmap_fine.jpg");
     //GLuint bump = Texture::LoadBumpMap("rough", "bumpmaps/Shrek-and-Yoda_NRM.jpg");
     Texture::LoadCubeMap("skybox_2", "textures/skybox2.jpg");
     //GLuint texture = Texture::LoadTexture("shrek", "textures/Shrek-and-Yoda (copy).jpg");
@@ -104,36 +100,30 @@ void init(void)
     //wall->SetBumpMap(bump);
     //wall->SetTexture(texture);
 
-    auto terrainMesh = new TerrainVertexMesh(HeightMapTerrain::CreateTerrainMeshFromFile("textures/ocaml_logo_2.png", 25.0f, 25.0f, 0.1f));
-    //auto terrainMesh = new TerrainVertexMesh(HeightMapTerrain::CreateTerrainMeshFromFile("textures/ou_logo_1.png", 25.0f, 25.0f, 0.1f));
-    Texture::LoadTexture("sand1", "textures/sand1.jpg", "bumpmaps/sand1_NRM.jpg");
-    Texture::LoadTexture("grass1", "textures/grass1.jpg", "bumpmaps/grass1_NRM.jpg");
-    Texture::LoadTexture("stone1", "textures/stone1.jpg", "bumpmaps/stone1_NRM.jpg");
-    Texture::LoadTexture("snow1", "textures/snow1.jpg", "bumpmaps/snow1_NRM.jpg");
-    terrainMesh->SetTexture1(Texture::GetTextureByName("sand1"));
-    terrainMesh->SetTexture2(Texture::GetTextureByName("grass1"));
-    terrainMesh->SetTexture3(Texture::GetTextureByName("stone1"));
-    terrainMesh->SetTexture4(Texture::GetTextureByName("snow1"));
-    terrainMesh->SetTextureHeights(vec4(0.0f, 0.3f, 0.5f, 0.9f));
-    //DrawableObject *terrainContainer = new DrawableObject(engine::GetRootObject(), terrainMesh);
-    //terrainContainer->Scale(0.01f);
+//    auto terrainMesh = new TerrainVertexMesh(HeightMapTerrain::CreateTerrainMeshFromFile("textures/ocaml_logo_2.png", 25.0f, 25.0f, 0.1f));
+//    //auto terrainMesh = new TerrainVertexMesh(HeightMapTerrain::CreateTerrainMeshFromFile("textures/ou_logo_1.png", 25.0f, 25.0f, 0.1f));
+//    Texture::LoadTexture("sand1", "textures/sand1.jpg", "bumpmaps/sand1_NRM.jpg");
+//    Texture::LoadTexture("grass1", "textures/grass1.jpg", "bumpmaps/grass1_NRM.jpg");
+//    Texture::LoadTexture("stone1", "textures/stone1.jpg", "bumpmaps/stone1_NRM.jpg");
+//    Texture::LoadTexture("snow1", "textures/snow1.jpg", "bumpmaps/snow1_NRM.jpg");
+//    terrainMesh->SetTexture1(Texture::GetTextureByName("sand1"));
+//    terrainMesh->SetTexture2(Texture::GetTextureByName("grass1"));
+//    terrainMesh->SetTexture3(Texture::GetTextureByName("stone1"));
+//    terrainMesh->SetTexture4(Texture::GetTextureByName("snow1"));
+//    terrainMesh->SetTextureHeights(vec4(0.0f, 0.3f, 0.5f, 0.9f));
+//    //DrawableObject *terrainContainer = new DrawableObject(engine::GetRootObject(), terrainMesh);
+//    //terrainContainer->Scale(0.01f);
 
-    //if (Schematic::InitSchematic("models/cube rounded.obj", "cube") < 0)
-    //if (Schematic::InitSchematic("models/cube rounded - 554 faces.obj", "cube") < 0)
-    //if (Schematic::InitSchematic("models/alien_boss_spider.obj", "cube", "alien_boss_spider") < 0)
-    //if (Schematic::InitSchematic("models/bb8.obj", "cube", "bb8") < 0)
-    //    std::cerr << "error loading cube rounded model\n";
-
-    auto terrain = new DrawableObject(engine::GetRootObject());
-    terrain->AddVertexMesh(terrainMesh);
-    terrain->SetScale(0.1f);
-    terrain->SetScaleX(0.25f);
-    terrain->SetScaleY(0.25f);
-    terrain->RotateZ(M_PI / 2.0f);
-    //terrain->Translate(vec4(-1000.0f, -1000.0f, -1000.0f, 0.0f));
-    //terrain->Translate(vec4(-100.0f, -100.0f, -100.0f, 0.0f));
-    //terrain->Translate(vec4(-20.0f, -125.0f, -125.0f, 0.0f));
-    terrain->Translate(vec4(0.0f, 150.0f, -125.0f, 0.0f));
+//    auto terrain = new DrawableObject(engine::GetRootObject());
+//    terrain->AddVertexMesh(terrainMesh);
+//    terrain->SetScale(0.1f);
+//    terrain->SetScaleX(0.25f);
+//    terrain->SetScaleY(0.25f);
+//    terrain->RotateZ(M_PI / 2.0f);
+//    //terrain->Translate(vec4(-1000.0f, -1000.0f, -1000.0f, 0.0f));
+//    //terrain->Translate(vec4(-100.0f, -100.0f, -100.0f, 0.0f));
+//    //terrain->Translate(vec4(-20.0f, -125.0f, -125.0f, 0.0f));
+//    terrain->Translate(vec4(0.0f, 150.0f, -125.0f, 0.0f));
 
 //    for (int i = 1; i < 1; ++i)
 //    {
@@ -314,6 +304,7 @@ void reset()
     typeChecker->SetVelocity(0.025f);
     typeChecker->SetPosition(ast->GetPosition() + vec4(0.0f, 0.0f, 7.0f, 1.0f));
     typeChecker->SetHomePosition(typeChecker->GetPosition());
+    typeChecker->SetBumpMap(Texture::GetBumpMapByName("rough1"));
 
     parser->SetTypeChecker(typeChecker);
 
