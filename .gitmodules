@@ -1,3 +1,4 @@
 [submodule "puddi"]
 	path = puddi
 	url = https://github.com/bagnalla/puddi.git
+	branch = master
